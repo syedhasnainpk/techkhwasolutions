@@ -126,7 +126,7 @@ export default function CTABanner() {
               </div>
 
               <motion.a
-                href="mailto:info@techkhwasolutions.com"
+                href="#contact-form"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-full font-body font-semibold text-[14px] btn-glow transition-all"
