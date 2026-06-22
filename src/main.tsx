@@ -4,11 +4,12 @@ import App from './App'
 import './index.css'
 import Lenis from 'lenis'
 
-// Initialise Lenis smooth scroll
 const lenis = new Lenis({
-  duration: 1.2,
-  easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  duration: 1.4,
+  easing: (t: number) => 1 - Math.pow(1 - t, 4),
   smoothWheel: true,
+  wheelMultiplier: 1.0,
+  touchMultiplier: 1.5,
 })
 
 function raf(time: number) {

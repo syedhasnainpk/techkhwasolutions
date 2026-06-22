@@ -174,7 +174,7 @@ export default function HeroScene() {
     <Canvas
       camera={{ position: [0, 0, 9], fov: 60 }}
       gl={{ antialias: true, alpha: true }}
-      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%' }}
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
       dpr={[1, 2]}
     >
       <CameraRig />
