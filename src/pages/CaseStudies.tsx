@@ -5,6 +5,34 @@ import Footer from '../components/Footer'
 const cases = [
   {
     id: '01',
+    client: 'Labour Department — KP',
+    industry: 'Government & Public Sector',
+    tag: 'Digital Transformation',
+    headline: 'Took a paper-driven government department fully online — 86% reduction in paper use, zero unnecessary office visits.',
+    summary:
+      'The Labour Department of Khyber Pakhtunkhwa ran entirely on paper. Citizens had to visit government offices multiple times — often travelling long distances — just to submit forms, follow up on applications, and collect approvals. Files were stored physically, retrieval was slow, and records were at constant risk of loss or damage. TechKhwa digitalized the entire workflow: from citizen-facing application portals to internal case management, secure document storage, and real-time status tracking.',
+    challenge:
+      'Every application required physical presence — sometimes 4–5 office visits per case. Paper files were stored across multiple locations with no unified search. Data loss from misplaced files was a recurring problem. Department staff spent the majority of their day managing paper rather than serving citizens.',
+    solution: [
+      'Citizen-facing web portal where all applications, forms, and document submissions are completed online — no office visit required.',
+      'Secure document management system with encrypted storage, role-based access, and full audit trail for every file and action.',
+      'Real-time application status tracking with automated SMS and email notifications so citizens always know where their case stands.',
+      'Internal case management dashboard for department staff — assign, review, approve, and route cases digitally with full history.',
+      'Searchable centralized database replacing physical file rooms — any record retrievable in seconds.',
+      'Admin reporting panel giving leadership visibility into case volumes, processing times, and departmental workload.',
+    ],
+    results: [
+      { label: 'Paper use reduced', value: '86%', period: 'vs. pre-digitalization baseline' },
+      { label: 'Office visits eliminated', value: '~100%', period: 'all submissions now fully online' },
+      { label: 'Record retrieval', value: 'Seconds', period: 'down from hours searching physical files' },
+      { label: 'Data security', value: 'Encrypted', period: 'secure storage with role-based access control' },
+    ],
+    stack: ['React', 'Node.js', 'PostgreSQL', 'AWS S3', 'SMS Gateway', 'RBAC', 'REST API'],
+    duration: 'Ongoing',
+    teamSize: '5 engineers + 1 designer',
+  },
+  {
+    id: '03',
     client: 'RetailEdge',
     industry: 'E-Commerce & Retail',
     tag: 'Full-Stack Platform',
@@ -30,7 +58,7 @@ const cases = [
     teamSize: '4 engineers',
   },
   {
-    id: '02',
+    id: '04',
     client: 'FinTrack Pro',
     industry: 'FinTech SaaS',
     tag: 'SaaS & AI Integration',
@@ -57,7 +85,7 @@ const cases = [
     teamSize: '5 engineers + 1 designer',
   },
   {
-    id: '03',
+    id: '05',
     client: 'MedConnect',
     industry: 'Healthcare Technology',
     tag: 'Mobile & API Platform',
