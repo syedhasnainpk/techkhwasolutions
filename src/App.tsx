@@ -1,29 +1,22 @@
-import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import StatsBar from './components/StatsBar'
-import Services from './components/Services'
-import WhyTechKhwa from './components/WhyTechKhwa'
-import Process from './components/Process'
-import Portfolio from './components/Portfolio'
-import Testimonials from './components/Testimonials'
-import Contact from './components/Contact'
-import CTABanner from './components/CTABanner'
-import Footer from './components/Footer'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import CaseStudiesPage from './pages/CaseStudies'
+import ServicesPage from './pages/ServicesPage'
+import AboutPage from './pages/About'
+import ContactPage from './pages/ContactPage'
 
 export default function App() {
   return (
-    <div className="bg-navy text-white overflow-x-hidden">
-      <Navbar />
-      <Hero />
-      <StatsBar />
-      <Services />
-      <WhyTechKhwa />
-      <Process />
-      <Portfolio />
-      <Testimonials />
-      <Contact />
-      <CTABanner />
-      <Footer />
-    </div>
+    <BrowserRouter>
+      <div className="bg-navy text-white overflow-x-hidden">
+        <Routes>
+          <Route path="/"              element={<Home />} />
+          <Route path="/case-studies"  element={<CaseStudiesPage />} />
+          <Route path="/services"      element={<ServicesPage />} />
+          <Route path="/about"         element={<AboutPage />} />
+          <Route path="/contact"       element={<ContactPage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   )
 }

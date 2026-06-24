@@ -1,24 +1,32 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { Github, Linkedin, Twitter, Instagram } from 'lucide-react'
 
 const cols = [
   {
     title: 'Services',
-    links: ['Software Development', 'App Development', 'Website Development', 'Datacenter Maintenance', 'Cloud Computing', 'IT Consulting'],
+    links: [
+      { label: 'Web Application', href: '/services' },
+      { label: 'Mobile App', href: '/services' },
+      { label: 'AI Integration', href: '/services' },
+      { label: 'E-Commerce', href: '/services' },
+      { label: 'DevOps / Cloud', href: '/services' },
+      { label: 'UI/UX Design', href: '/services' },
+    ],
   },
   {
     title: 'Company',
-    links: ['About Us', 'Our Team', 'Careers', 'Partners', 'Press Kit', 'Blog'],
-  },
-  {
-    title: 'Resources',
-    links: ['Case Studies', 'White Papers', 'Tech Blog', 'Documentation', 'Privacy Policy', 'Terms of Service'],
+    links: [
+      { label: 'About Us', href: '/about' },
+      { label: 'Case Studies', href: '/case-studies' },
+      { label: 'Contact', href: '/contact' },
+    ],
   },
 ]
 
 const socials = [
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Github, href: '#', label: 'GitHub' },
+  { icon: Github, href: 'https://github.com/syedhasnainpk/techkhwasolutions', label: 'GitHub' },
   { icon: Twitter, href: '#', label: 'Twitter' },
   { icon: Instagram, href: '#', label: 'Instagram' },
 ]
@@ -32,11 +40,11 @@ export default function Footer() {
       <div className="max-w-[1440px] mx-auto px-8 relative z-10">
 
         {/* ─── Top ─── */}
-        <div className="py-16 grid grid-cols-1 lg:grid-cols-5 gap-12 border-b border-white/6">
+        <div className="py-16 grid grid-cols-1 lg:grid-cols-4 gap-12 border-b border-white/6">
 
           {/* Brand */}
           <div className="lg:col-span-2 flex flex-col gap-6">
-            <a href="#" className="flex items-center gap-3">
+            <Link to="/" className="flex items-center gap-3">
               <img src="/logo.png" alt="TechKhwa Solutions" className="h-10 w-auto object-contain" />
               <div>
                 <span className="font-display font-bold text-[17px] tracking-tight text-white block">
@@ -46,10 +54,10 @@ export default function Footer() {
                   Solutions
                 </span>
               </div>
-            </a>
+            </Link>
 
             <p className="font-body text-body-sm text-white/35 max-w-xs leading-relaxed">
-              Engineering tomorrow's digital infrastructure for businesses across the globe.
+              Your technology partner, not just a developer team. Trusted by 40+ businesses globally.
             </p>
 
             <div className="flex gap-2.5">
@@ -57,6 +65,8 @@ export default function Footer() {
                 <motion.a
                   key={label}
                   href={href}
+                  target={href.startsWith('http') ? '_blank' : undefined}
+                  rel="noopener noreferrer"
                   whileHover={{ y: -2, scale: 1.1 }}
                   whileTap={{ scale: 0.92 }}
                   aria-label={label}
@@ -77,10 +87,10 @@ export default function Footer() {
               </h4>
               <ul className="space-y-3">
                 {col.links.map((link) => (
-                  <li key={link}>
-                    <a href="#" className="font-body text-body-sm text-white/40 hover:text-white/80 transition-colors duration-150">
-                      {link}
-                    </a>
+                  <li key={link.label}>
+                    <Link to={link.href} className="font-body text-body-sm text-white/40 hover:text-white/80 transition-colors duration-150">
+                      {link.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -94,11 +104,9 @@ export default function Footer() {
             © {new Date().getFullYear()} TechKhwa Solutions · All rights reserved
           </p>
           <div className="flex items-center gap-6">
-            {['Privacy', 'Terms', 'Cookies'].map((item) => (
-              <a key={item} href="#" className="font-body text-[12px] text-white/20 hover:text-white/50 transition-colors">
-                {item}
-              </a>
-            ))}
+            <a href="mailto:techkhwasolutions@gmail.com" className="font-body text-[12px] text-white/20 hover:text-white/50 transition-colors">
+              techkhwasolutions@gmail.com
+            </a>
           </div>
         </div>
 
