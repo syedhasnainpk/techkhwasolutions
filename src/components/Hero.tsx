@@ -1,6 +1,8 @@
+import { lazy, Suspense } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
-import HeroScene from './HeroScene'
+
+const HeroScene = lazy(() => import('./HeroScene'))
 
 const word = (text: string, offset: number, cls = '') => (
   <motion.span
@@ -24,7 +26,9 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ duration: 2.4, ease: 'easeOut' }}
       >
-        <HeroScene />
+        <Suspense fallback={null}>
+          <HeroScene />
+        </Suspense>
       </motion.div>
 
       {/* ─── Overlays ─── */}
