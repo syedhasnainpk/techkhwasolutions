@@ -32,6 +32,34 @@ const cases = [
     teamSize: '5 engineers + 1 designer',
   },
   {
+    id: '02',
+    client: 'Auto Accounting',
+    industry: 'Chartered Accountancy & Finance',
+    tag: 'Workflow Automation',
+    headline: 'Digitalized a CA firm\'s entire workflow — 68% productivity boost and million-dollar clients acquired.',
+    summary:
+      'Auto Accounting, a growing chartered accountancy firm, was running their practice on spreadsheets, email chains, and manual document handling. Every client engagement required hours of administrative overhead — chasing documents, manually preparing reports, and managing deadlines across dozens of active files. TechKhwa built a custom practice management platform that automated the repetitive work, centralised all client data, and gave the team the capacity to take on significantly larger and more complex clients.',
+    challenge:
+      'The firm\'s manual processes were the ceiling on their growth. Each accountant spent 30–40% of their week on administrative tasks — document collection, formatting reports, sending reminders — instead of billable work. As client count grew, so did the chaos. They were turning down high-value clients because the team simply didn\'t have the bandwidth.',
+    solution: [
+      'Custom practice management portal — all client files, deadlines, task assignments, and communications in one place.',
+      'Automated document collection: clients receive smart request links and upload directly into the system — no email attachments.',
+      'Automated report generation pulling live financial data into pre-built templates, reducing report prep time from hours to minutes.',
+      'Deadline tracking engine with automated reminders to clients and internal staff — nothing falls through the cracks.',
+      'Client-facing dashboard giving each business real-time visibility into their accounts, filings, and outstanding actions.',
+      'Role-based access so partners, managers, and junior accountants each see only what they need.',
+    ],
+    results: [
+      { label: 'Productivity boost', value: '+68%', period: 'work rate per accountant per month' },
+      { label: 'Projects closed', value: 'More', period: 'same team, significantly higher throughput' },
+      { label: 'Clients acquired', value: 'Million-$', period: 'enterprise clients closed using the platform' },
+      { label: 'Admin overhead', value: '−60%', period: 'time spent on non-billable tasks' },
+    ],
+    stack: ['React', 'Node.js', 'PostgreSQL', 'PDF Generation', 'Automated Reminders', 'Role-Based Access'],
+    duration: '5 months',
+    teamSize: '3 engineers + 1 designer',
+  },
+  {
     id: '03',
     client: 'RetailEdge',
     industry: 'E-Commerce & Retail',
