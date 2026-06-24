@@ -5,18 +5,27 @@ import './index.css'
 import Lenis from 'lenis'
 
 const lenis = new Lenis({
-  duration: 1.4,
-  easing: (t: number) => 1 - Math.pow(1 - t, 4),
+  lerp: 0.07,
   smoothWheel: true,
-  wheelMultiplier: 1.0,
-  touchMultiplier: 1.5,
+  wheelMultiplier: 0.9,
+  touchMultiplier: 1.2,
+  syncTouch: true,
+  syncTouchLerp: 0.06,
+  infinite: false,
 })
 
+// Expose lenis globally so pages can reset scroll position on route change
+;(window as unknown as Record<string, unknown>).lenis = lenis
+
+let rafId: number
 function raf(time: number) {
   lenis.raf(time)
-  requestAnimationFrame(raf)
+  rafId = requestAnimationFrame(raf)
 }
-requestAnimationFrame(raf)
+rafId = requestAnimationFrame(raf)
+
+// Silence unused variable warning
+void rafId
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

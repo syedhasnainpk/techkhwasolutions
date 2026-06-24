@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -166,7 +166,6 @@ const fadeUp = {
 
 export default function ServicesPage() {
   const [activeService, setActiveService] = useState<string | null>(null)
-  useEffect(() => { window.scrollTo(0, 0) }, [])
 
   return (
     <div className="bg-[#0A0F1A] text-white min-h-screen">

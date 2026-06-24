@@ -1,4 +1,4 @@
-import { useEffect, useState, FormEvent } from 'react'
+import { useState, FormEvent } from 'react'
 import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -93,8 +93,6 @@ type FormData = {
 }
 
 export default function ContactPage() {
-  useEffect(() => { window.scrollTo(0, 0) }, [])
-
   const [form, setForm] = useState<FormData>({
     name: '', email: '', company: '', budget: '', service: '', message: '', consent: false,
   })
