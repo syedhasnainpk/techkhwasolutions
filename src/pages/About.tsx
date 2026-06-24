@@ -35,7 +35,7 @@ const team = [
 
 const credibility = [
   { value: '15+', label: 'Projects delivered', sub: 'across multiple industries' },
-  { value: '6+', label: 'Years in business', sub: 'founded 2018' },
+  { value: '2+', label: 'Years in business', sub: 'founded 2023' },
   { value: '98%', label: 'Client retention', sub: 'clients who stay come back' },
   { value: '5', label: 'Countries served', sub: 'globally distributed clients' },
 ]
@@ -60,14 +60,12 @@ const values = [
 ]
 
 const timeline = [
-  { year: '2018', event: 'TechKhwa founded', detail: 'Started as a two-person freelance shop, delivering WordPress and Laravel projects.' },
-  { year: '2019', event: 'First SaaS client', detail: 'Built a logistics management tool for a supply-chain startup. Introduced internal code review standards.' },
-  { year: '2020', event: 'Went fully remote', detail: 'Distributed team model adopted ahead of the curve. Hired specialists in mobile and DevOps.' },
-  { year: '2021', event: 'Crossed $500K in project value', detail: 'First fintech engagement — AI-powered transaction categorization for a UK-based accounting startup.' },
-  { year: '2022', event: 'AI practice launched', detail: 'Dedicated AI/ML team. First LLM integration shipped six months before ChatGPT made it mainstream.' },
-  { year: '2023', event: '30+ active clients', detail: 'Expanded to healthcare and e-commerce. First long-term DevOps retainer signed.' },
-  { year: '2024', event: 'Global reach', detail: 'Clients across 5 countries. First seven-figure engagement signed.' },
-  { year: '2025', event: 'TechKhwa today', detail: 'Senior team of 12. Focused on high-impact engagements with companies serious about technology as a competitive advantage.' },
+  { year: '2023', event: 'TechKhwa founded', detail: 'Started with web development — custom websites, business platforms, and digital products. First clients onboarded within weeks of launch.' },
+  { year: '2023', event: 'Government sector entry', detail: 'Delivered the KP Labour Department digitalization — paper-based workflows moved fully online, 86% paper reduction.' },
+  { year: '2024', event: 'Services expanded', detail: 'Grew beyond web dev into mobile apps, AI integration, DevOps, and UI/UX design as client needs evolved.' },
+  { year: '2024', event: 'First international client', detail: 'Delivered an AI-powered omnichannel sales platform for a real estate firm in Dubai, UAE.' },
+  { year: '2024', event: 'CA firm digitalization', detail: 'Replaced paper auditing and Excel workflows with a unified platform for Auto Accounting — 68% productivity boost.' },
+  { year: '2025', event: 'TechKhwa today', detail: '15+ projects delivered across 5 countries. Full-service technology partner for businesses that treat software as a competitive advantage.' },
 ]
 
 const fadeUp = {
@@ -121,16 +119,16 @@ export default function AboutPage() {
       <section className="max-w-3xl mx-auto px-6 py-16">
         <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <p className="section-label mb-4">Our Story</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Started scrappy. Stayed honest.</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8">Started focused. Grew deliberately.</h2>
           <div className="space-y-5 text-[#8899AA] leading-relaxed">
             <p>
-              TechKhwa started in 2018 when our founder got tired of watching clients get burned by agencies that over-promised, under-delivered, and disappeared when things got hard. The bet was simple: if you build software that actually works, treat clients like partners, and hold yourself accountable to real business outcomes — reputation takes care of itself.
+              TechKhwa was founded in 2023 with a clear starting point: web development done properly. No inflated promises, no offshore hand-offs — just a focused team that delivered websites and web platforms that actually worked. Early clients stuck around, referred others, and started asking for more.
             </p>
             <p>
-              Seven years later, that bet has paid off. We've grown entirely through referrals and repeat business. Clients who found us when they had a $5,000 problem now bring us their $500,000 problems because they've seen how we operate under pressure.
+              That demand shaped what we became. As clients grew, so did the problems they brought us — mobile apps, AI integrations, cloud infrastructure, workflow automation. We didn't expand for the sake of it. We expanded because clients we already trusted asked us to solve problems we knew we could solve.
             </p>
             <p>
-              We're not a 500-person outsourcing firm. We're a focused team of senior engineers who have learned that the most valuable thing we can offer a client isn't our tech stack — it's our judgement. Knowing when to build, when to buy, and when to say "that's not the real problem."
+              Two years in, we've delivered 15+ projects across 5 countries — from digitalizing a government department in KP to building an AI sales platform for a real estate firm in Dubai. We're still the same team that started: direct, accountable, and genuinely invested in what we build.
             </p>
           </div>
         </motion.div>
@@ -218,7 +216,7 @@ export default function AboutPage() {
           ))}
         </div>
         <p className="text-center text-sm text-[#667788] mt-8">
-          Plus 8 more senior engineers, designers, and QA specialists across 4 time zones.
+          A growing team of engineers, designers, and specialists — all senior, all hands-on.
         </p>
       </section>
 
