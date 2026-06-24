@@ -62,12 +62,12 @@ const cases = [
   },
   {
     id: '03',
-    client: 'Real Estate Group',
-    industry: 'Real Estate & Property Sales',
+    client: 'Confidential — Dubai Real Estate',
+    industry: 'Real Estate & Property Sales · Dubai, UAE',
     tag: 'Omnichannel AI Platform',
     headline: 'Unified 8 communication channels into one AI-powered sales platform — no lead goes unanswered, day or night.',
     summary:
-      'A fast-growing real estate firm was running their entire sales operation across a patchwork of disconnected tools — WhatsApp, 3CX, SMS, email, Facebook Messenger, Instagram DMs, Zoom calls, and a separate CRM. Agents were switching between 6–8 apps constantly, leads were falling through cracks between platforms, supervisors had no visibility into what was being said to clients, and after-hours enquiries went cold until the next morning. TechKhwa built a unified omnichannel sales platform that brought every channel into one dashboard — and layered an AI agent on top that handles calls, texts, and messages whenever a human agent is unavailable.',
+      'A fast-growing real estate firm in Dubai was running their entire sales operation across a patchwork of disconnected tools — WhatsApp, 3CX, SMS, email, Facebook Messenger, Instagram DMs, Zoom calls, and a separate CRM. In Dubai\'s hyper-competitive property market, response speed is the difference between a deal and a lost client. Agents were switching between 6–8 apps constantly, leads were falling through cracks between platforms, supervisors had no visibility into agent conversations, and after-hours enquiries went cold until the next morning. TechKhwa built a unified omnichannel sales platform that brought every channel into one dashboard — and layered an AI agent on top that handles calls, texts, and messages whenever a human agent is unavailable.',
     challenge:
       'Eight separate communication tools with no unified inbox meant agents spent more time switching apps than talking to clients. A lead that came in on Instagram at 9 PM sat unread until 9 AM — a 12-hour cold window in a market where response time is everything. Supervisors had no way to review calls or monitor agent conversations for quality without manually chasing recordings stored in different systems. And with no AI fallback, any gap in agent availability meant lost enquiries.',
     solution: [
