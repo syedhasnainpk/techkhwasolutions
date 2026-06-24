@@ -62,6 +62,35 @@ const cases = [
   },
   {
     id: '03',
+    client: 'Real Estate Group',
+    industry: 'Real Estate & Property Sales',
+    tag: 'Omnichannel AI Platform',
+    headline: 'Unified 8 communication channels into one AI-powered sales platform — no lead goes unanswered, day or night.',
+    summary:
+      'A fast-growing real estate firm was running their entire sales operation across a patchwork of disconnected tools — WhatsApp, 3CX, SMS, email, Facebook Messenger, Instagram DMs, Zoom calls, and a separate CRM. Agents were switching between 6–8 apps constantly, leads were falling through cracks between platforms, supervisors had no visibility into what was being said to clients, and after-hours enquiries went cold until the next morning. TechKhwa built a unified omnichannel sales platform that brought every channel into one dashboard — and layered an AI agent on top that handles calls, texts, and messages whenever a human agent is unavailable.',
+    challenge:
+      'Eight separate communication tools with no unified inbox meant agents spent more time switching apps than talking to clients. A lead that came in on Instagram at 9 PM sat unread until 9 AM — a 12-hour cold window in a market where response time is everything. Supervisors had no way to review calls or monitor agent conversations for quality without manually chasing recordings stored in different systems. And with no AI fallback, any gap in agent availability meant lost enquiries.',
+    solution: [
+      'Unified omnichannel inbox: WhatsApp, 3CX, SMS, email, Facebook Messenger, Instagram DMs, and web chat — all in a single real-time dashboard.',
+      'AI voice agent that automatically picks up inbound calls when no human agent is available — answers property queries, captures lead details, and books viewings.',
+      'AI text agent handles WhatsApp, SMS, and social DMs after hours — responds to enquiries, qualifies leads, and routes hot leads to the on-call agent.',
+      'Automatic call recording with AI-generated transcriptions — supervisors can search, review, and annotate every call from one panel.',
+      'Supervisor monitoring dashboard: live agent activity, conversation history across all channels, response time metrics, and lead stage tracking.',
+      'Smart lead routing — incoming enquiries are scored by intent and automatically assigned to the most suitable available agent.',
+      'Full conversation history per contact: one timeline showing every WhatsApp message, call, email, and DM regardless of which channel it came through.',
+    ],
+    results: [
+      { label: 'Channels unified', value: '8', period: 'WhatsApp, 3CX, SMS, email, FB, IG, Zoom, web chat' },
+      { label: 'After-hours leads', value: '100%', period: 'captured by AI agent — zero cold enquiries' },
+      { label: 'Supervisor visibility', value: 'Full', period: 'recordings + transcriptions across all channels' },
+      { label: 'Response time', value: 'Instant', period: 'AI responds within seconds, 24/7' },
+    ],
+    stack: ['React', 'Node.js', 'PostgreSQL', 'Twilio', 'WhatsApp Business API', '3CX API', 'OpenAI', 'WebSockets', 'AWS'],
+    duration: '6 months',
+    teamSize: '4 engineers + 1 AI specialist',
+  },
+  {
+    id: '04',
     client: 'RetailEdge',
     industry: 'E-Commerce & Retail',
     tag: 'Full-Stack Platform',
