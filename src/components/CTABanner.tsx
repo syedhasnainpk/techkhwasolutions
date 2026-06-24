@@ -143,7 +143,7 @@ export default function CTABanner() {
                   ))}
                 </div>
                 <span className="font-body text-[11px]" style={{ color: 'rgba(255,255,255,0.28)' }}>
-                  Trusted by 40+ businesses across the globe
+                  Trusted by 15+ businesses across the globe
                 </span>
               </div>
             </div>

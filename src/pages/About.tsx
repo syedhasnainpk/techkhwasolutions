@@ -6,7 +6,7 @@ const team = [
   {
     name: 'Hasnain Ali',
     role: 'Founder & CEO',
-    bio: 'Full-stack engineer and product strategist. Led 40+ projects across SaaS, fintech, and health-tech. Obsessed with execution speed without sacrificing engineering quality.',
+    bio: 'Full-stack engineer and product strategist. Led 15+ projects across SaaS, fintech, and health-tech. Obsessed with execution speed without sacrificing engineering quality.',
     initials: 'HA',
     accent: '#5BC8E8',
   },
@@ -34,10 +34,10 @@ const team = [
 ]
 
 const credibility = [
-  { value: '40+', label: 'Projects delivered', sub: 'across 12 industries' },
+  { value: '15+', label: 'Projects delivered', sub: 'across multiple industries' },
   { value: '6+', label: 'Years in business', sub: 'founded 2018' },
   { value: '98%', label: 'Client retention', sub: 'clients who stay come back' },
-  { value: '12', label: 'Countries served', sub: 'globally distributed clients' },
+  { value: '5', label: 'Countries served', sub: 'globally distributed clients' },
 ]
 
 const values = [
@@ -66,7 +66,7 @@ const timeline = [
   { year: '2021', event: 'Crossed $500K in project value', detail: 'First fintech engagement — AI-powered transaction categorization for a UK-based accounting startup.' },
   { year: '2022', event: 'AI practice launched', detail: 'Dedicated AI/ML team. First LLM integration shipped six months before ChatGPT made it mainstream.' },
   { year: '2023', event: '30+ active clients', detail: 'Expanded to healthcare and e-commerce. First long-term DevOps retainer signed.' },
-  { year: '2024', event: 'Global reach', detail: 'Clients across 12 countries. First seven-figure engagement signed.' },
+  { year: '2024', event: 'Global reach', detail: 'Clients across 5 countries. First seven-figure engagement signed.' },
   { year: '2025', event: 'TechKhwa today', detail: 'Senior team of 12. Focused on high-impact engagements with companies serious about technology as a competitive advantage.' },
 ]
 

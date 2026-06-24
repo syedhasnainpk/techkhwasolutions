@@ -57,7 +57,7 @@ export default function Footer() {
             </Link>
 
             <p className="font-body text-body-sm text-white/35 max-w-xs leading-relaxed">
-              Your technology partner, not just a developer team. Trusted by 40+ businesses globally.
+              Your technology partner, not just a developer team. Trusted by 15+ businesses globally.
             </p>
 
             <div className="flex gap-2.5">
