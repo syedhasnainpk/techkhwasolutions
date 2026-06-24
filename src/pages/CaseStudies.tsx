@@ -115,60 +115,6 @@ const cases = [
     duration: '8 months',
     teamSize: '4 engineers',
   },
-  {
-    id: '04',
-    client: 'FinTrack Pro',
-    industry: 'FinTech SaaS',
-    tag: 'SaaS & AI Integration',
-    headline: 'Built a B2B SaaS accounting platform from zero to $120K MRR in 14 months.',
-    summary:
-      'A finance consultant approached TechKhwa with a product idea: an AI-assisted bookkeeping tool for SMEs that couldn\'t afford enterprise accounting software. We took the product from concept to launch — architecture, MVP, onboarding flow, AI reconciliation engine, and a Stripe billing system — then iterated through four major feature releases alongside real paying customers.',
-    challenge:
-      'The client had no technical co-founder, no codebase, and a 12-week go-to-market deadline. The product needed bank-level data security (SOC 2 readiness), automatic transaction categorization, and multi-tenant billing — all before the first paying customer.',
-    solution: [
-      'Designed multi-tenant architecture on day one — separate Postgres schemas per tenant with row-level security.',
-      'AI transaction categorization using fine-tuned GPT-4 on 200K labeled finance transactions — 94.2% accuracy out of the box.',
-      'Open Banking API integration (Plaid + TrueLayer) for automatic bank feed import across 14 countries.',
-      'Stripe Billing with usage-based tiers, annual discount logic, and automated dunning sequences.',
-      'SOC 2 Type I readiness: audit logging, encryption at rest/transit, RBAC, and penetration test within 6 months of launch.',
-    ],
-    results: [
-      { label: 'MRR at Month 14', value: '$120K', period: 'from $0' },
-      { label: 'Categorization accuracy', value: '94.2%', period: 'AI transaction engine' },
-      { label: 'Onboarding time', value: '< 8 min', period: 'median time to first bank connected' },
-      { label: 'Churn rate', value: '2.1%', period: 'monthly, well below industry avg of 5–7%' },
-    ],
-    stack: ['React', 'TypeScript', 'NestJS', 'PostgreSQL', 'OpenAI GPT-4', 'Plaid', 'Stripe', 'GCP'],
-    duration: '14 months',
-    teamSize: '5 engineers + 1 designer',
-  },
-  {
-    id: '05',
-    client: 'MedConnect',
-    industry: 'Healthcare Technology',
-    tag: 'Mobile & API Platform',
-    headline: 'Telemedicine platform serving 28,000+ patients — built HIPAA-compliant in 18 weeks.',
-    summary:
-      'A regional hospital group needed to digitize patient consultations fast. They had a paper-based appointment system, no patient portal, and doctors scheduling via WhatsApp. TechKhwa designed and delivered a HIPAA-compliant telemedicine platform — web portal, native iOS/Android apps, EHR integration, and secure video — in under five months.',
-    challenge:
-      'HIPAA compliance with a hard deadline. Integration with a 2009-era HL7 EHR system that had no REST API. Video consultation with < 200ms latency across rural low-bandwidth connections.',
-    solution: [
-      'Custom HL7 v2 parser that extracted and normalized patient data in real time, piped into a modern REST layer.',
-      'WebRTC video with adaptive bitrate — degrades gracefully down to 64Kbps for 2G connections.',
-      'End-to-end encryption for all messaging; audit log for every data access event.',
-      'React Native app (shared 78% code between iOS and Android) with offline-first appointment management.',
-      'Automated prescription generation with e-signature and pharmacy API routing.',
-    ],
-    results: [
-      { label: 'Patients onboarded', value: '28,000+', period: 'in 6 months post-launch' },
-      { label: 'No-show rate', value: '−61%', period: 'vs paper appointment baseline' },
-      { label: 'Avg consultation wait', value: '< 4 min', period: 'down from 47 min in-person' },
-      { label: 'Build time', value: '18 weeks', period: 'MVP to production' },
-    ],
-    stack: ['React Native', 'React', 'Node.js', 'WebRTC', 'PostgreSQL', 'HL7', 'AWS HIPAA-compliant'],
-    duration: '18 weeks (MVP) + ongoing',
-    teamSize: '6 engineers',
-  },
 ]
 
 const fadeUp = {

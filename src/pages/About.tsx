@@ -2,37 +2,6 @@ import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 
-const team = [
-  {
-    name: 'Hasnain Ali',
-    role: 'Founder & CEO',
-    bio: 'Full-stack engineer and product strategist. Led 15+ projects across SaaS, fintech, and health-tech. Obsessed with execution speed without sacrificing engineering quality.',
-    initials: 'HA',
-    accent: '#5BC8E8',
-  },
-  {
-    name: 'Fatima Zahra',
-    role: 'Lead Frontend Engineer',
-    bio: 'Expert in React, TypeScript, and design systems. Shipped pixel-perfect UIs for clients that have raised over $40M combined.',
-    initials: 'FZ',
-    accent: '#9BE4F5',
-  },
-  {
-    name: 'Usman Tariq',
-    role: 'Backend & DevOps Lead',
-    bio: '10 years managing production infrastructure. Designed systems serving 2M+ daily users. Cloud-agnostic but AWS-certified.',
-    initials: 'UT',
-    accent: '#5BC8E8',
-  },
-  {
-    name: 'Sara Malik',
-    role: 'UI/UX Design Lead',
-    bio: 'Former product designer at a Series B fintech. Brings research-backed design thinking to every project — no decoration without purpose.',
-    initials: 'SM',
-    accent: '#9BE4F5',
-  },
-]
-
 const credibility = [
   { value: '15+', label: 'Projects delivered', sub: 'across multiple industries' },
   { value: '2+', label: 'Years in business', sub: 'founded 2023' },
@@ -186,38 +155,6 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </section>
-
-      {/* Team */}
-      <section className="max-w-5xl mx-auto px-6 py-24">
-        <p className="section-label mb-4">The Team</p>
-        <h2 className="text-3xl md:text-4xl font-bold mb-12">People, not profiles.</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {team.map((member, i) => (
-            <motion.div
-              key={member.name}
-              custom={i}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="p-6 rounded-2xl border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.02)] group hover:border-[rgba(91,200,232,0.25)] transition-colors"
-            >
-              <div
-                className="w-14 h-14 rounded-2xl flex items-center justify-center text-lg font-bold text-[#0A0F1A] mb-5"
-                style={{ background: `linear-gradient(135deg, ${member.accent}, #9BE4F5)` }}
-              >
-                {member.initials}
-              </div>
-              <div className="font-bold mb-0.5">{member.name}</div>
-              <div className="text-xs text-[#5BC8E8] font-medium mb-3">{member.role}</div>
-              <p className="text-xs text-[#8899AA] leading-relaxed">{member.bio}</p>
-            </motion.div>
-          ))}
-        </div>
-        <p className="text-center text-sm text-[#667788] mt-8">
-          A growing team of engineers, designers, and specialists — all senior, all hands-on.
-        </p>
       </section>
 
       {/* CTA */}
