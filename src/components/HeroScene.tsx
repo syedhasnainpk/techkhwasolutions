@@ -8,7 +8,7 @@ const ACCENT2 = '#9BE4F5'
 
 function Stars() {
   const geo = useMemo(() => {
-    const count = 1800
+    const count = 900
     const pos = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
       pos[i * 3]     = (Math.random() - 0.5) * 28
@@ -32,7 +32,7 @@ function Network() {
   const pulseRef = useRef<THREE.LineSegments>(null)
 
   const { nodeGeo, lineGeo, pulseGeo, hubPositions } = useMemo(() => {
-    const count = 62
+    const count = 42
     const nodes: THREE.Vector3[] = []
     for (let i = 0; i < count; i++) {
       const phi   = Math.acos(2 * Math.random() - 1)
@@ -130,7 +130,7 @@ function HubNode({ position, index }: { position: THREE.Vector3; index: number }
 function DataDrift() {
   const ref = useRef<THREE.Points>(null)
   const geo = useMemo(() => {
-    const count = 220
+    const count = 100
     const pos = new Float32Array(count * 3)
     for (let i = 0; i < count; i++) {
       pos[i*3]   = (Math.random() - 0.5) * 20
@@ -173,16 +173,16 @@ export default function HeroScene() {
   return (
     <Canvas
       camera={{ position: [0, 0, 9], fov: 60 }}
-      gl={{ antialias: true, alpha: true }}
+      gl={{ antialias: false, alpha: true, powerPreference: 'high-performance' }}
       style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none' }}
-      dpr={[1, 2]}
+      dpr={[1, 1.5]}
     >
       <CameraRig />
       <Stars />
       <DataDrift />
       <Network />
       <EffectComposer>
-        <Bloom luminanceThreshold={0.05} luminanceSmoothing={0.85} intensity={1.8} mipmapBlur />
+        <Bloom luminanceThreshold={0.1} luminanceSmoothing={0.9} intensity={1.2} />
       </EffectComposer>
     </Canvas>
   )

@@ -5,12 +5,12 @@ import './index.css'
 import Lenis from 'lenis'
 
 const lenis = new Lenis({
-  lerp: 0.07,
+  lerp: 0.1,
   smoothWheel: true,
-  wheelMultiplier: 0.9,
-  touchMultiplier: 1.2,
+  wheelMultiplier: 1.0,
+  touchMultiplier: 1.5,
   syncTouch: true,
-  syncTouchLerp: 0.06,
+  syncTouchLerp: 0.075,
   infinite: false,
 })
 
