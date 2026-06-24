@@ -124,18 +124,18 @@ export default function Navbar() {
           </div>
 
           <Link to="/case-studies" className="px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5">
-            Work
+            Case Studies
           </Link>
           <Link to="/about" className="px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5">
             About
+          </Link>
+          <Link to="/contact" className="px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5">
+            Contact
           </Link>
         </nav>
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-3 shrink-0">
-          <Link to="/contact" className="text-[13px] font-medium text-white/50 hover:text-white transition-colors duration-200">
-            Contact
-          </Link>
           <MotionLink
             to="/contact"
             whileHover={{ scale: 1.03 }}
