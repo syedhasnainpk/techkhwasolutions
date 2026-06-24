@@ -24,7 +24,6 @@ const services = [
       'Performance audit (Core Web Vitals > 90)',
       'Post-launch 30-day bug fix warranty',
     ],
-    pricing: { from: '$4,000', to: '$25,000+', note: 'based on scope and integrations' },
     timeline: '6–20 weeks',
     techStack: ['React / Next.js', 'Node.js / NestJS', 'PostgreSQL / MongoDB', 'AWS / GCP / Vercel'],
     bestFor: 'SaaS products, internal tools, customer portals, marketplaces',
@@ -49,7 +48,6 @@ const services = [
       'App Store + Play Store submission and approval',
       'Analytics integration (Mixpanel / Amplitude)',
     ],
-    pricing: { from: '$8,000', to: '$40,000+', note: 'native apps priced separately' },
     timeline: '10–24 weeks',
     techStack: ['React Native', 'Expo', 'Firebase', 'Node.js', 'Redux Toolkit'],
     bestFor: 'Consumer apps, field-service tools, fintech, healthcare',
@@ -73,7 +71,6 @@ const services = [
       'Prompt engineering and guardrails',
       'Cost and latency monitoring dashboard',
     ],
-    pricing: { from: '$3,500', to: '$18,000+', note: 'per integration, ongoing infra costs separate' },
     timeline: '4–12 weeks',
     techStack: ['OpenAI / Anthropic / Mistral', 'LangChain', 'Pinecone / Weaviate', 'Python', 'FastAPI'],
     bestFor: 'SaaS automation, document processing, customer support, content platforms',
@@ -99,7 +96,6 @@ const services = [
       'Marketing automation hooks (email, SMS, retargeting)',
       'Reporting dashboard with revenue analytics',
     ],
-    pricing: { from: '$5,000', to: '$30,000+', note: 'headless commerce starts at $15K' },
     timeline: '8–16 weeks',
     techStack: ['Shopify / Shopify Plus', 'Next.js Commerce', 'Stripe', 'PostgreSQL', 'Klaviyo'],
     bestFor: 'D2C brands, multi-channel retailers, subscription commerce',
@@ -123,7 +119,6 @@ const services = [
       'Monitoring + alerting (Datadog / Grafana)',
       'Monthly infrastructure cost review and optimization',
     ],
-    pricing: { from: '$2,500', to: '$12,000+', note: 'setup fee; ongoing retainer available at $800–$2,500/mo' },
     timeline: '3–8 weeks',
     techStack: ['AWS', 'GCP', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Datadog'],
     bestFor: 'Scaling startups, teams preparing for enterprise clients, regulated industries',
@@ -152,7 +147,6 @@ const services = [
       'Usability testing with real users',
       'Developer handoff with annotated specs',
     ],
-    pricing: { from: '$2,000', to: '$15,000+', note: 'brand identity from $2K; full design system from $8K' },
     timeline: '3–10 weeks',
     techStack: ['Figma', 'Framer', 'Lottie', 'Storybook'],
     bestFor: 'Startups pre-launch, companies rebranding, products with high churn',
@@ -182,7 +176,7 @@ export default function ServicesPage() {
             What we build<br /><span className="text-gradient">for you.</span>
           </motion.h1>
           <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="text-[#8899AA] text-lg md:text-xl max-w-2xl leading-relaxed">
-            Six specialized practices. Clear deliverables. Transparent pricing ranges. No vague retainers — you know exactly what you're getting before we start.
+            Six specialized practices. Clear deliverables. No vague retainers — you know exactly what you're getting before we start.
           </motion.p>
         </div>
       </section>
@@ -210,10 +204,6 @@ export default function ServicesPage() {
               </div>
               <h3 className="text-base font-bold mb-2 leading-tight">{s.title}</h3>
               <p className="text-xs text-[#667788] mb-4">{s.tagline}</p>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-[#5BC8E8]">{s.pricing.from}</span>
-                <span className="text-xs text-[#445566]">starting from</span>
-              </div>
               <div className="mt-3 text-xs text-[#5BC8E8] flex items-center gap-1 font-medium">
                 {activeService === s.id ? 'Collapse' : 'See details'}
                 <svg
@@ -271,11 +261,6 @@ export default function ServicesPage() {
                   </div>
                   {/* Right */}
                   <div className="space-y-6">
-                    <div className="p-6 rounded-xl bg-[#0A0F1A] border border-[rgba(255,255,255,0.06)]">
-                      <h4 className="section-label mb-4">Pricing Range</h4>
-                      <div className="text-4xl font-bold text-gradient mb-1">{s.pricing.from} – {s.pricing.to}</div>
-                      <p className="text-xs text-[#667788]">{s.pricing.note}</p>
-                    </div>
                     <div className="p-6 rounded-xl bg-[#0A0F1A] border border-[rgba(255,255,255,0.06)]">
                       <h4 className="section-label mb-2">Typical Timeline</h4>
                       <div className="text-2xl font-bold">{s.timeline}</div>

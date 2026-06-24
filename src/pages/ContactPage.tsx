@@ -86,7 +86,6 @@ type FormData = {
   name: string
   email: string
   company: string
-  budget: string
   service: string
   message: string
   consent: boolean
@@ -94,7 +93,7 @@ type FormData = {
 
 export default function ContactPage() {
   const [form, setForm] = useState<FormData>({
-    name: '', email: '', company: '', budget: '', service: '', message: '', consent: false,
+    name: '', email: '', company: '', service: '', message: '', consent: false,
   })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -114,7 +113,6 @@ export default function ContactPage() {
           name: form.name,
           email: form.email,
           company: form.company,
-          budget: form.budget,
           service: form.service,
           message: form.message,
         }),
@@ -161,7 +159,7 @@ export default function ContactPage() {
                 <h3 className="text-2xl font-bold mb-3">Message sent.</h3>
                 <p className="text-[#8899AA] mb-6">We'll get back to you within 4 business hours. Check your inbox — ours comes from techkhwasolutions@gmail.com.</p>
                 <button
-                  onClick={() => { setStatus('idle'); setForm({ name: '', email: '', company: '', budget: '', service: '', message: '', consent: false }) }}
+                  onClick={() => { setStatus('idle'); setForm({ name: '', email: '', company: '', service: '', message: '', consent: false }) }}
                   className="text-sm text-[#5BC8E8] underline underline-offset-4"
                 >
                   Send another message
@@ -202,21 +200,6 @@ export default function ContactPage() {
                       placeholder="Acme Corp"
                       className="w-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-sm text-white placeholder-[#445566] focus:outline-none focus:border-[#5BC8E8] transition-colors"
                     />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-[#8899AA] mb-2 tracking-wide">Budget range</label>
-                    <select
-                      value={form.budget}
-                      onChange={e => setForm(f => ({ ...f, budget: e.target.value }))}
-                      className="w-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-sm text-white focus:outline-none focus:border-[#5BC8E8] transition-colors appearance-none"
-                    >
-                      <option value="" className="bg-[#0A0F1A]">Select range</option>
-                      <option value="Under $5K" className="bg-[#0A0F1A]">Under $5K</option>
-                      <option value="$5K – $15K" className="bg-[#0A0F1A]">$5K – $15K</option>
-                      <option value="$15K – $50K" className="bg-[#0A0F1A]">$15K – $50K</option>
-                      <option value="$50K – $150K" className="bg-[#0A0F1A]">$50K – $150K</option>
-                      <option value="$150K+" className="bg-[#0A0F1A]">$150K+</option>
-                    </select>
                   </div>
                 </div>
 
