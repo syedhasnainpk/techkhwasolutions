@@ -2,10 +2,10 @@ import { useRef, useEffect, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 const stats = [
-  { value: 50, suffix: '+', label: 'Projects Delivered' },
-  { value: 30, suffix: '+', label: 'Happy Clients' },
-  { value: 5,  suffix: '+', label: 'Years Experience' },
-  { value: 99.9, suffix: '%', label: 'Uptime SLA' },
+  { value: 15, suffix: '+', label: 'Projects Delivered' },
+  { value: 5,  suffix: '',  label: 'Countries Served' },
+  { value: 2,  suffix: '+', label: 'Years in Business' },
+  { value: 98, suffix: '%', label: 'Client Retention' },
 ]
 
 const partners = [
