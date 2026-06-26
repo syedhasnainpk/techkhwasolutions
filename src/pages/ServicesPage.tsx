@@ -53,52 +53,55 @@ const services = [
     bestFor: 'Consumer apps, field-service tools, fintech, healthcare',
   },
   {
-    id: 'ai',
+    id: 'custom',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+        <line x1="12" y1="2" x2="12" y2="22" />
       </svg>
     ),
-    title: 'AI & Automation Integration',
-    tagline: 'Make your product 10× more powerful with AI.',
+    title: 'Custom Software Development',
+    tagline: 'Built exactly for your business — nothing off the shelf.',
     description:
-      'We integrate LLMs, build fine-tuned models, and create automation pipelines that replace repetitive work. From customer-facing chatbots to backend document processors — we\'ve done it across industries.',
+      'When no existing product fits your workflow, we build from scratch. Custom CRMs, internal tools, workflow automation platforms, and bespoke business systems — engineered to your exact process and integrated with what you already use.',
     deliverables: [
-      'AI feature specification and model selection',
-      'LLM integration (OpenAI, Anthropic, open-source)',
-      'Fine-tuning on your proprietary data where applicable',
-      'RAG (Retrieval Augmented Generation) pipeline',
-      'Prompt engineering and guardrails',
-      'Cost and latency monitoring dashboard',
+      'Requirements discovery and technical specification',
+      'Custom application architecture designed for your workflow',
+      'Full-stack development (frontend, backend, database)',
+      'Third-party integrations (ERP, CRM, APIs, payment gateways)',
+      'Admin panel and role-based access control',
+      'Deployment, documentation, and staff training',
     ],
-    timeline: '4–12 weeks',
-    techStack: ['OpenAI / Anthropic / Mistral', 'LangChain', 'Pinecone / Weaviate', 'Python', 'FastAPI'],
-    bestFor: 'SaaS automation, document processing, customer support, content platforms',
+    timeline: '8–24 weeks',
+    techStack: ['React / Next.js', 'Node.js / NestJS', 'PostgreSQL / MySQL', 'AWS / Azure', 'Docker'],
+    bestFor: 'Businesses replacing manual processes, internal tooling, industry-specific platforms',
   },
   {
-    id: 'ecommerce',
+    id: 'datacenter',
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
-        <line x1="3" y1="6" x2="21" y2="6" />
-        <path d="M16 10a4 4 0 01-8 0" />
+        <rect x="2" y="2" width="20" height="8" rx="2" />
+        <rect x="2" y="14" width="20" height="8" rx="2" />
+        <line x1="6" y1="6" x2="6.01" y2="6" />
+        <line x1="6" y1="18" x2="6.01" y2="18" />
       </svg>
     ),
-    title: 'E-Commerce & Retail Solutions',
-    tagline: 'Platforms built to convert, not just display.',
+    title: 'Data Centre Maintenance',
+    tagline: 'Critical infrastructure managed with zero tolerance for downtime.',
     description:
-      'From Shopify custom themes to fully custom commerce engines — we build retail experiences that combine speed, conversion-rate best practices, and seamless inventory management.',
+      'Proactive monitoring, hardware lifecycle management, and rapid on-site support for data centre environments. We keep your physical and virtual infrastructure healthy so your team never has to chase an outage.',
     deliverables: [
-      'Custom storefront (Shopify / custom Next.js commerce)',
-      'Product catalog + inventory management system',
-      'Checkout optimization and payment gateway integration',
-      'Multi-warehouse inventory sync',
-      'Marketing automation hooks (email, SMS, retargeting)',
-      'Reporting dashboard with revenue analytics',
+      'Infrastructure audit and health assessment',
+      '24/7 proactive monitoring with automated alerting',
+      'Hardware lifecycle management and replacement planning',
+      'On-site and remote support with defined SLAs',
+      'Cooling, power, and network redundancy review',
+      'Incident response and root cause analysis reporting',
     ],
-    timeline: '8–16 weeks',
-    techStack: ['Shopify / Shopify Plus', 'Next.js Commerce', 'Stripe', 'PostgreSQL', 'Klaviyo'],
-    bestFor: 'D2C brands, multi-channel retailers, subscription commerce',
+    timeline: 'Ongoing',
+    techStack: ['Zabbix / Nagios', 'IPMI / iDRAC', 'VMware / Hyper-V', 'Cisco', 'Fortinet'],
+    bestFor: 'Businesses with on-premise infrastructure, colocation tenants, regulated industries',
   },
   {
     id: 'devops',
