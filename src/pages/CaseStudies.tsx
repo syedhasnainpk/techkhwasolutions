@@ -118,32 +118,6 @@ const cases = [
     duration: '2.5 months',
     teamSize: '3 engineers + 1 designer',
   },
-  {
-    id: '05',
-    client: 'RetailEdge',
-    industry: 'E-Commerce & Retail',
-    tag: 'Full-Stack Platform',
-    headline: 'From fragmented tools to one unified commerce engine — 312% revenue uplift in 8 months.',
-    summary:
-      'RetailEdge operated across three disconnected platforms — Shopify, a custom inventory tool, and a legacy ERP. Orders fell through cracks, stock was miscounted, and the team spent 40+ hours per week reconciling data. TechKhwa replaced the stack with a unified Next.js + Node.js + PostgreSQL platform, real-time inventory sync, and an ML-powered demand forecast module.',
-    challenge:
-      'Three siloed systems created constant data drift. The legacy ERP API was XML-only with no documentation. Live inventory updates lagged by 2–4 hours, causing frequent overselling and refunds.',
-    solution: [
-      'Custom GraphQL aggregation layer that spoke to all three legacy systems simultaneously during the 12-week migration window — zero downtime.',
-      'Real-time WebSocket inventory sync across 6 warehouses with conflict-resolution logic.',
-      'Demand forecast module trained on 3 years of SKU data — reduced overstock by 38%.',
-      'Admin dashboard with one-click markdown automation and profit-margin overlays per product.',
-    ],
-    results: [
-      { label: 'Revenue growth', value: '+312%', period: 'within 8 months' },
-      { label: 'Order processing time', value: '−74%', period: 'from 18 min → 4.7 min per order' },
-      { label: 'Overstock reduction', value: '−38%', period: 'via ML demand forecasting' },
-      { label: 'Manual reconciliation hours', value: '−97%', period: '40 hrs/week → 1.2 hrs/week' },
-    ],
-    stack: ['Next.js 14', 'Node.js', 'PostgreSQL', 'Redis', 'WebSockets', 'Python (ML)', 'AWS'],
-    duration: '8 months',
-    teamSize: '4 engineers',
-  },
 ]
 
 const fadeUp = {
