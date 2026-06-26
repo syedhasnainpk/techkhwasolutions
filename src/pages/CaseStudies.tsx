@@ -91,6 +91,35 @@ const cases = [
   },
   {
     id: '04',
+    client: 'HomeCuras',
+    industry: 'Healthcare & Home Care',
+    tag: 'Marketplace Platform',
+    headline: 'Built a home healthcare marketplace from scratch — 45+ caregivers onboarded, 400+ bookings completed in under 3 months.',
+    summary:
+      'HomeCuras is a two-sided marketplace that connects patients with qualified home healthcare providers — nurses, caregivers, and physiotherapists — who come to them directly. Patients post their care requirements, providers respond and negotiate terms, and the entire engagement from booking to payment happens on the platform. TechKhwa designed and built the full product: patient and provider apps, real-time chat, a negotiation and bidding system, and integrated payment processing — shipping a production-ready platform in 2.5 months.',
+    challenge:
+      'Home healthcare in the region had no reliable digital infrastructure — patients found caregivers through word of mouth or informal referrals, with no way to verify credentials, agree on terms, or pay securely. Building a two-sided marketplace from scratch meant solving trust, logistics, and payments simultaneously, with both patient and caregiver sides needing to work perfectly before either side had value.',
+    solution: [
+      'Patient portal: post a care requirement with condition, schedule, location, and budget — instantly visible to matched providers in the area.',
+      'Provider profiles with credentials, specialisation (nursing, physiotherapy, elderly care, post-op care), availability, and verified reviews.',
+      'Negotiation system: providers send proposals, patients counter or accept — full back-and-forth before any commitment is made.',
+      'Real-time in-app messaging so patients and caregivers can clarify requirements, share medical context, and confirm session details before the visit.',
+      'Secure in-platform payment processing — funds held until service is confirmed complete, protecting both sides.',
+      'Booking management dashboard: upcoming sessions, session history, invoices, and caregiver ratings all in one place.',
+      'Admin panel for platform oversight — caregiver verification, dispute resolution, booking analytics, and payout management.',
+    ],
+    results: [
+      { label: 'Caregivers onboarded', value: '45+', period: 'verified providers live on the platform' },
+      { label: 'Bookings completed', value: '400+', period: 'paid sessions fulfilled through the platform' },
+      { label: 'Build time', value: '2.5 mo', period: 'concept to production-ready platform' },
+      { label: 'Payment flow', value: 'Secure', period: 'end-to-end in-platform with escrow protection' },
+    ],
+    stack: ['React Native', 'React', 'Node.js', 'PostgreSQL', 'Stripe', 'WebSockets', 'Firebase', 'AWS'],
+    duration: '2.5 months',
+    teamSize: '3 engineers + 1 designer',
+  },
+  {
+    id: '05',
     client: 'RetailEdge',
     industry: 'E-Commerce & Retail',
     tag: 'Full-Stack Platform',
