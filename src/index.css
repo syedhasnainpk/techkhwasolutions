@@ -75,6 +75,51 @@
     background-size: 28px 28px;
   }
 
+  /* ─── Dylan-style column grid (4 vertical dividers, 5 equal columns) ─── */
+  .col-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .col-grid > span { border-left: 1px solid rgba(255,255,255,0.035); }
+  .col-grid > span:first-child { border-left: none; }
+
+  .col-grid-light > span { border-left: 1px solid rgba(10,15,26,0.05); }
+  .col-grid-light > span:first-child { border-left: none; }
+
+  /* ─── Display scale — ultra-heavy headline ─── */
+  .display-xl {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    line-height: 0.90;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Nav label ─── */
+  .nav-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* ─── Pill tag (project category) ─── */
+  .pill-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 100px;
+  }
+
   /* ─── Button glow ─── */
   .btn-glow:hover {
     box-shadow: 0 0 0 1px rgba(91,200,232,0.5), 0 6px 28px rgba(91,200,232,0.35);

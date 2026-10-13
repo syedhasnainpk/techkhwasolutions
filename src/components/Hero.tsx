@@ -1,118 +1,155 @@
-import { lazy, Suspense } from 'react'
-import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { lazy, Suspense, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 const HeroScene = lazy(() => import('./HeroScene'))
 
-const word = (text: string, offset: number, cls = '') => (
-  <motion.span
-    className={`inline-block ${cls}`}
-    initial={{ opacity: 0, y: 32 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ delay: 1.8 + offset, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-  >
-    {text}
-  </motion.span>
-)
-
 export default function Hero() {
-  return (
-    <section className="relative min-h-screen flex flex-col justify-end pb-24 overflow-hidden">
+  const ref = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const sceneY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
 
-      {/* ─── 3D Scene — fades in from dark ─── */}
+  return (
+    <section ref={ref} className="relative min-h-screen flex flex-col overflow-hidden" style={{ background: '#0A0F1A' }}>
+
+      {/* Column grid lines — Dylan's signature layout grid */}
+      <div className="col-grid absolute inset-0 z-0">
+        {[0,1,2,3,4].map(i => <span key={i} />)}
+      </div>
+
+      {/* 3D Scene — parallax down on scroll */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 z-0"
+        style={{ y: sceneY }}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 2.4, ease: 'easeOut' }}
+        transition={{ duration: 2.8, ease: 'easeOut' }}
       >
         <Suspense fallback={null}>
           <HeroScene />
         </Suspense>
       </motion.div>
 
-      {/* ─── Overlays ─── */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: '#0A0F1A', opacity: 0.4 }} />
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 90% 90% at 65% 45%, transparent 35%, rgba(10,15,26,0.85) 100%)' }}
-      />
-      <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full blur-[130px] animate-float pointer-events-none" style={{ background: 'rgba(91,200,232,0.07)' }} />
-      <div className="absolute bottom-1/4 right-1/5 w-[380px] h-[380px] rounded-full blur-[100px] animate-float pointer-events-none" style={{ background: 'rgba(91,200,232,0.05)', animationDelay: '3s' }} />
+      {/* Dark overlay + vignette */}
+      <div className="absolute inset-0 z-1 pointer-events-none" style={{ background: 'rgba(10,15,26,0.55)' }} />
+      <div className="absolute inset-0 z-1 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 110% 80% at 70% 40%, transparent 30%, rgba(10,15,26,0.9) 100%)' }} />
 
-      {/* ─── Content — emerges from the background ─── */}
-      <motion.div
-        className="relative z-10 max-w-[1440px] mx-auto px-8 w-full"
-        initial={{ opacity: 0, filter: 'blur(18px)', scale: 1.04 }}
-        animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-        transition={{ duration: 2.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-      >
-        {/* Headline — viewport-spanning display typography */}
-        <h1
-          className="font-display font-bold mb-10 overflow-visible"
-          style={{ fontSize: 'clamp(3.8rem,12vw,14rem)', lineHeight: '0.90', letterSpacing: '-0.04em', color: '#FFFFFF' }}
+      {/* ── Content ── */}
+      <div className="relative z-10 flex flex-col flex-1 max-w-[1440px] mx-auto px-8 w-full">
+
+        {/* Spacer for navbar */}
+        <div className="h-28 shrink-0" />
+
+        {/* Label row */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="flex items-center gap-3 mb-10"
         >
-          <div className="overflow-hidden">{word('Engineering', 0)}</div>
-          <div className="overflow-hidden">{word('Digital', 0.12)}</div>
-          <div className="overflow-hidden">
-            <motion.span
-              className="inline-block"
-              style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
-              initial={{ opacity: 0, y: 32 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.06, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
-            >
-              Excellence.
-            </motion.span>
-          </div>
-        </h1>
+          <span className="w-1.5 h-1.5 rounded-full bg-[#5BC8E8]" />
+          <span className="nav-label text-white/35">
+            CUSTOM SOFTWARE + DIGITAL ENGINEERING
+          </span>
+        </motion.div>
 
-        {/* Bottom row */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-10">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.3, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="font-body text-[1.1rem] leading-relaxed max-w-md"
-            style={{ color: 'rgba(255,255,255,0.55)', letterSpacing: '-0.005em' }}
-          >
-            From custom software to cloud infrastructure —
-            TechKhwa Solutions powers businesses
-            across the globe.
-          </motion.p>
+        {/* MASSIVE display headline */}
+        <div className="flex-1 flex flex-col justify-center -mt-8">
+          <h1 className="display-xl text-white overflow-visible" style={{ fontSize: 'clamp(4.5rem, 14vw, 16rem)' }}>
 
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.45, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col sm:flex-row items-start sm:items-center gap-4"
-          >
-            <motion.a
-              href="#services"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-body font-semibold text-[14px] btn-glow transition-all"
-              style={{ background: '#5BC8E8', color: '#0A0F1A' }}
-            >
-              Explore Services
-              <ArrowRight size={15} className="transition-transform duration-300 group-hover:translate-x-1" />
-            </motion.a>
+            {/* Line 1 */}
+            <div className="overflow-hidden">
+              <motion.span
+                className="block"
+                initial={{ y: '110%', opacity: 0 }}
+                animate={{ y: '0%', opacity: 1 }}
+                transition={{ delay: 0.7, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                ENGINEERING
+              </motion.span>
+            </div>
 
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full font-body font-semibold text-[14px] transition-all"
-              style={{ color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.18)' }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.38)')}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.18)')}
-            >
-              Book a Consultation
-            </motion.a>
-          </motion.div>
+            {/* Line 2 — italic, slight opacity shift */}
+            <div className="overflow-hidden">
+              <motion.span
+                className="block italic"
+                style={{ color: 'rgba(255,255,255,0.55)', WebkitTextStroke: '1px rgba(255,255,255,0.2)' }}
+                initial={{ y: '110%', opacity: 0 }}
+                animate={{ y: '0%', opacity: 1 }}
+                transition={{ delay: 0.85, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                DIGITAL
+              </motion.span>
+            </div>
+
+            {/* Line 3 — accent gradient */}
+            <div className="overflow-hidden">
+              <motion.span
+                className="block"
+                style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}
+                initial={{ y: '110%', opacity: 0 }}
+                animate={{ y: '0%', opacity: 1 }}
+                transition={{ delay: 1.0, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+              >
+                EXCELLENCE.
+              </motion.span>
+            </div>
+          </h1>
         </div>
 
+        {/* ── Bottom bar — info + CTAs ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.5, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="pb-12 mt-12 flex flex-col lg:flex-row lg:items-end justify-between gap-8"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
+        >
+          {/* Description */}
+          <div className="pt-7">
+            <p className="text-white/40 text-[15px] leading-relaxed max-w-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
+              From custom software to cloud infrastructure —<br />
+              TechKhwa Solutions powers businesses across the globe.
+            </p>
+          </div>
+
+          {/* CTAs */}
+          <div className="pt-7 flex items-center gap-4">
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                to="/services"
+                className="nav-label flex items-center gap-2.5 px-6 py-3 rounded-full transition-all btn-glow"
+                style={{ background: '#5BC8E8', color: '#0A0F1A' }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                EXPLORE SERVICES
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                to="/contact"
+                className="nav-label flex items-center gap-2.5 px-6 py-3 rounded-full transition-all"
+                style={{ color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.12)' }}
+                onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)')}
+                onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)')}
+              >
+                BOOK A CALL
+              </Link>
+            </motion.div>
+          </div>
+        </motion.div>
+
+      </div>
+
+      {/* Scroll hint — bottom-center */}
+      <motion.div
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.2, duration: 0.8 }}
+      >
+        <div className="w-px h-10 bg-gradient-to-b from-transparent via-white/20 to-transparent" />
       </motion.div>
     </section>
   )

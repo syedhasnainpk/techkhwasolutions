@@ -1,81 +1,124 @@
 import { motion } from 'framer-motion'
-import { ArrowUpRight } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const projects = [
   {
-    num: '01', title: 'KP Labour Department', category: 'Government · Digital Platform',
-    description: 'Full digitalization of KP province labour department workflows — paper-based processes moved entirely online, serving thousands of citizens and businesses across the province.',
-    metric: '86%', metricLabel: 'Paper reduction',
-    tags: ['React', 'Node.js', 'PostgreSQL', 'AWS'],
-    accent: '#5BC8E8', bg: '#06101A',
-    mockLines: [4, 7, 5, 9, 6, 8, 4, 10, 7, 9],
+    id: '01',
+    client: 'KP Labour Department',
+    category: 'GOVERNMENT · DIGITAL PLATFORM',
+    metric: '86% PAPER REDUCTION',
+    gradient: 'linear-gradient(135deg, #060E1A 0%, #0A2440 40%, #0E3D5C 100%)',
+    accent: '#5BC8E8',
+    span: 'lg:col-span-7',
+    height: 'h-72 lg:h-80',
   },
   {
-    num: '02', title: 'Auto Accounting', category: 'Finance · SaaS Platform',
-    description: 'Replaced paper auditing and Excel workflows with a unified platform for a CA firm — automated reporting, client portals, document management, and audit trail in one system.',
-    metric: '68%', metricLabel: 'Productivity boost',
-    tags: ['React', 'Node.js', 'MySQL', 'Azure'],
-    accent: '#5BC8E8', bg: '#0D1020',
-    mockLines: [6, 9, 5, 8, 4, 7, 9, 5, 8, 6],
+    id: '02',
+    client: 'Auto Accounting',
+    category: 'FINANCE · SAAS PLATFORM',
+    metric: '68% PRODUCTIVITY BOOST',
+    gradient: 'linear-gradient(135deg, #0A0618 0%, #1A1040 40%, #2A1860 100%)',
+    accent: '#9BE4F5',
+    span: 'lg:col-span-5',
+    height: 'h-72 lg:h-80',
   },
   {
-    num: '03', title: 'Dubai Real Estate', category: 'Real Estate · AI Platform',
-    description: 'AI-powered omnichannel sales platform for a real estate firm in Dubai, UAE — intelligent lead routing, automated follow-ups, and CRM integration driving measurable conversion lift.',
-    metric: '3×', metricLabel: 'Lead conversion',
-    tags: ['Next.js', 'OpenAI', 'Node.js', 'AWS'],
-    accent: '#5BC8E8', bg: '#100E06',
-    mockLines: [7, 4, 9, 5, 8, 3, 7, 6, 10, 5],
+    id: '03',
+    client: 'Dubai Real Estate',
+    category: 'REAL ESTATE · AI PLATFORM',
+    metric: '3× LEAD CONVERSION',
+    gradient: 'linear-gradient(135deg, #0E0A04 0%, #2A1E08 40%, #3D2C0E 100%)',
+    accent: '#F0C040',
+    span: 'lg:col-span-5',
+    height: 'h-72 lg:h-80',
   },
   {
-    num: '04', title: 'HomeCuras', category: 'Healthcare · Mobile & Web',
-    description: 'Two-sided healthcare marketplace connecting patients with verified caregivers, nurses, and physiotherapists for home visits — with in-app chat, scheduling, and secure payments.',
-    metric: '400+', metricLabel: 'Bookings completed',
-    tags: ['React Native', 'Node.js', 'Stripe', 'Firebase'],
-    accent: '#5BC8E8', bg: '#071410',
-    mockLines: [5, 8, 6, 10, 7, 9, 5, 8, 6, 9],
+    id: '04',
+    client: 'HomeCuras',
+    category: 'HEALTHCARE · MOBILE & WEB',
+    metric: '400+ BOOKINGS COMPLETED',
+    gradient: 'linear-gradient(135deg, #04100A 0%, #08261A 40%, #0D3828 100%)',
+    accent: '#5BC8E8',
+    span: 'lg:col-span-7',
+    height: 'h-72 lg:h-80',
   },
 ]
 
-const T = {
-  heading: '#0A0F1A',
-  body:    '#4B5563',
-  muted:   '#9CA3AF',
-  accent:  '#5BC8E8',
-  border:  'rgba(10,15,26,0.08)',
-}
-
-function MockUI({ lines, accent, bg }: { lines: number[]; accent: string; bg: string }) {
+function ProjectCard({ p, delay }: { p: typeof projects[0]; delay: number }) {
   return (
-    <div className="w-full h-full rounded-xl overflow-hidden" style={{ background: bg }}>
-      <div className="flex items-center gap-1.5 px-4 py-3" style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-        {['#FF5F57','#FFBD2E','#28CA41'].map(c => <span key={c} className="w-2.5 h-2.5 rounded-full" style={{ background: c, opacity: 0.65 }} />)}
-        <div className="flex-1 mx-3 h-3.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)' }} />
-      </div>
-      <div className="p-5 space-y-4">
-        <div className="flex justify-between items-center">
-          <div className="h-4 w-24 rounded" style={{ background: 'rgba(255,255,255,0.07)' }} />
-          <div className="h-7 w-16 rounded-full" style={{ background: `${accent}22` }} />
+    <motion.div
+      className={`group relative rounded-2xl overflow-hidden cursor-pointer ${p.span}`}
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -6 }}
+    >
+      <Link to="/case-studies">
+        {/* Gradient thumbnail */}
+        <div className={`relative ${p.height} overflow-hidden`} style={{ background: p.gradient }}>
+          {/* Abstract geometric art */}
+          <div className="absolute inset-0">
+            {/* Grid lines inside card */}
+            <div className="absolute inset-0 col-grid opacity-30">
+              {[0,1,2,3,4].map(i => <span key={i} />)}
+            </div>
+            {/* Floating accent shapes */}
+            <motion.div
+              className="absolute rounded-full blur-3xl opacity-25"
+              style={{ width: '60%', height: '60%', top: '10%', right: '-10%', background: p.accent }}
+              animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
+              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            <motion.div
+              className="absolute rounded-full blur-2xl opacity-15"
+              style={{ width: '40%', height: '40%', bottom: '5%', left: '5%', background: p.accent }}
+              animate={{ scale: [1, 1.15, 1] }}
+              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+            />
+            {/* ID number watermark */}
+            <div
+              className="absolute right-6 top-6 font-display font-bold select-none"
+              style={{ fontSize: 'clamp(4rem,10vw,9rem)', lineHeight: 1, color: 'rgba(255,255,255,0.04)', letterSpacing: '-0.04em' }}
+            >
+              {p.id}
+            </div>
+            {/* Hover overlay */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-400" />
+          </div>
+
+          {/* Bottom info bar */}
+          <div
+            className="absolute bottom-0 inset-x-0 px-5 py-4 flex items-center justify-between"
+            style={{ borderTop: '1px solid rgba(255,255,255,0.08)', background: 'rgba(10,15,26,0.6)', backdropFilter: 'blur(8px)' }}
+          >
+            <div className="flex items-center gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.accent }} />
+              <span className="nav-label text-white/90" style={{ fontSize: '10px' }}>{p.client}</span>
+            </div>
+            <span className="nav-label text-white/35" style={{ fontSize: '9px' }}>{p.category}</span>
+          </div>
         </div>
-        <div className="flex items-end gap-1.5 h-20">
-          {lines.map((h, i) => (
-            <motion.div key={i} initial={{ height: 0 }} whileInView={{ height: `${h * 9}%` }}
-              viewport={{ once: true, amount: 0.01 }}
-              transition={{ delay: i * 0.05, duration: 0.45, ease: 'easeOut' }}
-              className="flex-1 rounded-t-sm" style={{ background: i % 4 === 0 ? `${accent}cc` : `${accent}30`, minHeight: 3 }} />
-          ))}
+
+        {/* Metric below card */}
+        <div className="pt-3 pb-1 flex items-center justify-between px-1">
+          <span className="nav-label text-white/30" style={{ fontSize: '9px' }}>{p.metric}</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="opacity-20 group-hover:opacity-60 transition-opacity duration-300">
+            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </div>
-        <div className="space-y-2">
-          {[75, 55, 85].map((w, i) => <div key={i} className="h-2 rounded-full" style={{ width: `${w}%`, background: 'rgba(255,255,255,0.07)' }} />)}
-        </div>
-      </div>
-    </div>
+      </Link>
+    </motion.div>
   )
 }
 
 export default function Portfolio() {
   return (
-    <section className="relative overflow-hidden" style={{ background: '#FFFFFF' }}>
-      <div className="absolute inset-0 dot-grid-light pointer-events-none" style={{ opacity: 0.45 }} />
+    <section className="relative overflow-hidden" style={{ background: '#080C14' }}>
+      {/* Column grid */}
+      <div className="col-grid absolute inset-0">
+        {[0,1,2,3,4].map(i => <span key={i} />)}
+      </div>
 
       <div className="max-w-[1440px] mx-auto px-8 relative z-10">
 
@@ -85,77 +128,34 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.01 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="py-20 flex flex-col lg:flex-row lg:items-end justify-between gap-8"
-          style={{ borderBottom: `1px solid ${T.border}` }}
+          className="pt-24 pb-14 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
+          style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}
         >
           <div>
-            <span className="font-body font-semibold text-[11px] tracking-[0.14em] uppercase block mb-5" style={{ color: T.accent }}>Our Work</span>
-            <h2 className="font-display font-bold leading-none" style={{ fontSize: 'clamp(2.4rem,5vw,4.5rem)', letterSpacing: '-0.03em', color: T.heading }}>
-              Built to Perform.<br />
+            <span className="nav-label text-[#5BC8E8] opacity-60 block mb-4" style={{ fontSize: '10px' }}>OUR WORK</span>
+            <h2 className="display-xl text-white" style={{ fontSize: 'clamp(2.8rem,6vw,6.5rem)' }}>
+              SELECTED<br />
               <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                Designed to Impress.
+                PROJECTS
               </span>
             </h2>
           </div>
-          <a href="/case-studies" className="inline-flex items-center gap-1.5 font-body font-semibold text-[13px] lg:mb-2 hover:opacity-70 transition-opacity"
-            style={{ color: T.body }}>
-            View all case studies <ArrowUpRight size={14} />
-          </a>
+          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+            <Link
+              to="/case-studies"
+              className="nav-label flex items-center gap-2.5 px-5 py-2.5 rounded-full mb-1 transition-all"
+              style={{ color: '#5BC8E8', border: '1px solid rgba(91,200,232,0.25)' }}
+            >
+              <span className="w-1.5 h-1.5 rounded-full bg-[#5BC8E8]" />
+              VIEW ALL CASE STUDIES
+            </Link>
+          </motion.div>
         </motion.div>
 
-        {/* Project rows */}
-        <div>
+        {/* Asymmetric grid */}
+        <div className="py-12 grid lg:grid-cols-12 gap-5">
           {projects.map((p, i) => (
-            <motion.a
-              key={p.num}
-              href="/case-studies"
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.01 }}
-              transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-              className="group flex flex-col lg:flex-row gap-10 py-12 hover:pl-2 transition-all duration-300"
-              style={{ borderTop: `1px solid ${T.border}` }}
-            >
-              {/* Left: num + meta + metric */}
-              <div className="lg:w-60 shrink-0 flex flex-col justify-between gap-6">
-                <div>
-                  <span className="font-display font-bold text-[11px] tracking-[0.18em] block mb-4" style={{ color: T.muted }}>{p.num}</span>
-                  <span className="font-body font-semibold text-[11px] tracking-[0.14em] uppercase block mb-3" style={{ color: T.accent }}>{p.category}</span>
-                  <h3 className="font-display font-bold leading-tight transition-colors duration-200 group-hover:text-[#5BC8E8]"
-                    style={{ fontSize: 'clamp(1.4rem,2.5vw,2.2rem)', letterSpacing: '-0.025em', color: T.heading }}>
-                    {p.title}
-                  </h3>
-                </div>
-                <div>
-                  <div className="font-display font-bold leading-none mb-1" style={{ fontSize: 'clamp(2rem,3.5vw,2.8rem)', letterSpacing: '-0.04em', background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                    {p.metric}
-                  </div>
-                  <div className="font-body text-[11px] tracking-[0.1em] uppercase" style={{ color: T.muted }}>{p.metricLabel}</div>
-                </div>
-              </div>
-
-              {/* Center: description + tags */}
-              <div className="flex-1 flex flex-col justify-between gap-5">
-                <p className="font-body text-[1.05rem] leading-relaxed max-w-lg" style={{ color: T.body }}>{p.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {p.tags.map(t => (
-                    <span key={t} className="font-body text-[11px] px-3 py-1.5 rounded-full font-medium"
-                      style={{ border: `1px solid rgba(10,15,26,0.1)`, color: T.muted, background: 'rgba(10,15,26,0.03)' }}>
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right: mock UI */}
-              <div className="lg:w-72 xl:w-80 shrink-0 rounded-2xl overflow-hidden transition-transform duration-400 group-hover:-translate-y-2" style={{ minHeight: '200px' }}>
-                <MockUI lines={p.mockLines} accent={p.accent} bg={p.bg} />
-              </div>
-
-              <div className="hidden lg:flex items-start pt-2">
-                <ArrowUpRight size={20} className="transition-all duration-250 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: T.muted }} />
-              </div>
-            </motion.a>
+            <ProjectCard key={p.id} p={p} delay={i * 0.08} />
           ))}
         </div>
 
