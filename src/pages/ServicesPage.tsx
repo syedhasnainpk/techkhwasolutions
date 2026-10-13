@@ -1,321 +1,239 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import CTABanner from '../components/CTABanner'
 
 const services = [
   {
-    id: 'web',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="2" />
-        <path d="M3 9h18M9 21V9" />
-      </svg>
-    ),
-    title: 'Web Application Development',
-    tagline: 'Production-grade web apps that scale from day one.',
-    description:
-      'We design and build full-stack web applications with modern architectures — SSR, microservices, real-time capabilities. Every app is built for performance, SEO, and maintainability.',
-    deliverables: [
-      'Full-stack web application (frontend + backend + database)',
-      'Responsive UI/UX design with your brand system',
-      'REST or GraphQL API with authentication',
-      'Automated CI/CD pipeline (GitHub Actions / Vercel)',
-      'Performance audit (Core Web Vitals > 90)',
-      'Post-launch 30-day bug fix warranty',
-    ],
-    timeline: '6–20 weeks',
-    techStack: ['React / Next.js', 'Node.js / NestJS', 'PostgreSQL / MongoDB', 'AWS / GCP / Vercel'],
-    bestFor: 'SaaS products, internal tools, customer portals, marketplaces',
+    id: '01',
+    title: 'Web Development',
+    short: 'Custom web apps, portals, and SaaS platforms built for performance.',
+    body: 'From marketing sites to complex web applications, we build on modern stacks — React, Next.js, Node.js, and cloud-native infrastructure. Every project is architected for scalability from day one, with CI/CD pipelines and test coverage built in, not bolted on.',
+    bullets: ['React / Next.js / TypeScript', 'Node.js / Python backends', 'REST & GraphQL APIs', 'PostgreSQL / MongoDB', 'AWS / Vercel / GCP deployment'],
   },
   {
-    id: 'mobile',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="5" y="2" width="14" height="20" rx="2" />
-        <circle cx="12" cy="18" r="1" />
-      </svg>
-    ),
+    id: '02',
     title: 'Mobile App Development',
-    tagline: 'iOS & Android apps that users actually keep.',
-    description:
-      'Cross-platform and native mobile apps built for retention. We prioritize offline-first architecture, smooth 60fps animations, and app store approval on first submission.',
-    deliverables: [
-      'iOS + Android app from a single codebase (React Native)',
-      'Custom UI components with brand-consistent design',
-      'Push notifications, deep linking, in-app purchases',
-      'Backend API + admin panel for content management',
-      'App Store + Play Store submission and approval',
-      'Analytics integration (Mixpanel / Amplitude)',
-    ],
-    timeline: '10–24 weeks',
-    techStack: ['React Native', 'Expo', 'Firebase', 'Node.js', 'Redux Toolkit'],
-    bestFor: 'Consumer apps, field-service tools, fintech, healthcare',
+    short: 'iOS and Android apps that feel native and perform at scale.',
+    body: 'We build cross-platform mobile apps with React Native and Expo — one codebase, true native performance. For projects where platform-specific features matter, we go fully native. Either way, you get an app your users will actually want to open.',
+    bullets: ['React Native / Expo', 'iOS (Swift) & Android (Kotlin)', 'Offline-first architecture', 'Push notifications & deep linking', 'App Store & Play Store submission'],
   },
   {
-    id: 'custom',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="16 18 22 12 16 6" />
-        <polyline points="8 6 2 12 8 18" />
-        <line x1="12" y1="2" x2="12" y2="22" />
-      </svg>
-    ),
+    id: '03',
     title: 'Custom Software Development',
-    tagline: 'Built exactly for your business — nothing off the shelf.',
-    description:
-      'When no existing product fits your workflow, we build from scratch. Custom CRMs, internal tools, workflow automation platforms, and bespoke business systems — engineered to your exact process and integrated with what you already use.',
-    deliverables: [
-      'Requirements discovery and technical specification',
-      'Custom application architecture designed for your workflow',
-      'Full-stack development (frontend, backend, database)',
-      'Third-party integrations (ERP, CRM, APIs, payment gateways)',
-      'Admin panel and role-based access control',
-      'Deployment, documentation, and staff training',
-    ],
-    timeline: '8–24 weeks',
-    techStack: ['React / Next.js', 'Node.js / NestJS', 'PostgreSQL / MySQL', 'AWS / Azure', 'Docker'],
-    bestFor: 'Businesses replacing manual processes, internal tooling, industry-specific platforms',
+    short: 'Bespoke platforms for workflows that off-the-shelf can\'t handle.',
+    body: 'Some problems are too specific for generic software. We build the exact system your business needs — custom ERPs, workflow automation tools, internal dashboards, data pipelines — designed around how your team actually works.',
+    bullets: ['ERP & CRM systems', 'Workflow automation', 'Internal tooling & dashboards', 'Data pipelines & ETL', 'Legacy system modernization'],
   },
   {
-    id: 'datacenter',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="8" rx="2" />
-        <rect x="2" y="14" width="20" height="8" rx="2" />
-        <line x1="6" y1="6" x2="6.01" y2="6" />
-        <line x1="6" y1="18" x2="6.01" y2="18" />
-      </svg>
-    ),
+    id: '04',
     title: 'Data Centre Maintenance',
-    tagline: 'Critical infrastructure managed with zero tolerance for downtime.',
-    description:
-      'Proactive monitoring, hardware lifecycle management, and rapid on-site support for data centre environments. We keep your physical and virtual infrastructure healthy so your team never has to chase an outage.',
-    deliverables: [
-      'Infrastructure audit and health assessment',
-      '24/7 proactive monitoring with automated alerting',
-      'Hardware lifecycle management and replacement planning',
-      'On-site and remote support with defined SLAs',
-      'Cooling, power, and network redundancy review',
-      'Incident response and root cause analysis reporting',
-    ],
-    timeline: 'Ongoing',
-    techStack: ['Zabbix / Nagios', 'IPMI / iDRAC', 'VMware / Hyper-V', 'Cisco', 'Fortinet'],
-    bestFor: 'Businesses with on-premise infrastructure, colocation tenants, regulated industries',
+    short: 'Physical and logical infrastructure management for enterprise uptime.',
+    body: 'We provide end-to-end data centre maintenance — hardware lifecycle management, rack installation, network cabling, OS provisioning, and ongoing health monitoring. Paired with our software team, we can handle the full stack from silicon to UI.',
+    bullets: ['Server rack installation & cabling', 'Hardware lifecycle management', 'OS provisioning & configuration', 'Network infrastructure maintenance', 'Monitoring & capacity planning'],
   },
   {
-    id: 'devops',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-      </svg>
-    ),
+    id: '05',
     title: 'DevOps & Cloud Infrastructure',
-    tagline: 'Infrastructure that stays up so your team stays focused.',
-    description:
-      'We design, migrate, and manage cloud infrastructure on AWS, GCP, and Azure. Zero-downtime deployments, auto-scaling, disaster recovery, and cost optimization — all without a dedicated in-house DevOps team.',
-    deliverables: [
-      'Cloud architecture design (AWS / GCP / Azure)',
-      'Docker + Kubernetes setup and configuration',
-      'CI/CD pipeline implementation',
-      'Auto-scaling and load balancing configuration',
-      'Monitoring + alerting (Datadog / Grafana)',
-      'Monthly infrastructure cost review and optimization',
-    ],
-    timeline: '3–8 weeks',
-    techStack: ['AWS', 'GCP', 'Docker', 'Kubernetes', 'Terraform', 'GitHub Actions', 'Datadog'],
-    bestFor: 'Scaling startups, teams preparing for enterprise clients, regulated industries',
+    short: 'CI/CD pipelines, cloud architecture, and 24/7 monitoring.',
+    body: 'We design and operate cloud infrastructure that scales with your business — Kubernetes clusters, auto-scaling groups, multi-region redundancy, and cost-optimized architectures. Plus CI/CD pipelines that get code from commit to production without drama.',
+    bullets: ['AWS / Azure / GCP architecture', 'Kubernetes & Docker orchestration', 'CI/CD pipeline setup (GitHub Actions, GitLab)', 'Infrastructure as Code (Terraform)', 'APM & alerting (Datadog, Grafana)'],
   },
   {
-    id: 'design',
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="12" r="3" />
-        <line x1="12" y1="2" x2="12" y2="9" />
-        <line x1="12" y1="15" x2="12" y2="22" />
-        <line x1="2" y1="12" x2="9" y2="12" />
-        <line x1="15" y1="12" x2="22" y2="12" />
-      </svg>
-    ),
-    title: 'UI/UX Design & Branding',
-    tagline: 'Design that earns trust before a word is read.',
-    description:
-      'Strategic design from brand identity to pixel-perfect UI. We create design systems that scale and interfaces that reduce support tickets — because good UX is a business decision, not decoration.',
-    deliverables: [
-      'Brand identity (logo, color system, typography)',
-      'Design system with reusable component library',
-      'UX research and user flow mapping',
-      'High-fidelity Figma prototypes',
-      'Usability testing with real users',
-      'Developer handoff with annotated specs',
-    ],
-    timeline: '3–10 weeks',
-    techStack: ['Figma', 'Framer', 'Lottie', 'Storybook'],
-    bestFor: 'Startups pre-launch, companies rebranding, products with high churn',
+    id: '06',
+    title: 'UI / UX Design',
+    short: 'Design systems and interfaces users actually want to use.',
+    body: 'We design products that work, not just look good. User research, information architecture, wireframes, high-fidelity Figma prototypes, and production-ready design systems — all aligned with your brand and built to hand off cleanly to engineering.',
+    bullets: ['User research & journey mapping', 'Wireframes & prototyping', 'High-fidelity Figma design', 'Design systems & component libraries', 'Handoff-ready specs for engineering'],
   },
 ]
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 32 },
-  show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] } }),
-}
+const BD = 'rgba(255,255,255,0.05)'
 
 export default function ServicesPage() {
-  const [activeService, setActiveService] = useState<string | null>(null)
+  const [openId, setOpenId] = useState<string | null>(null)
 
   return (
-    <div className="bg-[#0A0F1A] text-white min-h-screen">
+    <div style={{ background: '#0A0F1A', color: '#fff' }}>
       <Navbar />
 
-      {/* Hero */}
-      <section className="pt-40 pb-24 px-6 grid-bg relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F1A] via-transparent to-[#0A0F1A] pointer-events-none" />
-        <div className="relative max-w-5xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="section-label mb-4">
-            Our Services
-          </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
-            What we build<br /><span className="text-gradient">for you.</span>
+      {/* ── PAGE HERO ── */}
+      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#0A0F1A' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="absolute bottom-0 inset-x-0 h-px" style={{ background: BD }} />
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}
+            className="nav-label block mb-5" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}
+          >
+            SERVICES
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.22,1,0.36,1] }}
+            className="display-xl text-white" style={{ fontSize: 'clamp(3rem,8.5vw,9.5rem)' }}
+          >
+            WHAT WE<br />
+            <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              BUILD FOR YOU.
+            </span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="text-[#8899AA] text-lg md:text-xl max-w-2xl leading-relaxed">
-            Six specialized practices. Clear deliverables. No vague retainers — you know exactly what you're getting before we start.
+          <motion.p
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'Inter,sans-serif' }}
+          >
+            Six service areas. One team that owns the outcome end to end.
+            No hand-offs to subcontractors, no surprise scope changes.
           </motion.p>
         </div>
       </section>
 
-      {/* Services grid */}
-      <section className="max-w-5xl mx-auto px-6 pb-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((s, i) => (
-            <motion.button
-              key={s.id}
-              custom={i}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true, margin: '-60px' }}
-              variants={fadeUp}
-              onClick={() => setActiveService(activeService === s.id ? null : s.id)}
-              className={`text-left p-6 rounded-2xl border transition-all duration-300 group ${
-                activeService === s.id
-                  ? 'border-[#5BC8E8] bg-[rgba(91,200,232,0.06)]'
-                  : 'border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.02)] hover:border-[rgba(91,200,232,0.3)]'
-              }`}
-            >
-              <div className={`mb-4 w-10 h-10 rounded-xl flex items-center justify-center transition-colors ${activeService === s.id ? 'bg-[#5BC8E8] text-[#0A0F1A]' : 'bg-[rgba(91,200,232,0.1)] text-[#5BC8E8]'}`}>
-                {s.icon}
-              </div>
-              <h3 className="text-base font-bold mb-2 leading-tight">{s.title}</h3>
-              <p className="text-xs text-[#667788] mb-4">{s.tagline}</p>
-              <div className="mt-3 text-xs text-[#5BC8E8] flex items-center gap-1 font-medium">
-                {activeService === s.id ? 'Collapse' : 'See details'}
-                <svg
-                  width="12" height="12" viewBox="0 0 12 12" fill="none"
-                  className={`transition-transform duration-300 ${activeService === s.id ? 'rotate-180' : ''}`}
+      {/* ── SERVICES LIST ── */}
+      <section className="relative overflow-hidden" style={{ background: '#080C14' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-4">
+          {services.map((svc, i) => {
+            const isOpen = openId === svc.id
+            return (
+              <motion.div
+                key={svc.id}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                transition={{ delay: i * 0.06, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                style={{ borderTop: `1px solid ${BD}` }}
+              >
+                <button
+                  onClick={() => setOpenId(isOpen ? null : svc.id)}
+                  className="w-full text-left group"
                 >
-                  <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </div>
-            </motion.button>
-          ))}
+                  <div className="grid grid-cols-12 items-center gap-4 py-8 hover:pl-2 transition-all duration-300">
+                    <span className="col-span-2 lg:col-span-1 nav-label text-white/25" style={{ fontSize: '10px' }}>{svc.id}</span>
+                    <h3 className="col-span-8 lg:col-span-5 font-display font-bold leading-tight group-hover:text-[#5BC8E8] transition-colors duration-200"
+                      style={{ fontSize: 'clamp(1.2rem,2.5vw,2rem)', letterSpacing: '-0.025em', color: isOpen ? '#5BC8E8' : '#fff' }}>
+                      {svc.title}
+                    </h3>
+                    <p className="hidden lg:block col-span-5 text-[13px] leading-relaxed" style={{ fontFamily: 'Inter,sans-serif', color: 'rgba(255,255,255,0.35)' }}>
+                      {svc.short}
+                    </p>
+                    <div className="col-span-2 lg:col-span-1 flex justify-end">
+                      <motion.div
+                        animate={{ rotate: isOpen ? 45 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="w-8 h-8 rounded-full border flex items-center justify-center flex-shrink-0"
+                        style={{ borderColor: isOpen ? '#5BC8E8' : BD, color: isOpen ? '#5BC8E8' : 'rgba(255,255,255,0.3)' }}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                          <path d="M6 2V10M2 6H10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        </svg>
+                      </motion.div>
+                    </div>
+                  </div>
+                </button>
+
+                <AnimatePresence>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 pb-12 pl-0 lg:pl-[8.33%]">
+                        <div>
+                          <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '15px', lineHeight: 1.75, color: 'rgba(255,255,255,0.45)' }}>
+                            {svc.body}
+                          </p>
+                        </div>
+                        <div>
+                          <span className="nav-label block mb-4" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}>WHAT'S INCLUDED</span>
+                          <ul className="space-y-3">
+                            {svc.bullets.map((b, bi) => (
+                              <li key={bi} className="flex items-start gap-3" style={{ fontFamily: 'Inter,sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.4)' }}>
+                                <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0 bg-[#5BC8E8] opacity-50" />
+                                {b}
+                              </li>
+                            ))}
+                          </ul>
+                          <div className="mt-8">
+                            <Link
+                              to="/contact"
+                              className="nav-label inline-flex items-center gap-2 text-[#5BC8E8] hover:opacity-70 transition-opacity"
+                              style={{ fontSize: '11px' }}
+                            >
+                              DISCUSS THIS SERVICE
+                              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                            </Link>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            )
+          })}
+          <div style={{ borderTop: `1px solid ${BD}` }} className="pb-4" />
         </div>
       </section>
 
-      {/* Expanded detail panel */}
-      <AnimatePresence mode="wait">
-        {activeService && (() => {
-          const s = services.find(x => x.id === activeService)!
-          return (
-            <motion.section
-              key={activeService}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-5xl mx-auto px-6 mb-20"
-            >
-              <div className="rounded-2xl border border-[rgba(91,200,232,0.2)] bg-[rgba(91,200,232,0.03)] p-8 md:p-12">
-                <div className="grid md:grid-cols-2 gap-10">
-                  {/* Left */}
-                  <div>
-                    <h2 className="text-2xl font-bold mb-3">{s.title}</h2>
-                    <p className="text-[#8899AA] leading-relaxed mb-8">{s.description}</p>
-                    <div className="mb-8">
-                      <h4 className="section-label mb-4">Deliverables</h4>
-                      <ul className="space-y-2.5">
-                        {s.deliverables.map((d, i) => (
-                          <li key={i} className="flex gap-3 text-sm text-[#AAB8C8]">
-                            <svg className="mt-0.5 flex-shrink-0" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                              <path d="M2 7l3 3 7-7" stroke="#5BC8E8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                            </svg>
-                            {d}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="section-label mb-3">Tech Stack</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {s.techStack.map(t => (
-                          <span key={t} className="px-2.5 py-1 text-xs rounded border border-[rgba(91,200,232,0.2)] text-[#AAB8C8]">{t}</span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                  {/* Right */}
-                  <div className="space-y-6">
-                    <div className="p-6 rounded-xl bg-[#0A0F1A] border border-[rgba(255,255,255,0.06)]">
-                      <h4 className="section-label mb-2">Typical Timeline</h4>
-                      <div className="text-2xl font-bold">{s.timeline}</div>
-                    </div>
-                    <div className="p-6 rounded-xl bg-[#0A0F1A] border border-[rgba(255,255,255,0.06)]">
-                      <h4 className="section-label mb-2">Best For</h4>
-                      <p className="text-sm text-[#AAB8C8]">{s.bestFor}</p>
-                    </div>
-                    <a
-                      href="/contact"
-                      className="flex items-center justify-center gap-2 w-full bg-[#5BC8E8] text-[#0A0F1A] font-semibold py-4 rounded-xl text-sm hover:bg-[#9BE4F5] transition-colors"
-                    >
-                      Get a Quote for This Service
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.section>
-          )
-        })()}
-      </AnimatePresence>
+      {/* ── HOW IT STARTS ── */}
+      <section className="relative overflow-hidden" style={{ background: '#F7F8FA' }}>
+        <div className="col-grid col-grid-light absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}
+            className="pb-12" style={{ borderBottom: '1px solid rgba(10,15,26,0.07)' }}>
+            <span className="nav-label block mb-4" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>THE FIRST STEP</span>
+            <h2 className="display-xl" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)', color: '#0A0F1A' }}>
+              HOW WE<br />
+              <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>GET STARTED.</span>
+            </h2>
+          </motion.div>
 
-      {/* Process teaser */}
-      <section className="border-t border-[rgba(255,255,255,0.06)] py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-8 mb-16">
+          <div style={{ borderBottom: '1px solid rgba(10,15,26,0.07)' }}>
             {[
-              { num: '01', title: 'Discovery Call', body: 'We learn your business, your users, and your definition of success — not just your feature list.' },
-              { num: '02', title: 'Scoped Proposal', body: 'Fixed scope, timeline, and price range. No ambiguity. Signed before a single line of code is written.' },
-              { num: '03', title: 'Deliver & Iterate', body: 'Weekly demos. Feedback loops. You see progress — not just a big reveal at the end.' },
-            ].map((step) => (
-              <div key={step.num} className="relative">
-                <div className="step-num mb-2">{step.num}</div>
-                <h3 className="text-lg font-bold mb-2">{step.title}</h3>
-                <p className="text-sm text-[#8899AA] leading-relaxed">{step.body}</p>
-              </div>
+              { num: '01', title: 'Discovery Call', body: '30 minutes. You describe the problem, we ask the questions that matter. No pitch deck, no sales script. We\'re figuring out whether we\'re the right fit for each other.' },
+              { num: '02', title: 'Scoped Proposal', body: 'Within 48 hours, you receive a fixed-scope proposal with timeline, team size, and budget. No open-ended retainers unless the project actually warrants it.' },
+              { num: '03', title: 'Deliver & Iterate', body: 'Two-week sprints. You see working software every other Friday. We adjust scope based on what you learn, not based on an estimate made six months ago.' },
+            ].map((step, i) => (
+              <motion.div
+                key={step.num} initial={{ opacity: 0, x: -14 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
+                transition={{ delay: i * 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="group grid grid-cols-12 items-start gap-6 py-8 hover:pl-2 transition-all duration-300"
+                style={{ borderTop: '1px solid rgba(10,15,26,0.07)' }}
+              >
+                <span className="col-span-2 lg:col-span-1 nav-label" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>{step.num}</span>
+                <h3 className="col-span-10 lg:col-span-4 font-display font-bold leading-tight group-hover:text-[#5BC8E8] transition-colors"
+                  style={{ fontSize: 'clamp(1.2rem,2.2vw,1.65rem)', letterSpacing: '-0.02em', color: '#0A0F1A', alignSelf: 'center' }}>
+                  {step.title}
+                </h3>
+                <div className="hidden lg:flex col-span-1 items-center">
+                  <div className="w-full h-px" style={{ background: 'rgba(91,200,232,0.2)' }} />
+                </div>
+                <p className="col-span-12 lg:col-span-6 text-[0.88rem] leading-relaxed" style={{ fontFamily: 'Inter,sans-serif', color: '#4B5563', alignSelf: 'center' }}>
+                  {step.body}
+                </p>
+              </motion.div>
             ))}
           </div>
-          <div className="text-center">
-            <a href="/contact" className="inline-flex items-center gap-3 bg-[#5BC8E8] text-[#0A0F1A] font-semibold px-8 py-4 rounded-full text-sm hover:bg-[#9BE4F5] transition-colors btn-glow">
-              Let's Business
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </a>
+
+          <div className="pt-12 flex justify-center">
+            <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+              <Link
+                to="/contact"
+                className="nav-label flex items-center gap-2.5 px-8 py-4 rounded-full btn-glow"
+                style={{ background: '#5BC8E8', color: '#0A0F1A', fontSize: '12px' }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                BOOK THE DISCOVERY CALL
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
 
+      <CTABanner />
       <Footer />
     </div>
   )

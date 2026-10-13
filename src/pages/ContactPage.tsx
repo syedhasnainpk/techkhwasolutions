@@ -1,356 +1,302 @@
-import { useState, FormEvent } from 'react'
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-
-const WEB3FORMS_KEY = 'b7d03353-0f74-452a-9668-fe651b16692c'
-
-const services = [
-  'Web Application',
-  'Mobile App',
-  'AI Integration',
-  'E-Commerce',
-  'DevOps / Cloud',
-  'UI/UX Design',
-  'Other',
-]
-
-const guarantees = [
-  {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="11" cy="11" r="9" />
-        <polyline points="11 6 11 11 14 14" />
-      </svg>
-    ),
-    title: '4-hour response',
-    body: 'Every serious inquiry gets a human response within 4 business hours — not a bot, not an auto-reply.',
-  },
-  {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V8z" />
-        <polyline points="14 2 14 8 20 8" />
-        <line x1="8" y1="13" x2="14" y2="13" />
-        <line x1="8" y1="17" x2="11" y2="17" />
-      </svg>
-    ),
-    title: 'Free scoping call',
-    body: 'No commitment. A 30-minute call to understand your project and whether we\'re the right fit.',
-  },
-  {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-      </svg>
-    ),
-    title: 'NDA on request',
-    body: 'We\'ll sign a mutual NDA before you share anything sensitive. Your idea stays yours.',
-  },
-  {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="12" y1="1" x2="12" y2="23" />
-        <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
-      </svg>
-    ),
-    title: 'Fixed-price proposals',
-    body: 'Every project starts with a fixed-scope proposal. No hourly surprises, no scope creep without your approval.',
-  },
-]
 
 const faqs = [
   {
     q: 'How long does a typical project take?',
-    a: 'Depends on scope. A focused MVP takes 8–12 weeks. Enterprise-grade platforms with complex integrations can run 6–12 months. We define the timeline before we start, and we hold to it.',
+    a: 'Depends on scope. A marketing website or simple web app: 4–6 weeks. A full platform with custom backend, integrations, and mobile app: 3–6 months. We scope accurately and hit those timelines.',
   },
   {
-    q: 'Do you work with early-stage startups?',
-    a: 'Yes. Some of our best work has been with founders who had a great idea and no codebase. We help you move from concept to launch without overbuilding.',
+    q: 'Do you work with early-stage startups or only established businesses?',
+    a: 'Both. Some of our best projects started with a founder who had a napkin sketch. Others were established companies replacing legacy systems. What matters is that you have a real problem and a realistic expectation of what it takes to solve it.',
   },
   {
-    q: 'Can I hire TechKhwa to take over an existing codebase?',
-    a: 'Yes — and we\'re good at it. We do a thorough codebase audit first, then agree on a plan. We won\'t inherit technical debt without telling you about it.',
+    q: 'What does a fixed-scope project look like?',
+    a: 'We agree on deliverables, timeline, and cost before work begins. You know exactly what you\'re getting and what you\'re paying. If scope genuinely changes (not just feature creep), we adjust formally — no silent surprises.',
   },
   {
-    q: 'What happens after launch?',
-    a: 'Every project includes a 30-day post-launch warranty. Beyond that, we offer ongoing support retainers for monitoring, feature development, and infrastructure management.',
+    q: 'Can you take over a project someone else started?',
+    a: 'Yes. We do this often. We\'ll review the existing codebase, give you an honest assessment, and either continue it or recommend a rebuild if the foundation is unsalvageable. We\'ll tell you which is which.',
   },
   {
-    q: 'Do you sign NDAs?',
-    a: 'Absolutely. Send us a message and we\'ll have a mutual NDA ready within 24 hours.',
+    q: 'Do you offer ongoing maintenance and support after launch?',
+    a: 'Yes. Most clients move to a monthly retainer post-launch. This covers bug fixes, performance monitoring, minor feature additions, and on-call support. We don\'t disappear after go-live.',
   },
 ]
 
-type FormData = {
-  name: string
-  email: string
-  company: string
-  service: string
-  message: string
-  consent: boolean
-}
+const BD = 'rgba(255,255,255,0.05)'
 
 export default function ContactPage() {
-  const [form, setForm] = useState<FormData>({
-    name: '', email: '', company: '', service: '', message: '', consent: false,
-  })
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
 
-  const handleSubmit = async (e: FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!form.consent) return
     setStatus('sending')
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          access_key: WEB3FORMS_KEY,
-          from_name: form.name,
-          subject: `New Project Inquiry — ${form.service || 'General'} | TechKhwa`,
-          name: form.name,
-          email: form.email,
-          company: form.company,
-          service: form.service,
-          message: form.message,
+          access_key: 'b7d03353-0f74-452a-9668-fe651b16692c',
+          ...form,
         }),
       })
       const data = await res.json()
-      setStatus(data.success ? 'success' : 'error')
+      if (data.success) {
+        setStatus('sent')
+        setForm({ name: '', email: '', company: '', message: '' })
+      } else {
+        setStatus('error')
+      }
     } catch {
       setStatus('error')
     }
   }
 
+  const inputBase: React.CSSProperties = {
+    width: '100%',
+    background: 'rgba(255,255,255,0.03)',
+    border: '1px solid rgba(255,255,255,0.07)',
+    borderRadius: '6px',
+    padding: '14px 16px',
+    color: '#fff',
+    fontFamily: 'Inter,sans-serif',
+    fontSize: '14px',
+    outline: 'none',
+    transition: 'border-color 0.2s',
+  }
+
   return (
-    <div className="bg-[#0A0F1A] text-white min-h-screen">
+    <div style={{ background: '#0A0F1A', color: '#fff' }}>
       <Navbar />
 
-      {/* Hero */}
-      <section className="pt-40 pb-20 px-6 grid-bg relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F1A] via-transparent to-[#0A0F1A] pointer-events-none" />
-        <div className="relative max-w-5xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="section-label mb-4">
-            Get In Touch
-          </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
-            Let's talk about<br /><span className="text-gradient">your project.</span>
+      {/* ── PAGE HERO ── */}
+      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#0A0F1A' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="absolute bottom-0 inset-x-0 h-px" style={{ background: BD }} />
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}
+            className="nav-label block mb-5" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}
+          >
+            GET IN TOUCH
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.22,1,0.36,1] }}
+            className="display-xl text-white" style={{ fontSize: 'clamp(3rem,8.5vw,9.5rem)' }}
+          >
+            LET'S TALK ABOUT<br />
+            <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              YOUR PROJECT.
+            </span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="text-[#8899AA] text-lg md:text-xl max-w-xl leading-relaxed">
-            Tell us what you're building. We'll respond within 4 business hours with a direct, honest assessment.
+          <motion.p
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'Inter,sans-serif' }}
+          >
+            Tell us what you're building. We'll respond within 2 hours with an honest assessment
+            and suggested next steps — not a sales pitch.
           </motion.p>
         </div>
       </section>
 
-      {/* Main content */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Form */}
-          <motion.div initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7, delay: 0.3 }}>
-            {status === 'success' ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-16">
-                <div className="w-16 h-16 rounded-full bg-[rgba(91,200,232,0.15)] border border-[#5BC8E8] flex items-center justify-center mb-6">
-                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                    <path d="M5 14l6 6L23 8" stroke="#5BC8E8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-bold mb-3">Message sent.</h3>
-                <p className="text-[#8899AA] mb-6">We'll get back to you within 4 business hours. Check your inbox — ours comes from techkhwasolutions@gmail.com.</p>
-                <button
-                  onClick={() => { setStatus('idle'); setForm({ name: '', email: '', company: '', service: '', message: '', consent: false }) }}
-                  className="text-sm text-[#5BC8E8] underline underline-offset-4"
-                >
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-semibold text-[#8899AA] mb-2 tracking-wide">Full name *</label>
-                    <input
-                      required
-                      value={form.name}
-                      onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                      placeholder="Jane Smith"
-                      className="w-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-sm text-white placeholder-[#445566] focus:outline-none focus:border-[#5BC8E8] transition-colors"
-                    />
+      {/* ── FORM + SIDEBAR ── */}
+      <section className="relative overflow-hidden" style={{ background: '#080C14' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+
+            {/* Form — 7 cols */}
+            <motion.div
+              initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
+              className="lg:col-span-7"
+            >
+              <span className="nav-label block mb-8" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}>SEND A MESSAGE</span>
+
+              {status === 'sent' ? (
+                <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="py-16 text-center">
+                  <div className="w-12 h-12 rounded-full border flex items-center justify-center mx-auto mb-6" style={{ borderColor: '#5BC8E8' }}>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                      <path d="M4 10L8 14L16 6" stroke="#5BC8E8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </div>
-                  <div>
-                    <label className="block text-xs font-semibold text-[#8899AA] mb-2 tracking-wide">Work email *</label>
-                    <input
-                      required
-                      type="email"
-                      value={form.email}
-                      onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                      placeholder="jane@company.com"
-                      className="w-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-sm text-white placeholder-[#445566] focus:outline-none focus:border-[#5BC8E8] transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid sm:grid-cols-2 gap-5">
-                  <div>
-                    <label className="block text-xs font-semibold text-[#8899AA] mb-2 tracking-wide">Company / Project name</label>
-                    <input
-                      value={form.company}
-                      onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
-                      placeholder="Acme Corp"
-                      className="w-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-sm text-white placeholder-[#445566] focus:outline-none focus:border-[#5BC8E8] transition-colors"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-[#8899AA] mb-3 tracking-wide">Service needed</label>
-                  <div className="flex flex-wrap gap-2">
-                    {services.map(s => (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => setForm(f => ({ ...f, service: f.service === s ? '' : s }))}
-                        className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition-all ${
-                          form.service === s
-                            ? 'bg-[#5BC8E8] text-[#0A0F1A] border-[#5BC8E8]'
-                            : 'border-[rgba(255,255,255,0.1)] text-[#8899AA] hover:border-[#5BC8E8] hover:text-[#5BC8E8]'
-                        }`}
-                      >
-                        {s}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-[#8899AA] mb-2 tracking-wide">Tell us about your project *</label>
-                  <textarea
-                    required
-                    rows={5}
-                    value={form.message}
-                    onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
-                    placeholder="What are you building? What's the problem you're solving? What does success look like in 6 months?"
-                    className="w-full bg-[rgba(255,255,255,0.04)] border border-[rgba(255,255,255,0.08)] rounded-xl px-4 py-3.5 text-sm text-white placeholder-[#445566] focus:outline-none focus:border-[#5BC8E8] transition-colors resize-none"
-                  />
-                </div>
-
-                <label className="flex gap-3 items-start cursor-pointer group">
-                  <div
-                    onClick={() => setForm(f => ({ ...f, consent: !f.consent }))}
-                    className={`mt-0.5 w-5 h-5 rounded flex-shrink-0 border flex items-center justify-center transition-all ${
-                      form.consent ? 'bg-[#5BC8E8] border-[#5BC8E8]' : 'border-[rgba(255,255,255,0.2)] group-hover:border-[#5BC8E8]'
-                    }`}
-                  >
-                    {form.consent && (
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                        <path d="M2 6l3 3 5-5" stroke="#0A0F1A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    )}
-                  </div>
-                  <span className="text-xs text-[#8899AA] leading-relaxed">
-                    I agree to be contacted by TechKhwa Solutions regarding my inquiry. We don't do spam — one conversation at a time.
-                  </span>
-                </label>
-
-                {status === 'error' && (
-                  <p className="text-red-400 text-sm">Something went wrong. Email us directly at techkhwasolutions@gmail.com</p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={!form.consent || status === 'sending'}
-                  className="w-full bg-[#5BC8E8] text-[#0A0F1A] font-semibold py-4 rounded-xl text-sm hover:bg-[#9BE4F5] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                >
-                  {status === 'sending' ? (
-                    <>
-                      <div className="w-4 h-4 border-2 border-[#0A0F1A] border-t-transparent rounded-full animate-spin" />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      Send Message
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </>
-                  )}
-                </button>
-              </form>
-            )}
-          </motion.div>
-
-          {/* Right column */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="space-y-8"
-          >
-            {/* Guarantees */}
-            <div>
-              <p className="section-label mb-5">What to expect</p>
-              <div className="space-y-4">
-                {guarantees.map(g => (
-                  <div key={g.title} className="flex gap-4 p-5 rounded-xl border border-[rgba(255,255,255,0.06)] bg-[rgba(255,255,255,0.02)]">
-                    <div className="text-[#5BC8E8] flex-shrink-0 mt-0.5">{g.icon}</div>
+                  <h3 className="display-xl text-white mb-3" style={{ fontSize: 'clamp(1.5rem,3vw,2.5rem)' }}>MESSAGE SENT.</h3>
+                  <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', color: 'rgba(255,255,255,0.4)' }}>
+                    We'll get back to you within 2 hours.
+                  </p>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <div className="font-semibold text-sm mb-1">{g.title}</div>
-                      <div className="text-xs text-[#8899AA] leading-relaxed">{g.body}</div>
+                      <label className="nav-label block mb-2" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)' }}>YOUR NAME</label>
+                      <input
+                        required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
+                        placeholder="Alex Johnson"
+                        style={inputBase}
+                        onFocus={e => (e.target.style.borderColor = 'rgba(91,200,232,0.4)')}
+                        onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.07)')}
+                      />
+                    </div>
+                    <div>
+                      <label className="nav-label block mb-2" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)' }}>EMAIL</label>
+                      <input
+                        type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })}
+                        placeholder="alex@company.com"
+                        style={inputBase}
+                        onFocus={e => (e.target.style.borderColor = 'rgba(91,200,232,0.4)')}
+                        onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.07)')}
+                      />
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                  <div>
+                    <label className="nav-label block mb-2" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)' }}>COMPANY / PROJECT NAME</label>
+                    <input
+                      value={form.company} onChange={e => setForm({ ...form, company: e.target.value })}
+                      placeholder="Acme Inc."
+                      style={inputBase}
+                      onFocus={e => (e.target.style.borderColor = 'rgba(91,200,232,0.4)')}
+                      onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.07)')}
+                    />
+                  </div>
+                  <div>
+                    <label className="nav-label block mb-2" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)' }}>TELL US ABOUT YOUR PROJECT</label>
+                    <textarea
+                      required rows={6} value={form.message} onChange={e => setForm({ ...form, message: e.target.value })}
+                      placeholder="What are you building? What's the problem you're trying to solve? Any timeline or budget constraints?"
+                      style={{ ...inputBase, resize: 'vertical', minHeight: '140px' }}
+                      onFocus={e => (e.target.style.borderColor = 'rgba(91,200,232,0.4)')}
+                      onBlur={e => (e.target.style.borderColor = 'rgba(255,255,255,0.07)')}
+                    />
+                  </div>
+                  {status === 'error' && (
+                    <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '13px', color: '#F87171' }}>
+                      Something went wrong. Please try again or email us directly.
+                    </p>
+                  )}
+                  <motion.button
+                    type="submit" disabled={status === 'sending'}
+                    whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                    className="nav-label flex items-center gap-2.5 px-8 py-4 rounded-full btn-glow disabled:opacity-50"
+                    style={{ background: '#5BC8E8', color: '#0A0F1A', fontSize: '12px', border: 'none', cursor: 'pointer' }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                    {status === 'sending' ? 'SENDING...' : 'SEND MESSAGE'}
+                  </motion.button>
+                </form>
+              )}
+            </motion.div>
 
-            {/* Direct contact */}
-            <div className="p-6 rounded-xl border border-[rgba(91,200,232,0.15)] bg-[rgba(91,200,232,0.03)]">
-              <p className="section-label mb-3">Prefer email?</p>
-              <a href="mailto:techkhwasolutions@gmail.com" className="text-lg font-bold text-[#5BC8E8] hover:text-[#9BE4F5] transition-colors">
-                techkhwasolutions@gmail.com
-              </a>
-              <p className="text-xs text-[#667788] mt-2">We read every email personally. Response within 4 hours during business days.</p>
-            </div>
-          </motion.div>
+            {/* Sidebar — 5 cols */}
+            <motion.div
+              initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }}
+              className="lg:col-span-5 flex flex-col gap-10"
+            >
+              {/* Guarantees */}
+              <div>
+                <span className="nav-label block mb-6" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}>WHAT TO EXPECT</span>
+                <div className="space-y-5">
+                  {[
+                    { icon: '⏱', title: 'Reply within 2 hours', body: 'During business hours. You\'ll hear from a real engineer, not a bot or BDR.' },
+                    { icon: '🎯', title: 'Free discovery call', body: 'We\'ll spend 30 minutes understanding your problem before talking scope or cost.' },
+                    { icon: '📋', title: 'Honest assessment', body: 'We\'ll tell you what you actually need — even if it\'s less than what you thought.' },
+                    { icon: '🔒', title: 'NDA on request', body: 'Happy to sign an NDA before the first call if your project requires confidentiality.' },
+                  ].map((item) => (
+                    <div key={item.title} className="flex items-start gap-4 py-4" style={{ borderTop: `1px solid ${BD}` }}>
+                      <span style={{ fontSize: '16px', opacity: 0.6 }}>{item.icon}</span>
+                      <div>
+                        <div className="font-display font-bold mb-1" style={{ fontSize: '13px', letterSpacing: '-0.01em', color: '#fff' }}>{item.title}</div>
+                        <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: 'rgba(255,255,255,0.35)', lineHeight: 1.6 }}>{item.body}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Direct contact */}
+              <div className="p-6 rounded-lg" style={{ background: 'rgba(91,200,232,0.04)', border: '1px solid rgba(91,200,232,0.1)' }}>
+                <span className="nav-label block mb-3" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}>PREFER EMAIL?</span>
+                <a
+                  href="mailto:hello@techkhwa.com"
+                  className="font-display font-bold block hover:text-[#5BC8E8] transition-colors"
+                  style={{ fontSize: 'clamp(0.9rem,1.5vw,1.1rem)', letterSpacing: '-0.01em', color: '#fff' }}
+                >
+                  hello@techkhwa.com
+                </a>
+                <p className="mt-2" style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: 'rgba(255,255,255,0.3)' }}>
+                  Same 2-hour response guarantee.
+                </p>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="border-t border-[rgba(255,255,255,0.06)] py-24 px-6">
-        <div className="max-w-3xl mx-auto">
-          <p className="section-label mb-4">FAQ</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-10">Questions we get asked.</h2>
-          <div className="space-y-3">
-            {faqs.map((faq, i) => (
-              <div
-                key={i}
-                className="border border-[rgba(255,255,255,0.07)] rounded-xl overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full text-left px-6 py-5 flex items-start justify-between gap-4 hover:bg-[rgba(255,255,255,0.02)] transition-colors"
+      {/* ── FAQ ── */}
+      <section className="relative overflow-hidden" style={{ background: '#F7F8FA' }}>
+        <div className="col-grid col-grid-light absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}
+            className="pb-12" style={{ borderBottom: '1px solid rgba(10,15,26,0.07)' }}>
+            <span className="nav-label block mb-4" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>COMMON QUESTIONS</span>
+            <h2 className="display-xl" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)', color: '#0A0F1A' }}>
+              THINGS PEOPLE<br />
+              <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>USUALLY ASK.</span>
+            </h2>
+          </motion.div>
+
+          <div style={{ borderBottom: '1px solid rgba(10,15,26,0.07)' }}>
+            {faqs.map((faq, i) => {
+              const isOpen = openFaq === i
+              return (
+                <motion.div
+                  key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
+                  transition={{ delay: i * 0.07, duration: 0.5 }}
+                  style={{ borderTop: '1px solid rgba(10,15,26,0.07)' }}
                 >
-                  <span className="font-semibold text-sm leading-snug">{faq.q}</span>
-                  <svg
-                    width="16" height="16" viewBox="0 0 16 16" fill="none"
-                    className={`flex-shrink-0 mt-0.5 transition-transform duration-300 ${openFaq === i ? 'rotate-180' : ''}`}
+                  <button
+                    onClick={() => setOpenFaq(isOpen ? null : i)}
+                    className="w-full text-left grid grid-cols-12 items-start gap-4 py-7 group hover:pl-1 transition-all duration-300"
                   >
-                    <path d="M4 6l4 4 4-4" stroke="#5BC8E8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
-                {openFaq === i && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="px-6 pb-5"
-                  >
-                    <p className="text-sm text-[#8899AA] leading-relaxed">{faq.a}</p>
-                  </motion.div>
-                )}
-              </div>
-            ))}
+                    <span className="col-span-2 lg:col-span-1 nav-label" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.5, paddingTop: '2px' }}>
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <h4 className="col-span-9 lg:col-span-10 font-display font-bold leading-snug group-hover:text-[#5BC8E8] transition-colors"
+                      style={{ fontSize: 'clamp(0.95rem,1.8vw,1.25rem)', letterSpacing: '-0.015em', color: isOpen ? '#5BC8E8' : '#0A0F1A' }}>
+                      {faq.q}
+                    </h4>
+                    <div className="col-span-1 flex justify-end pt-0.5">
+                      <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.25 }}
+                        className="w-6 h-6 rounded-full border flex items-center justify-center flex-shrink-0"
+                        style={{ borderColor: isOpen ? '#5BC8E8' : 'rgba(10,15,26,0.15)', color: isOpen ? '#5BC8E8' : '#6B7280' }}>
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none">
+                          <path d="M6 2V10M2 6H10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+                        </svg>
+                      </motion.div>
+                    </div>
+                  </button>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <p className="pb-8 pl-[8.33%] lg:pl-[8.33%]"
+                          style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', lineHeight: 1.75, color: '#4B5563' }}>
+                          {faq.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>

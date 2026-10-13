@@ -1,40 +1,30 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import CTABanner from '../components/CTABanner'
 
 const credibility = [
-  { value: '15+', label: 'Projects delivered', sub: 'across multiple industries' },
-  { value: '2+', label: 'Years in business', sub: 'founded 2023' },
-  { value: '98%', label: 'Client retention', sub: 'clients who stay come back' },
-  { value: '5', label: 'Countries served', sub: 'globally distributed clients' },
+  { value: '15+', label: 'PROJECTS DELIVERED', sub: 'across multiple industries' },
+  { value: '2+',  label: 'YEARS IN BUSINESS',  sub: 'founded 2023' },
+  { value: '98%', label: 'CLIENT RETENTION',   sub: 'clients who stay come back' },
+  { value: '5',   label: 'COUNTRIES SERVED',   sub: 'globally distributed clients' },
 ]
 
 const values = [
-  {
-    title: 'Ownership over excuses',
-    body: 'If it shipped late, that\'s on us. If there\'s a bug in production, we fix it before you finish typing the message. We treat your product like it\'s our product.',
-  },
-  {
-    title: 'Clarity above all',
-    body: 'We don\'t hide behind jargon. You\'ll always know exactly where your project stands, what\'s blocking it, and what\'s coming next.',
-  },
-  {
-    title: 'Speed with quality',
-    body: 'Fast doesn\'t mean sloppy. Our processes — code review, automated testing, CI/CD — exist so we can move fast without creating debt that bites you six months later.',
-  },
-  {
-    title: 'No ghost vendors',
-    body: 'After launch, we stick around. Bug reports, feature requests, infrastructure scaling — our clients have a direct line to the engineer who built it.',
-  },
+  { num: '01', title: 'Ownership over excuses',  body: 'If it shipped late, that\'s on us. If there\'s a bug in production, we fix it before you finish typing the message. We treat your product like it\'s our product.' },
+  { num: '02', title: 'Clarity above all',        body: 'We don\'t hide behind jargon. You\'ll always know exactly where your project stands, what\'s blocking it, and what\'s coming next.' },
+  { num: '03', title: 'Speed with quality',       body: 'Fast doesn\'t mean sloppy. Our processes — code review, automated testing, CI/CD — exist so we can move fast without creating debt that bites you six months later.' },
+  { num: '04', title: 'No ghost vendors',         body: 'After launch, we stick around. Bug reports, feature requests, infrastructure scaling — our clients have a direct line to the engineer who built it.' },
 ]
 
 const timeline = [
-  { year: '2023', event: 'TechKhwa founded', detail: 'Started with web development — custom websites, business platforms, and digital products. First clients onboarded within weeks of launch.' },
-  { year: '2023', event: 'Government sector entry', detail: 'Delivered the KP Labour Department digitalization — paper-based workflows moved fully online, 86% paper reduction.' },
-  { year: '2024', event: 'Services expanded', detail: 'Grew beyond web dev into mobile apps, AI integration, DevOps, and UI/UX design as client needs evolved.' },
-  { year: '2024', event: 'First international client', detail: 'Delivered an AI-powered omnichannel sales platform for a real estate firm in Dubai, UAE.' },
-  { year: '2024', event: 'CA firm digitalization', detail: 'Replaced paper auditing and Excel workflows with a unified platform for Auto Accounting — 68% productivity boost.' },
-  { year: '2025', event: 'TechKhwa today', detail: '15+ projects delivered across 5 countries. Full-service technology partner for businesses that treat software as a competitive advantage.' },
+  { year: '2023', event: 'TechKhwa founded',         detail: 'Started with web development — custom websites, business platforms, and digital products. First clients onboarded within weeks of launch.' },
+  { year: '2023', event: 'Government sector entry',  detail: 'Delivered the KP Labour Department digitalization — paper-based workflows moved fully online, 86% paper reduction.' },
+  { year: '2024', event: 'Services expanded',         detail: 'Grew beyond web dev into mobile apps, AI integration, DevOps, and UI/UX design as client needs evolved.' },
+  { year: '2024', event: 'First international client',detail: 'Delivered an AI-powered omnichannel sales platform for a real estate firm in Dubai, UAE.' },
+  { year: '2024', event: 'CA firm digitalization',    detail: 'Replaced paper auditing and Excel workflows with a unified platform for Auto Accounting — 68% productivity boost.' },
+  { year: '2025', event: 'TechKhwa today',            detail: '15+ projects delivered across 5 countries. Full-service technology partner for businesses that treat software as a competitive advantage.' },
 ]
 
 const fadeUp = {
@@ -42,142 +32,171 @@ const fadeUp = {
   show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.65, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] } }),
 }
 
+const BD = 'rgba(255,255,255,0.05)'
+const BL = 'rgba(10,15,26,0.07)'
+
 export default function AboutPage() {
   return (
-    <div className="bg-[#0A0F1A] text-white min-h-screen">
+    <div style={{ background: '#0A0F1A', color: '#fff' }}>
       <Navbar />
 
-      {/* Hero */}
-      <section className="pt-40 pb-24 px-6 grid-bg relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F1A] via-transparent to-[#0A0F1A] pointer-events-none" />
-        <div className="relative max-w-5xl mx-auto">
-          <motion.p initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} className="section-label mb-4">
-            About TechKhwa
-          </motion.p>
-          <motion.h1 initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight mb-6">
-            We build software<br /><span className="text-gradient">that earns its keep.</span>
+      {/* ── PAGE HERO ── */}
+      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#0A0F1A' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="absolute bottom-0 inset-x-0 h-px" style={{ background: BD }} />
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}
+            className="nav-label block mb-5" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}
+          >
+            ABOUT TECHKHWA
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.22,1,0.36,1] }}
+            className="display-xl text-white" style={{ fontSize: 'clamp(3rem,8.5vw,9.5rem)' }}
+          >
+            WE BUILD SOFTWARE<br />
+            <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              THAT EARNS ITS KEEP.
+            </span>
           </motion.h1>
-          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }} className="text-[#8899AA] text-lg md:text-xl max-w-2xl leading-relaxed">
-            TechKhwa Solutions is a product engineering company. We partner with founders and business leaders to turn technology problems into competitive advantages — not just working code.
+          <motion.p
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'Inter,sans-serif' }}
+          >
+            TechKhwa Solutions is a product engineering company. We partner with founders and business
+            leaders to turn technology problems into competitive advantages — not just working code.
           </motion.p>
         </div>
       </section>
 
-      {/* Credibility stats */}
-      <section className="max-w-5xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+      {/* ── CREDIBILITY STATS ── */}
+      <section className="relative overflow-hidden" style={{ background: '#060C16' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-16 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
           {credibility.map((c, i) => (
             <motion.div
-              key={c.label}
-              custom={i}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="p-6 rounded-2xl border border-[rgba(91,200,232,0.12)] bg-[rgba(91,200,232,0.03)]"
+              key={c.label} custom={i} initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+              className="px-8 first:pl-0 last:pr-0 py-4"
             >
-              <div className="text-4xl font-bold text-gradient mb-1">{c.value}</div>
-              <div className="text-sm font-semibold mb-0.5">{c.label}</div>
-              <div className="text-xs text-[#667788]">{c.sub}</div>
+              <div className="display-xl text-white mb-3" style={{ fontSize: 'clamp(2.5rem,5vw,5rem)' }}>{c.value}</div>
+              <div className="nav-label text-white/30 mb-1" style={{ fontSize: '10px' }}>{c.label}</div>
+              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '11px', color: 'rgba(255,255,255,0.2)' }}>{c.sub}</div>
             </motion.div>
           ))}
         </div>
+        <div className="h-px max-w-[1440px] mx-auto px-8" style={{ background: BD }} />
       </section>
 
-      {/* Story */}
-      <section className="max-w-3xl mx-auto px-6 py-16">
-        <motion.div initial={{ opacity: 0, y: 32 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
-          <p className="section-label mb-4">Our Story</p>
-          <h2 className="text-3xl md:text-4xl font-bold mb-8">Started focused. Grew deliberately.</h2>
-          <div className="space-y-5 text-[#8899AA] leading-relaxed">
-            <p>
-              TechKhwa was founded in 2023 with a clear starting point: web development done properly. No inflated promises, no offshore hand-offs — just a focused team that delivered websites and web platforms that actually worked. Early clients stuck around, referred others, and started asking for more.
-            </p>
-            <p>
-              That demand shaped what we became. As clients grew, so did the problems they brought us — mobile apps, AI integrations, cloud infrastructure, workflow automation. We didn't expand for the sake of it. We expanded because clients we already trusted asked us to solve problems we knew we could solve.
-            </p>
-            <p>
-              Two years in, we've delivered 15+ projects across 5 countries — from digitalizing a government department in KP to building an AI sales platform for a real estate firm in Dubai. We're still the same team that started: direct, accountable, and genuinely invested in what we build.
-            </p>
+      {/* ── STORY ── */}
+      <section className="relative overflow-hidden" style={{ background: '#0A0F1A' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
+          <div style={{ borderBottom: BD ? `1px solid ${BD}` : '' }} className="pb-16 grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
+              <span className="nav-label block mb-5" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}>OUR STORY</span>
+              <h2 className="display-xl text-white" style={{ fontSize: 'clamp(2rem,5vw,5rem)' }}>
+                STARTED FOCUSED.<br />
+                <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  GREW DELIBERATELY.
+                </span>
+              </h2>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }}
+              className="flex flex-col justify-center space-y-5"
+              style={{ fontFamily: 'Inter,sans-serif', fontSize: '15px', lineHeight: 1.75, color: 'rgba(255,255,255,0.45)' }}
+            >
+              <p>TechKhwa was founded in 2023 with a clear starting point: web development done properly. No inflated promises, no offshore hand-offs — just a focused team that delivered websites and web platforms that actually worked. Early clients stuck around, referred others, and started asking for more.</p>
+              <p>That demand shaped what we became. As clients grew, so did the problems they brought us — mobile apps, AI integrations, cloud infrastructure, workflow automation. We didn't expand for the sake of it. We expanded because clients we already trusted asked us to solve problems we knew we could solve.</p>
+              <p>Two years in, we've delivered 15+ projects across 5 countries — from digitalizing a government department in KP to building an AI sales platform for a real estate firm in Dubai.</p>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
-      {/* Timeline */}
-      <section className="max-w-4xl mx-auto px-6 py-16">
-        <p className="section-label mb-10">How We Got Here</p>
-        <div className="relative">
-          <div className="absolute left-16 top-0 bottom-0 w-px bg-gradient-to-b from-[#5BC8E8] to-transparent opacity-20" />
-          <div className="space-y-8">
+      {/* ── TIMELINE ── */}
+      <section className="relative overflow-hidden" style={{ background: '#F7F8FA' }}>
+        <div className="col-grid col-grid-light absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}
+            className="pb-12" style={{ borderBottom: `1px solid ${BL}` }}>
+            <span className="nav-label block mb-4" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>HOW WE GOT HERE</span>
+            <h2 className="display-xl" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)', color: '#0A0F1A' }}>
+              OUR<br />
+              <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>TIMELINE.</span>
+            </h2>
+          </motion.div>
+          <div style={{ borderBottom: `1px solid ${BL}` }}>
             {timeline.map((t, i) => (
               <motion.div
-                key={t.year}
-                custom={i}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: '-40px' }}
-                variants={fadeUp}
-                className="flex gap-8"
+                key={t.year + t.event} custom={i} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-40px' }} variants={fadeUp}
+                className="group grid grid-cols-12 items-start gap-6 py-8 hover:pl-2 transition-all duration-300"
+                style={{ borderTop: `1px solid ${BL}` }}
               >
-                <div className="w-16 flex-shrink-0 text-right">
-                  <span className="text-xs font-bold text-[#5BC8E8] tracking-wider">{t.year}</span>
+                <span className="col-span-2 lg:col-span-1 nav-label" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>{t.year}</span>
+                <h3 className="col-span-10 lg:col-span-4 font-display font-bold leading-tight group-hover:text-[#5BC8E8] transition-colors"
+                  style={{ fontSize: 'clamp(1.1rem,2vw,1.5rem)', letterSpacing: '-0.02em', color: '#0A0F1A', alignSelf: 'center' }}>
+                  {t.event}
+                </h3>
+                <div className="hidden lg:flex col-span-1 items-center">
+                  <div className="w-full h-px" style={{ background: 'rgba(91,200,232,0.2)' }} />
                 </div>
-                <div className="pb-8">
-                  <div className="h-2 w-2 rounded-full bg-[#5BC8E8] -ml-1 mb-3 mt-0.5" />
-                  <h3 className="font-bold mb-1">{t.event}</h3>
-                  <p className="text-sm text-[#8899AA]">{t.detail}</p>
-                </div>
+                <p className="col-span-12 lg:col-span-6 text-[0.88rem] leading-relaxed" style={{ fontFamily: 'Inter,sans-serif', color: '#4B5563' }}>
+                  {t.detail}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="bg-[rgba(91,200,232,0.02)] border-t border-b border-[rgba(91,200,232,0.08)] py-24 px-6">
-        <div className="max-w-5xl mx-auto">
-          <p className="section-label mb-4 text-center">How We Work</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">The rules we don't bend.</h2>
-          <div className="grid md:grid-cols-2 gap-6">
+      {/* ── VALUES ── */}
+      <section className="relative overflow-hidden" style={{ background: '#080C14' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
+          <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}
+            className="pb-12" style={{ borderBottom: `1px solid ${BD}` }}>
+            <span className="nav-label block mb-4" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}>HOW WE WORK</span>
+            <h2 className="display-xl text-white" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)' }}>
+              THE RULES<br />
+              <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                WE DON'T BEND.
+              </span>
+            </h2>
+          </motion.div>
+          <div style={{ borderBottom: `1px solid ${BD}` }}>
             {values.map((v, i) => (
               <motion.div
-                key={v.title}
-                custom={i}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                variants={fadeUp}
-                className="p-7 rounded-2xl border border-[rgba(255,255,255,0.07)] bg-[rgba(255,255,255,0.02)]"
+                key={v.num} custom={i} initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+                className="group grid grid-cols-12 items-start gap-6 py-8 hover:pl-2 transition-all duration-300"
+                style={{ borderTop: `1px solid ${BD}` }}
               >
-                <h3 className="font-bold text-lg mb-3">{v.title}</h3>
-                <p className="text-sm text-[#8899AA] leading-relaxed">{v.body}</p>
+                <span className="col-span-2 lg:col-span-1 nav-label text-white/25" style={{ fontSize: '10px' }}>{v.num}</span>
+                <h3 className="col-span-10 lg:col-span-4 font-display font-bold leading-tight group-hover:text-[#5BC8E8] transition-colors duration-200"
+                  style={{ fontSize: 'clamp(1.1rem,2vw,1.5rem)', letterSpacing: '-0.02em', color: '#fff', alignSelf: 'center' }}>
+                  {v.title}
+                </h3>
+                <div className="hidden lg:flex col-span-1 items-center">
+                  <div className="w-full h-px" style={{ background: 'rgba(91,200,232,0.15)' }} />
+                </div>
+                <p className="col-span-12 lg:col-span-6 text-[0.88rem] leading-relaxed" style={{ fontFamily: 'Inter,sans-serif', color: 'rgba(255,255,255,0.42)', alignSelf: 'center' }}>
+                  {v.body}
+                </p>
               </motion.div>
             ))}
+          </div>
+          <div className="py-8 flex items-center justify-between">
+            <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: 'rgba(255,255,255,0.2)' }}>4 core values</span>
+            <Link to="/contact" className="nav-label flex items-center gap-2 text-white/30 hover:text-white/60 transition-colors" style={{ fontSize: '11px' }}>
+              WORK WITH US
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-[rgba(255,255,255,0.06)] py-24 px-6">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="section-label mb-4">Work With Us</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Your technology partner,<br />
-            <span className="text-gradient">not just a developer team.</span>
-          </h2>
-          <p className="text-[#8899AA] mb-8">We respond to every serious inquiry within 4 business hours. Let's figure out if we're the right fit.</p>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-3 bg-[#5BC8E8] text-[#0A0F1A] font-semibold px-8 py-4 rounded-full text-sm hover:bg-[#9BE4F5] transition-colors btn-glow"
-          >
-            Start the Conversation
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
-        </div>
-      </section>
-
+      <CTABanner />
       <Footer />
     </div>
   )

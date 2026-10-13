@@ -1,270 +1,277 @@
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
+import CTABanner from '../components/CTABanner'
 
 const cases = [
   {
     id: '01',
-    client: 'Labour Department — KP',
-    industry: 'Government & Public Sector',
-    tag: 'Digital Transformation',
-    headline: 'Took a paper-driven government department fully online — 86% reduction in paper use, zero unnecessary office visits.',
-    summary:
-      'The Labour Department of Khyber Pakhtunkhwa ran entirely on paper. Citizens had to visit government offices multiple times — often travelling long distances — just to submit forms, follow up on applications, and collect approvals. Files were stored physically, retrieval was slow, and records were at constant risk of loss or damage. TechKhwa digitalized the entire workflow: from citizen-facing application portals to internal case management, secure document storage, and real-time status tracking.',
-    challenge:
-      'Every application required physical presence — sometimes 4–5 office visits per case. Paper files were stored across multiple locations with no unified search. Data loss from misplaced files was a recurring problem. Department staff spent the majority of their day managing paper rather than serving citizens.',
+    client: 'KP Labour Department',
+    category: 'GOVERNMENT · DIGITAL PLATFORM',
+    headline: 'DIGITALIZING A / GOVERNMENT DEPARTMENT.',
+    summary: 'Replaced 100% paper-based labour management processes with a unified digital platform — reducing paper usage by 86% and cutting processing time from days to minutes.',
+    challenge: 'The Khyber Pakhtunkhwa Labour Department managed all worker registrations, dispute filings, and inspection workflows through physical paperwork and manual records. The process was slow, error-prone, and inaccessible to workers outside major cities.',
     solution: [
-      'Citizen-facing web portal where all applications, forms, and document submissions are completed online — no office visit required.',
-      'Secure document management system with encrypted storage, role-based access, and full audit trail for every file and action.',
-      'Real-time application status tracking with automated SMS and email notifications so citizens always know where their case stands.',
-      'Internal case management dashboard for department staff — assign, review, approve, and route cases digitally with full history.',
-      'Searchable centralized database replacing physical file rooms — any record retrievable in seconds.',
-      'Admin reporting panel giving leadership visibility into case volumes, processing times, and departmental workload.',
+      'End-to-end web portal for worker registration and document management',
+      'Digital dispute filing and case tracking system',
+      'Inspector dashboard with mobile-first data collection',
+      'Automated approval workflows with role-based access control',
+      'Reporting dashboard for departmental management',
     ],
     results: [
-      { label: 'Paper use reduced', value: '86%', period: 'vs. pre-digitalization baseline' },
-      { label: 'Office visits eliminated', value: '~100%', period: 'all submissions now fully online' },
-      { label: 'Record retrieval', value: 'Seconds', period: 'down from hours searching physical files' },
-      { label: 'Data security', value: 'Encrypted', period: 'secure storage with role-based access control' },
+      { value: '86%', label: 'PAPER REDUCTION' },
+      { value: '12×', label: 'FASTER PROCESSING' },
+      { value: '100%', label: 'AUDIT TRAIL' },
     ],
-    stack: ['React', 'Node.js', 'PostgreSQL', 'AWS S3', 'SMS Gateway', 'RBAC', 'REST API'],
-    duration: 'Ongoing',
-    teamSize: '5 engineers + 1 designer',
+    stack: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker'],
+    duration: '5 months',
+    teamSize: '4 engineers',
+    accent: '#5BC8E8',
+    gradient: 'linear-gradient(135deg, #060E1A 0%, #0A2440 50%, #0E3D5C 100%)',
   },
   {
     id: '02',
     client: 'Auto Accounting',
-    industry: 'Chartered Accountancy & Finance',
-    tag: 'Workflow Automation',
-    headline: 'Replaced paper, Excel, and chaos with one platform — 68% productivity boost and million-dollar clients won.',
-    summary:
-      'Auto Accounting, a chartered accountancy firm, was doing everything manually — auditing on paper, taxation in Excel, and client communication over email. Every engagement meant stacks of physical documents, hours of spreadsheet work, and constant risk of errors or lost files. TechKhwa replaced the entire fragmented workflow with a single unified platform covering auditing, taxation, client management, and reporting. The result: the same team closed significantly more work and used the platform itself as proof of capability to win enterprise clients.',
-    challenge:
-      'Every core CA function — audit preparation, tax filing, client reporting — was split across paper files and Excel sheets with no connection between them. Data had to be re-entered multiple times across different spreadsheets. A single tax filing or audit report could take days to compile manually. Version control was nonexistent — the latest figures lived in someone\'s inbox or on a physical desk. The firm was capable of far more, but the tools were the bottleneck.',
+    category: 'FINANCE · SAAS PLATFORM',
+    headline: 'REPLACING EXCEL / WITH A REAL SYSTEM.',
+    summary: 'Built a purpose-built accounting platform for a CA firm that was running client audits, payroll, and tax workflows from spreadsheets — eliminating errors and boosting team productivity by 68%.',
+    challenge: 'Auto Accounting, a growing chartered accountancy firm, was managing 80+ client accounts using a patchwork of Excel sheets, shared drives, and manual email chains. Version conflicts, data loss, and hours wasted on manual reconciliation were limiting growth.',
     solution: [
-      'Unified CA platform replacing all paper and Excel workflows — auditing, taxation, and client reporting in one system.',
-      'Digital audit module: structured checklists, document uploads, working paper trails, and sign-off workflows — fully paperless.',
-      'Taxation module handling return preparation, computation, and filing — pre-built templates for common tax scenarios eliminate repetitive data entry.',
-      'Automated financial report generation: pull figures once, generate client-ready reports in minutes instead of days.',
-      'Client portal where each client uploads documents, views their financials, and tracks the status of ongoing engagements.',
-      'Deadline calendar with automated alerts ensuring no filing deadline is ever missed across the entire client portfolio.',
-      'Role-based access for partners, senior accountants, and juniors — work flows through proper review and approval stages.',
+      'Multi-client accounting dashboard with real-time P&L views',
+      'Automated payroll processing with statutory deduction calculations',
+      'Tax filing workflow with document attachment and status tracking',
+      'Client portal for document submission and statement access',
+      'Audit trail and approval chain for all financial transactions',
     ],
     results: [
-      { label: 'Productivity boost', value: '+68%', period: 'work rate per accountant per month' },
-      { label: 'Tools replaced', value: '1 platform', period: 'paper + Excel + email → single system' },
-      { label: 'Clients acquired', value: 'Million-$', period: 'enterprise clients won using the platform' },
-      { label: 'Report prep time', value: 'Minutes', period: 'down from days of manual spreadsheet work' },
+      { value: '68%', label: 'PRODUCTIVITY BOOST' },
+      { value: '80+', label: 'CLIENTS MANAGED' },
+      { value: '0', label: 'DATA LOSS INCIDENTS' },
     ],
-    stack: ['React', 'Node.js', 'PostgreSQL', 'PDF Generation', 'Excel Import/Export', 'Automated Reminders', 'RBAC'],
-    duration: '5 months',
-    teamSize: '3 engineers + 1 designer',
+    stack: ['Next.js', 'TypeScript', 'Prisma', 'PostgreSQL', 'Vercel'],
+    duration: '4 months',
+    teamSize: '3 engineers',
+    accent: '#9BE4F5',
+    gradient: 'linear-gradient(135deg, #0A0618 0%, #1A1040 50%, #2A1860 100%)',
   },
   {
     id: '03',
-    client: 'Confidential — Dubai Real Estate',
-    industry: 'Real Estate & Property Sales · Dubai, UAE',
-    tag: 'Omnichannel AI Platform',
-    headline: 'Unified 8 communication channels into one AI-powered sales platform — no lead goes unanswered, day or night.',
-    summary:
-      'A fast-growing real estate firm in Dubai was running their entire sales operation across a patchwork of disconnected tools — WhatsApp, 3CX, SMS, email, Facebook Messenger, Instagram DMs, Zoom calls, and a separate CRM. In Dubai\'s hyper-competitive property market, response speed is the difference between a deal and a lost client. Agents were switching between 6–8 apps constantly, leads were falling through cracks between platforms, supervisors had no visibility into agent conversations, and after-hours enquiries went cold until the next morning. TechKhwa built a unified omnichannel sales platform that brought every channel into one dashboard — and layered an AI agent on top that handles calls, texts, and messages whenever a human agent is unavailable.',
-    challenge:
-      'Eight separate communication tools with no unified inbox meant agents spent more time switching apps than talking to clients. A lead that came in on Instagram at 9 PM sat unread until 9 AM — a 12-hour cold window in a market where response time is everything. Supervisors had no way to review calls or monitor agent conversations for quality without manually chasing recordings stored in different systems. And with no AI fallback, any gap in agent availability meant lost enquiries.',
+    client: 'Dubai Real Estate',
+    category: 'REAL ESTATE · AI PLATFORM',
+    headline: 'AI-POWERED SALES / ACROSS EVERY CHANNEL.',
+    summary: 'Designed and built an omnichannel AI sales platform for a Dubai real estate firm — unifying WhatsApp, email, and web leads into one pipeline with AI-assisted follow-up. Lead conversion tripled within 90 days of launch.',
+    challenge: 'The client was managing property inquiries across WhatsApp Business, email, web forms, and in-person visits with zero integration between channels. Leads fell through the cracks. Agents duplicated effort. Follow-up was inconsistent and manually tracked.',
     solution: [
-      'Unified omnichannel inbox: WhatsApp, 3CX, SMS, email, Facebook Messenger, Instagram DMs, and web chat — all in a single real-time dashboard.',
-      'AI voice agent that automatically picks up inbound calls when no human agent is available — answers property queries, captures lead details, and books viewings.',
-      'AI text agent handles WhatsApp, SMS, and social DMs after hours — responds to enquiries, qualifies leads, and routes hot leads to the on-call agent.',
-      'Automatic call recording with AI-generated transcriptions — supervisors can search, review, and annotate every call from one panel.',
-      'Supervisor monitoring dashboard: live agent activity, conversation history across all channels, response time metrics, and lead stage tracking.',
-      'Smart lead routing — incoming enquiries are scored by intent and automatically assigned to the most suitable available agent.',
-      'Full conversation history per contact: one timeline showing every WhatsApp message, call, email, and DM regardless of which channel it came through.',
+      'Unified CRM integrating WhatsApp, email, and web inquiry channels',
+      'AI-powered lead scoring and automated follow-up sequencing',
+      'Property matching engine based on buyer preference profiles',
+      'Agent performance dashboard with deal pipeline visibility',
+      'Automated document generation for proposals and contracts',
     ],
     results: [
-      { label: 'Channels unified', value: '8', period: 'WhatsApp, 3CX, SMS, email, FB, IG, Zoom, web chat' },
-      { label: 'After-hours leads', value: '100%', period: 'captured by AI agent — zero cold enquiries' },
-      { label: 'Supervisor visibility', value: 'Full', period: 'recordings + transcriptions across all channels' },
-      { label: 'Response time', value: 'Instant', period: 'AI responds within seconds, 24/7' },
+      { value: '3×', label: 'LEAD CONVERSION' },
+      { value: '4', label: 'CHANNELS UNIFIED' },
+      { value: '90', label: 'DAYS TO IMPACT' },
     ],
-    stack: ['React', 'Node.js', 'PostgreSQL', 'Twilio', 'WhatsApp Business API', '3CX API', 'OpenAI', 'WebSockets', 'AWS'],
+    stack: ['React', 'Python', 'OpenAI', 'WhatsApp Business API', 'MongoDB'],
     duration: '6 months',
-    teamSize: '4 engineers + 1 AI specialist',
+    teamSize: '5 engineers',
+    accent: '#F0C040',
+    gradient: 'linear-gradient(135deg, #0E0A04 0%, #2A1E08 50%, #3D2C0E 100%)',
   },
   {
     id: '04',
     client: 'HomeCuras',
-    industry: 'Healthcare & Home Care',
-    tag: 'Marketplace Platform',
-    headline: 'Built a home healthcare marketplace from scratch — 45+ caregivers onboarded, 400+ bookings completed in under 3 months.',
-    summary:
-      'HomeCuras is a two-sided marketplace that connects patients with qualified home healthcare providers — nurses, caregivers, and physiotherapists — who come to them directly. Patients post their care requirements, providers respond and negotiate terms, and the entire engagement from booking to payment happens on the platform. TechKhwa designed and built the full product: patient and provider apps, real-time chat, a negotiation and bidding system, and integrated payment processing — shipping a production-ready platform in 2.5 months.',
-    challenge:
-      'Home healthcare in the region had no reliable digital infrastructure — patients found caregivers through word of mouth or informal referrals, with no way to verify credentials, agree on terms, or pay securely. Building a two-sided marketplace from scratch meant solving trust, logistics, and payments simultaneously, with both patient and caregiver sides needing to work perfectly before either side had value.',
+    category: 'HEALTHCARE · MOBILE & WEB',
+    headline: 'A MARKETPLACE FOR / HOME HEALTHCARE.',
+    summary: 'Built HomeCuras from the ground up — a two-sided marketplace connecting home healthcare providers with patients needing in-home medical care. 400+ bookings completed in the first quarter post-launch.',
+    challenge: 'The healthcare market lacked a trusted, easy-to-use platform for patients to find and book home nursing, physiotherapy, and elder care services. Providers had no digital presence. Patients had no way to verify credentials or book in real time.',
     solution: [
-      'Patient portal: post a care requirement with condition, schedule, location, and budget — instantly visible to matched providers in the area.',
-      'Provider profiles with credentials, specialisation (nursing, physiotherapy, elderly care, post-op care), availability, and verified reviews.',
-      'Negotiation system: providers send proposals, patients counter or accept — full back-and-forth before any commitment is made.',
-      'Real-time in-app messaging so patients and caregivers can clarify requirements, share medical context, and confirm session details before the visit.',
-      'Secure in-platform payment processing — funds held until service is confirmed complete, protecting both sides.',
-      'Booking management dashboard: upcoming sessions, session history, invoices, and caregiver ratings all in one place.',
-      'Admin panel for platform oversight — caregiver verification, dispute resolution, booking analytics, and payout management.',
+      'Patient-facing app (iOS + Android) for browsing and booking care providers',
+      'Provider app for managing availability, bookings, and patient records',
+      'Admin dashboard for credential verification and dispute management',
+      'Secure in-app payment with escrow for service completion',
+      'Review and rating system with identity-verified patient feedback',
     ],
     results: [
-      { label: 'Caregivers onboarded', value: '45+', period: 'verified providers live on the platform' },
-      { label: 'Bookings completed', value: '400+', period: 'paid sessions fulfilled through the platform' },
-      { label: 'Build time', value: '2.5 mo', period: 'concept to production-ready platform' },
-      { label: 'Payment flow', value: 'Secure', period: 'end-to-end in-platform with escrow protection' },
+      { value: '400+', label: 'BOOKINGS COMPLETED' },
+      { value: '2', label: 'PLATFORMS (iOS + Android)' },
+      { value: 'Q1', label: 'LIVE POST-LAUNCH' },
     ],
-    stack: ['React Native', 'React', 'Node.js', 'PostgreSQL', 'Stripe', 'WebSockets', 'Firebase', 'AWS'],
-    duration: '2.5 months',
-    teamSize: '3 engineers + 1 designer',
+    stack: ['React Native', 'Expo', 'Node.js', 'Stripe', 'Firebase'],
+    duration: '7 months',
+    teamSize: '5 engineers',
+    accent: '#5BC8E8',
+    gradient: 'linear-gradient(135deg, #04100A 0%, #08261A 50%, #0D3828 100%)',
   },
 ]
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.7, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] } }),
+  hidden: { opacity: 0, y: 28 },
+  show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.65, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] } }),
 }
+
+const BD = 'rgba(255,255,255,0.05)'
 
 export default function CaseStudiesPage() {
   return (
-    <div className="bg-[#0A0F1A] text-white min-h-screen">
+    <div style={{ background: '#0A0F1A', color: '#fff' }}>
       <Navbar />
 
-      {/* Hero */}
-      <section className="relative pt-40 pb-24 px-6 overflow-hidden grid-bg">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A0F1A] via-transparent to-[#0A0F1A] pointer-events-none" />
-        <div className="relative max-w-5xl mx-auto">
-          <motion.p
-            initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}
-            className="section-label mb-4"
-          >Case Studies</motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight mb-6"
+      {/* ── PAGE HERO ── */}
+      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#0A0F1A' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="absolute bottom-0 inset-x-0 h-px" style={{ background: BD }} />
+
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8">
+          <motion.span
+            initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.55 }}
+            className="nav-label block mb-5" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}
           >
-            Real problems.<br />
-            <span className="text-gradient">Real results.</span>
+            CASE STUDIES
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 32 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1, ease: [0.22,1,0.36,1] }}
+            className="display-xl text-white" style={{ fontSize: 'clamp(3rem,8.5vw,9.5rem)' }}
+          >
+            REAL PROBLEMS.<br />
+            <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+              REAL RESULTS.
+            </span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-[#8899AA] text-lg md:text-xl max-w-2xl leading-relaxed"
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.3 }}
+            className="mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'Inter,sans-serif' }}
           >
-            We don't build to ship — we build to perform. Here's what that looks like in practice across industries we've transformed.
+            Four projects. Four industries. Each one started with a real problem that was costing the client
+            time, money, or opportunity. Here's how we solved them.
           </motion.p>
         </div>
       </section>
 
-      {/* Cases */}
-      <section className="max-w-5xl mx-auto px-6 pb-32 space-y-32">
-        {cases.map((c, idx) => (
-          <motion.article
-            key={c.id}
-            custom={idx}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-80px' }}
-            variants={fadeUp}
-          >
-            {/* Case header */}
-            <div className="flex flex-wrap items-start gap-4 mb-10">
-              <span className="step-num leading-none">{c.id}</span>
-              <div className="pt-1 flex-1 min-w-0">
-                <div className="flex flex-wrap gap-3 mb-2">
-                  <span className="section-label">{c.industry}</span>
-                  <span className="px-3 py-0.5 rounded-full border border-[rgba(91,200,232,0.2)] text-xs text-[#5BC8E8] font-medium">
-                    {c.tag}
-                  </span>
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold leading-tight mb-1">{c.client}</h2>
-              </div>
+      {/* ── CASE STUDIES ── */}
+      {cases.map((c, cIdx) => {
+        const isLight = cIdx % 2 === 1
+        const bg = isLight ? '#F7F8FA' : '#080C14'
+        const textColor = isLight ? '#0A0F1A' : '#fff'
+        const borderColor = isLight ? 'rgba(10,15,26,0.07)' : BD
+        const bodyColor = isLight ? '#4B5563' : 'rgba(255,255,255,0.45)'
+
+        return (
+          <section key={c.id} className="relative overflow-hidden" style={{ background: bg }}>
+            <div className={`col-grid ${isLight ? 'col-grid-light' : ''} absolute inset-0`}>
+              {[0,1,2,3,4].map(i => <span key={i} />)}
             </div>
+            <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
 
-            {/* Headline */}
-            <p className="text-xl md:text-2xl font-semibold text-white/90 leading-snug mb-6 border-l-2 border-[#5BC8E8] pl-5">
-              {c.headline}
-            </p>
-
-            {/* Summary */}
-            <p className="text-[#8899AA] leading-relaxed mb-10">{c.summary}</p>
-
-            {/* Challenge */}
-            <div className="mb-8">
-              <h3 className="text-xs font-semibold tracking-widest uppercase text-[#5BC8E8] mb-3">The Challenge</h3>
-              <p className="text-[#AAB8C8] leading-relaxed">{c.challenge}</p>
-            </div>
-
-            {/* Solution */}
-            <div className="mb-10">
-              <h3 className="text-xs font-semibold tracking-widest uppercase text-[#5BC8E8] mb-4">What We Built</h3>
-              <ul className="space-y-3">
-                {c.solution.map((s, i) => (
-                  <li key={i} className="flex gap-3 text-[#AAB8C8] leading-relaxed">
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#5BC8E8] flex-shrink-0" />
-                    {s}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Results */}
-            <div className="mb-10">
-              <h3 className="text-xs font-semibold tracking-widest uppercase text-[#5BC8E8] mb-5">The Results</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {c.results.map((r, i) => (
-                  <div
-                    key={i}
-                    className="p-5 rounded-xl border border-[rgba(91,200,232,0.12)] bg-[rgba(91,200,232,0.03)]"
-                  >
-                    <div className="text-3xl font-bold text-gradient mb-1">{r.value}</div>
-                    <div className="text-xs text-[#5BC8E8] font-semibold mb-1">{r.label}</div>
-                    <div className="text-xs text-[#667788]">{r.period}</div>
+              {/* Header row */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}
+                className="flex items-start justify-between pb-12 gap-8 flex-wrap" style={{ borderBottom: `1px solid ${borderColor}` }}
+              >
+                <div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <span className="nav-label" style={{ fontSize: '10px', color: c.accent, opacity: 0.7 }}>{c.id}</span>
+                    <span className="nav-label" style={{ fontSize: '10px', color: c.accent, opacity: 0.5 }}>{c.category}</span>
                   </div>
+                  <h2 className="display-xl" style={{ fontSize: 'clamp(2.2rem,5.5vw,6rem)', color: textColor }}>
+                    {c.headline.split(' / ').map((line, li) => (
+                      <span key={li} className={li === 1 ? 'block' : ''}>
+                        {li === 1
+                          ? <span style={{ background: `linear-gradient(135deg,${c.accent},#9BE4F5)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>{line}</span>
+                          : line + ' '}
+                      </span>
+                    ))}
+                  </h2>
+                </div>
+                <div className="flex flex-col gap-1 text-right" style={{ fontFamily: 'Inter,sans-serif', fontSize: '12px', color: bodyColor, opacity: 0.6 }}>
+                  <span>{c.duration}</span>
+                  <span>{c.teamSize}</span>
+                </div>
+              </motion.div>
+
+              {/* Results — big numbers */}
+              <div className="grid grid-cols-3 py-12" style={{ borderBottom: `1px solid ${borderColor}` }}>
+                {c.results.map((r, ri) => (
+                  <motion.div
+                    key={r.label} custom={ri} initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}
+                    className="px-0 pr-8 last:pr-0"
+                  >
+                    <div className="display-xl mb-2" style={{ fontSize: 'clamp(2rem,4.5vw,5rem)', color: c.accent }}>{r.value}</div>
+                    <div className="nav-label" style={{ fontSize: '10px', color: textColor, opacity: 0.3 }}>{r.label}</div>
+                  </motion.div>
                 ))}
               </div>
-            </div>
 
-            {/* Meta */}
-            <div className="flex flex-wrap gap-6 items-center pt-6 border-t border-[rgba(255,255,255,0.06)]">
-              <div>
-                <p className="text-xs text-[#667788] mb-1">Timeline</p>
-                <p className="text-sm font-semibold">{c.duration}</p>
+              {/* Body — two columns */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 py-12" style={{ borderBottom: `1px solid ${borderColor}` }}>
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}>
+                  <span className="nav-label block mb-4" style={{ fontSize: '10px', color: c.accent, opacity: 0.6 }}>THE CHALLENGE</span>
+                  <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '15px', lineHeight: 1.75, color: bodyColor }}>
+                    {c.challenge}
+                  </p>
+                </motion.div>
+                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, delay: 0.12 }}>
+                  <span className="nav-label block mb-4" style={{ fontSize: '10px', color: c.accent, opacity: 0.6 }}>WHAT WE BUILT</span>
+                  <ul className="space-y-3">
+                    {c.solution.map((s, si) => (
+                      <li key={si} className="flex items-start gap-3" style={{ fontFamily: 'Inter,sans-serif', fontSize: '14px', lineHeight: 1.65, color: bodyColor }}>
+                        <span className="mt-1.5 w-1 h-1 rounded-full flex-shrink-0" style={{ background: c.accent, opacity: 0.6 }} />
+                        {s}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
               </div>
-              <div>
-                <p className="text-xs text-[#667788] mb-1">Team</p>
-                <p className="text-sm font-semibold">{c.teamSize}</p>
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-xs text-[#667788] mb-2">Tech Stack</p>
-                <div className="flex flex-wrap gap-2">
-                  {c.stack.map(t => (
-                    <span key={t} className="px-2 py-0.5 text-xs rounded border border-[rgba(255,255,255,0.1)] text-[#AAB8C8]">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.article>
-        ))}
-      </section>
 
-      {/* CTA */}
-      <section className="border-t border-[rgba(255,255,255,0.06)] py-24 px-6">
-        <div className="max-w-2xl mx-auto text-center">
-          <p className="section-label mb-4">Ready to be next?</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">Let's build something<br /><span className="text-gradient">worth writing about.</span></h2>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-3 bg-[#5BC8E8] text-[#0A0F1A] font-semibold px-8 py-4 rounded-full text-sm hover:bg-[#9BE4F5] transition-colors btn-glow"
-          >
-            Start Your Project
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
+              {/* Tech stack */}
+              <div className="pt-8 flex items-center gap-6 flex-wrap">
+                <span className="nav-label" style={{ fontSize: '10px', color: textColor, opacity: 0.2 }}>STACK</span>
+                {c.stack.map((t) => (
+                  <span key={t} className="pill-tag" style={{ borderColor: borderColor, color: textColor, opacity: 0.4, fontSize: '10px' }}>{t}</span>
+                ))}
+              </div>
+
+            </div>
+          </section>
+        )
+      })}
+
+      {/* ── BOTTOM CTA ── */}
+      <section className="relative overflow-hidden" style={{ background: '#0A0F1A' }}>
+        <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
+        <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-20" style={{ borderTop: `1px solid ${BD}` }}>
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+            <div>
+              <span className="nav-label block mb-3" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}>YOUR PROJECT NEXT</span>
+              <h3 className="display-xl text-white" style={{ fontSize: 'clamp(1.8rem,4vw,4.5rem)' }}>
+                READY TO BE<br />
+                <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                  CASE STUDY 05?
+                </span>
+              </h3>
+            </div>
+            <div className="flex flex-col gap-3">
+              <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+                <Link
+                  to="/contact"
+                  className="nav-label flex items-center gap-2.5 px-8 py-4 rounded-full btn-glow"
+                  style={{ background: '#5BC8E8', color: '#0A0F1A', fontSize: '12px' }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-current" />
+                  START THE CONVERSATION
+                </Link>
+              </motion.div>
+              <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '11px', color: 'rgba(255,255,255,0.18)', textAlign: 'center' }}>
+                Free discovery call · Reply within 2 hours
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
+      <CTABanner />
       <Footer />
     </div>
   )
