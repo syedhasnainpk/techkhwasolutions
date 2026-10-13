@@ -48,13 +48,13 @@ export default function Hero() {
         animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
         transition={{ duration: 2.2, ease: [0.25, 0.46, 0.45, 0.94] }}
       >
-        {/* Headline */}
+        {/* Headline — viewport-spanning display typography */}
         <h1
           className="font-display font-bold mb-10 overflow-visible"
-          style={{ fontSize: 'clamp(3.2rem,7.5vw,6.8rem)', lineHeight: '0.96', letterSpacing: '-0.03em', color: '#FFFFFF' }}
+          style={{ fontSize: 'clamp(3.8rem,12vw,14rem)', lineHeight: '0.90', letterSpacing: '-0.04em', color: '#FFFFFF' }}
         >
           <div className="overflow-hidden">{word('Engineering', 0)}</div>
-          <div className="overflow-hidden">{word('Digital', 0.12)}{' '}{word('Excellence', 0.22)}</div>
+          <div className="overflow-hidden">{word('Digital', 0.12)}</div>
           <div className="overflow-hidden">
             <motion.span
               className="inline-block"
@@ -63,7 +63,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 2.06, duration: 1.0, ease: [0.22, 1, 0.36, 1] }}
             >
-              — Today.
+              Excellence.
             </motion.span>
           </div>
         </h1>

@@ -74,7 +74,7 @@ export default function Navbar() {
               to="/services"
               className="flex items-center gap-1.5 px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5"
             >
-              Services
+              <span className="text-[#5BC8E8] text-[10px] opacity-50">•</span> Services
               <ChevronDown
                 size={13}
                 className={`transition-transform duration-200 ${megaOpen ? 'rotate-180' : ''}`}
@@ -123,14 +123,14 @@ export default function Navbar() {
             </AnimatePresence>
           </div>
 
-          <Link to="/case-studies" className="px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5">
-            Case Studies
+          <Link to="/case-studies" className="flex items-center gap-1.5 px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5">
+            <span className="text-[#5BC8E8] text-[10px] opacity-50">•</span> Case Studies
           </Link>
-          <Link to="/about" className="px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5">
-            About
+          <Link to="/about" className="flex items-center gap-1.5 px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5">
+            <span className="text-[#5BC8E8] text-[10px] opacity-50">•</span> About
           </Link>
-          <Link to="/contact" className="px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5">
-            Contact
+          <Link to="/contact" className="flex items-center gap-1.5 px-4 py-2 text-[13px] font-medium text-white/55 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5">
+            <span className="text-[#5BC8E8] text-[10px] opacity-50">•</span> Contact
           </Link>
         </nav>
 

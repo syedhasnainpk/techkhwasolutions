@@ -3,28 +3,36 @@ import { ArrowUpRight } from 'lucide-react'
 
 const projects = [
   {
-    num: '01', title: 'FinFlow ERP', category: 'Enterprise Software',
-    description: 'Financial management ERP processing PKR 2B+ monthly transactions for a 500-employee manufacturing firm — real-time dashboards, audit trails, multi-entity support.',
-    metric: '↓ 65%', metricLabel: 'Manual processing time',
+    num: '01', title: 'KP Labour Department', category: 'Government · Digital Platform',
+    description: 'Full digitalization of KP province labour department workflows — paper-based processes moved entirely online, serving thousands of citizens and businesses across the province.',
+    metric: '86%', metricLabel: 'Paper reduction',
     tags: ['React', 'Node.js', 'PostgreSQL', 'AWS'],
-    accent: '#5BC8E8', bg: '#0A0F1A',
+    accent: '#5BC8E8', bg: '#06101A',
     mockLines: [4, 7, 5, 9, 6, 8, 4, 10, 7, 9],
   },
   {
-    num: '02', title: 'MedConnect', category: 'Healthcare · iOS & Android',
-    description: 'Telemedicine app connecting 120+ doctors to 50,000+ patients with HD video consultation, e-prescriptions, and a pharmacy fulfilment network.',
-    metric: '50K+', metricLabel: 'Active patients',
-    tags: ['React Native', 'Firebase', 'WebRTC', 'Stripe'],
-    accent: '#5BC8E8', bg: '#0D1828',
+    num: '02', title: 'Auto Accounting', category: 'Finance · SaaS Platform',
+    description: 'Replaced paper auditing and Excel workflows with a unified platform for a CA firm — automated reporting, client portals, document management, and audit trail in one system.',
+    metric: '68%', metricLabel: 'Productivity boost',
+    tags: ['React', 'Node.js', 'MySQL', 'Azure'],
+    accent: '#5BC8E8', bg: '#0D1020',
     mockLines: [6, 9, 5, 8, 4, 7, 9, 5, 8, 6],
   },
   {
-    num: '03', title: 'LogiTrack', category: 'SaaS · Logistics',
-    description: 'Multi-tenant logistics SaaS managing 10,000+ daily shipments for 80+ courier companies — live GPS tracking, automated invoicing, and open API.',
-    metric: '10K+', metricLabel: 'Shipments / day',
-    tags: ['Next.js', 'Kubernetes', 'Redis', 'GCP'],
-    accent: '#5BC8E8', bg: '#091627',
+    num: '03', title: 'Dubai Real Estate', category: 'Real Estate · AI Platform',
+    description: 'AI-powered omnichannel sales platform for a real estate firm in Dubai, UAE — intelligent lead routing, automated follow-ups, and CRM integration driving measurable conversion lift.',
+    metric: '3×', metricLabel: 'Lead conversion',
+    tags: ['Next.js', 'OpenAI', 'Node.js', 'AWS'],
+    accent: '#5BC8E8', bg: '#100E06',
     mockLines: [7, 4, 9, 5, 8, 3, 7, 6, 10, 5],
+  },
+  {
+    num: '04', title: 'HomeCuras', category: 'Healthcare · Mobile & Web',
+    description: 'Two-sided healthcare marketplace connecting patients with verified caregivers, nurses, and physiotherapists for home visits — with in-app chat, scheduling, and secure payments.',
+    metric: '400+', metricLabel: 'Bookings completed',
+    tags: ['React Native', 'Node.js', 'Stripe', 'Firebase'],
+    accent: '#5BC8E8', bg: '#071410',
+    mockLines: [5, 8, 6, 10, 7, 9, 5, 8, 6, 9],
   },
 ]
 
@@ -89,9 +97,9 @@ export default function Portfolio() {
               </span>
             </h2>
           </div>
-          <a href="#" className="inline-flex items-center gap-1.5 font-body font-semibold text-[13px] lg:mb-2 hover:opacity-70 transition-opacity"
+          <a href="/case-studies" className="inline-flex items-center gap-1.5 font-body font-semibold text-[13px] lg:mb-2 hover:opacity-70 transition-opacity"
             style={{ color: T.body }}>
-            View all projects <ArrowUpRight size={14} />
+            View all case studies <ArrowUpRight size={14} />
           </a>
         </motion.div>
 
@@ -100,7 +108,7 @@ export default function Portfolio() {
           {projects.map((p, i) => (
             <motion.a
               key={p.num}
-              href="#"
+              href="/case-studies"
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.01 }}
