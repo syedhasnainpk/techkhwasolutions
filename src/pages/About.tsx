@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -14,16 +14,16 @@ const credibility = [
 const values = [
   { num: '01', title: 'Ownership over excuses',  body: 'If it shipped late, that\'s on us. If there\'s a bug in production, we fix it before you finish typing the message. We treat your product like it\'s our product.' },
   { num: '02', title: 'Clarity above all',        body: 'We don\'t hide behind jargon. You\'ll always know exactly where your project stands, what\'s blocking it, and what\'s coming next.' },
-  { num: '03', title: 'Speed with quality',       body: 'Fast doesn\'t mean sloppy. Our processes — code review, automated testing, CI/CD — exist so we can move fast without creating debt that bites you six months later.' },
-  { num: '04', title: 'No ghost vendors',         body: 'After launch, we stick around. Bug reports, feature requests, infrastructure scaling — our clients have a direct line to the engineer who built it.' },
+  { num: '03', title: 'Speed with quality',       body: 'Fast doesn\'t mean sloppy. Our processes â€” code review, automated testing, CI/CD â€” exist so we can move fast without creating debt that bites you six months later.' },
+  { num: '04', title: 'No ghost vendors',         body: 'After launch, we stick around. Bug reports, feature requests, infrastructure scaling â€” our clients have a direct line to the engineer who built it.' },
 ]
 
 const timeline = [
-  { year: '2023', event: 'TechKhwa founded',         detail: 'Started with web development — custom websites, business platforms, and digital products. First clients onboarded within weeks of launch.' },
-  { year: '2023', event: 'Government sector entry',  detail: 'Delivered the KP Labour Department digitalization — paper-based workflows moved fully online, 86% paper reduction.' },
+  { year: '2023', event: 'TechKhwa founded',         detail: 'Started with web development â€” custom websites, business platforms, and digital products. First clients onboarded within weeks of launch.' },
+  { year: '2023', event: 'Government sector entry',  detail: 'Delivered the KP Labour Department digitalization â€” paper-based workflows moved fully online, 86% paper reduction.' },
   { year: '2024', event: 'Services expanded',         detail: 'Grew beyond web dev into mobile apps, AI integration, DevOps, and UI/UX design as client needs evolved.' },
   { year: '2024', event: 'First international client',detail: 'Delivered an AI-powered omnichannel sales platform for a real estate firm in Dubai, UAE.' },
-  { year: '2024', event: 'CA firm digitalization',    detail: 'Replaced paper auditing and Excel workflows with a unified platform for Auto Accounting — 68% productivity boost.' },
+  { year: '2024', event: 'CA firm digitalization',    detail: 'Replaced paper auditing and Excel workflows with a unified platform for Auto Accounting â€” 68% productivity boost.' },
   { year: '2025', event: 'TechKhwa today',            detail: '15+ projects delivered across 5 countries. Full-service technology partner for businesses that treat software as a competitive advantage.' },
 ]
 
@@ -37,11 +37,11 @@ const BL = 'rgba(10,15,26,0.07)'
 
 export default function AboutPage() {
   return (
-    <div style={{ background: '#0A0F1A', color: '#fff' }}>
+    <div style={{ background: '#111111', color: '#fff' }}>
       <Navbar />
 
-      {/* ── PAGE HERO ── */}
-      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#0A0F1A' }}>
+      {/* â”€â”€ PAGE HERO â”€â”€ */}
+      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#111111' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="absolute bottom-0 inset-x-0 h-px" style={{ background: BD }} />
 
@@ -66,13 +66,13 @@ export default function AboutPage() {
             className="mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'Inter,sans-serif' }}
           >
             TechKhwa Solutions is a product engineering company. We partner with founders and business
-            leaders to turn technology problems into competitive advantages — not just working code.
+            leaders to turn technology problems into competitive advantages â€” not just working code.
           </motion.p>
         </div>
       </section>
 
-      {/* ── CREDIBILITY STATS ── */}
-      <section className="relative overflow-hidden" style={{ background: '#060C16' }}>
+      {/* â”€â”€ CREDIBILITY STATS â”€â”€ */}
+      <section className="relative overflow-hidden" style={{ background: '#0C0C0C' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-16 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/5">
           {credibility.map((c, i) => (
@@ -89,8 +89,8 @@ export default function AboutPage() {
         <div className="h-px max-w-[1440px] mx-auto px-8" style={{ background: BD }} />
       </section>
 
-      {/* ── STORY ── */}
-      <section className="relative overflow-hidden" style={{ background: '#0A0F1A' }}>
+      {/* â”€â”€ STORY â”€â”€ */}
+      <section className="relative overflow-hidden" style={{ background: '#111111' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
           <div style={{ borderBottom: BD ? `1px solid ${BD}` : '' }} className="pb-16 grid grid-cols-1 lg:grid-cols-2 gap-16">
@@ -107,22 +107,22 @@ export default function AboutPage() {
               className="flex flex-col justify-center space-y-5"
               style={{ fontFamily: 'Inter,sans-serif', fontSize: '15px', lineHeight: 1.75, color: 'rgba(255,255,255,0.45)' }}
             >
-              <p>TechKhwa was founded in 2023 with a clear starting point: web development done properly. No inflated promises, no offshore hand-offs — just a focused team that delivered websites and web platforms that actually worked. Early clients stuck around, referred others, and started asking for more.</p>
-              <p>That demand shaped what we became. As clients grew, so did the problems they brought us — mobile apps, AI integrations, cloud infrastructure, workflow automation. We didn't expand for the sake of it. We expanded because clients we already trusted asked us to solve problems we knew we could solve.</p>
-              <p>Two years in, we've delivered 15+ projects across 5 countries — from digitalizing a government department in KP to building an AI sales platform for a real estate firm in Dubai.</p>
+              <p>TechKhwa was founded in 2023 with a clear starting point: web development done properly. No inflated promises, no offshore hand-offs â€” just a focused team that delivered websites and web platforms that actually worked. Early clients stuck around, referred others, and started asking for more.</p>
+              <p>That demand shaped what we became. As clients grew, so did the problems they brought us â€” mobile apps, AI integrations, cloud infrastructure, workflow automation. We didn't expand for the sake of it. We expanded because clients we already trusted asked us to solve problems we knew we could solve.</p>
+              <p>Two years in, we've delivered 15+ projects across 5 countries â€” from digitalizing a government department in KP to building an AI sales platform for a real estate firm in Dubai.</p>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* ── TIMELINE ── */}
-      <section className="relative overflow-hidden" style={{ background: '#F7F8FA' }}>
+      {/* â”€â”€ TIMELINE â”€â”€ */}
+      <section className="relative overflow-hidden" style={{ background: '#F5F4F0' }}>
         <div className="col-grid col-grid-light absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}
             className="pb-12" style={{ borderBottom: `1px solid ${BL}` }}>
             <span className="nav-label block mb-4" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>HOW WE GOT HERE</span>
-            <h2 className="display-xl" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)', color: '#0A0F1A' }}>
+            <h2 className="display-xl" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)', color: '#111111' }}>
               OUR<br />
               <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>TIMELINE.</span>
             </h2>
@@ -136,7 +136,7 @@ export default function AboutPage() {
               >
                 <span className="col-span-2 lg:col-span-1 nav-label" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>{t.year}</span>
                 <h3 className="col-span-10 lg:col-span-4 font-display font-bold leading-tight group-hover:text-[#5BC8E8] transition-colors"
-                  style={{ fontSize: 'clamp(1.1rem,2vw,1.5rem)', letterSpacing: '-0.02em', color: '#0A0F1A', alignSelf: 'center' }}>
+                  style={{ fontSize: 'clamp(1.1rem,2vw,1.5rem)', letterSpacing: '-0.02em', color: '#111111', alignSelf: 'center' }}>
                   {t.event}
                 </h3>
                 <div className="hidden lg:flex col-span-1 items-center">
@@ -151,7 +151,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── VALUES ── */}
+      {/* â”€â”€ VALUES â”€â”€ */}
       <section className="relative overflow-hidden" style={{ background: '#080C14' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">

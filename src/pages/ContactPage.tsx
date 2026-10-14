@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -6,7 +6,7 @@ import Footer from '../components/Footer'
 const faqs = [
   {
     q: 'How long does a typical project take?',
-    a: 'Depends on scope. A marketing website or simple web app: 4–6 weeks. A full platform with custom backend, integrations, and mobile app: 3–6 months. We scope accurately and hit those timelines.',
+    a: 'Depends on scope. A marketing website or simple web app: 4â€“6 weeks. A full platform with custom backend, integrations, and mobile app: 3â€“6 months. We scope accurately and hit those timelines.',
   },
   {
     q: 'Do you work with early-stage startups or only established businesses?',
@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: 'What does a fixed-scope project look like?',
-    a: 'We agree on deliverables, timeline, and cost before work begins. You know exactly what you\'re getting and what you\'re paying. If scope genuinely changes (not just feature creep), we adjust formally — no silent surprises.',
+    a: 'We agree on deliverables, timeline, and cost before work begins. You know exactly what you\'re getting and what you\'re paying. If scope genuinely changes (not just feature creep), we adjust formally â€” no silent surprises.',
   },
   {
     q: 'Can you take over a project someone else started?',
@@ -71,11 +71,11 @@ export default function ContactPage() {
   }
 
   return (
-    <div style={{ background: '#0A0F1A', color: '#fff' }}>
+    <div style={{ background: '#111111', color: '#fff' }}>
       <Navbar />
 
-      {/* ── PAGE HERO ── */}
-      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#0A0F1A' }}>
+      {/* â”€â”€ PAGE HERO â”€â”€ */}
+      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#111111' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="absolute bottom-0 inset-x-0 h-px" style={{ background: BD }} />
 
@@ -100,18 +100,18 @@ export default function ContactPage() {
             className="mt-8 max-w-xl text-[15px] leading-relaxed" style={{ color: 'rgba(255,255,255,0.4)', fontFamily: 'Inter,sans-serif' }}
           >
             Tell us what you're building. We'll respond within 2 hours with an honest assessment
-            and suggested next steps — not a sales pitch.
+            and suggested next steps â€” not a sales pitch.
           </motion.p>
         </div>
       </section>
 
-      {/* ── FORM + SIDEBAR ── */}
+      {/* â”€â”€ FORM + SIDEBAR â”€â”€ */}
       <section className="relative overflow-hidden" style={{ background: '#080C14' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
 
-            {/* Form — 7 cols */}
+            {/* Form â€” 7 cols */}
             <motion.div
               initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}
               className="lg:col-span-7"
@@ -183,7 +183,7 @@ export default function ContactPage() {
                     type="submit" disabled={status === 'sending'}
                     whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
                     className="nav-label flex items-center gap-2.5 px-8 py-4 rounded-full btn-glow disabled:opacity-50"
-                    style={{ background: '#5BC8E8', color: '#0A0F1A', fontSize: '12px', border: 'none', cursor: 'pointer' }}
+                    style={{ background: '#5BC8E8', color: '#111111', fontSize: '12px', border: 'none', cursor: 'pointer' }}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-current" />
                     {status === 'sending' ? 'SENDING...' : 'SEND MESSAGE'}
@@ -192,7 +192,7 @@ export default function ContactPage() {
               )}
             </motion.div>
 
-            {/* Sidebar — 5 cols */}
+            {/* Sidebar â€” 5 cols */}
             <motion.div
               initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7, delay: 0.15 }}
               className="lg:col-span-5 flex flex-col gap-10"
@@ -202,10 +202,10 @@ export default function ContactPage() {
                 <span className="nav-label block mb-6" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.6 }}>WHAT TO EXPECT</span>
                 <div className="space-y-5">
                   {[
-                    { icon: '⏱', title: 'Reply within 2 hours', body: 'During business hours. You\'ll hear from a real engineer, not a bot or BDR.' },
-                    { icon: '🎯', title: 'Free discovery call', body: 'We\'ll spend 30 minutes understanding your problem before talking scope or cost.' },
-                    { icon: '📋', title: 'Honest assessment', body: 'We\'ll tell you what you actually need — even if it\'s less than what you thought.' },
-                    { icon: '🔒', title: 'NDA on request', body: 'Happy to sign an NDA before the first call if your project requires confidentiality.' },
+                    { icon: 'â±', title: 'Reply within 2 hours', body: 'During business hours. You\'ll hear from a real engineer, not a bot or BDR.' },
+                    { icon: 'ðŸŽ¯', title: 'Free discovery call', body: 'We\'ll spend 30 minutes understanding your problem before talking scope or cost.' },
+                    { icon: 'ðŸ“‹', title: 'Honest assessment', body: 'We\'ll tell you what you actually need â€” even if it\'s less than what you thought.' },
+                    { icon: 'ðŸ”’', title: 'NDA on request', body: 'Happy to sign an NDA before the first call if your project requires confidentiality.' },
                   ].map((item) => (
                     <div key={item.title} className="flex items-start gap-4 py-4" style={{ borderTop: `1px solid ${BD}` }}>
                       <span style={{ fontSize: '16px', opacity: 0.6 }}>{item.icon}</span>
@@ -237,14 +237,14 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ── FAQ ── */}
-      <section className="relative overflow-hidden" style={{ background: '#F7F8FA' }}>
+      {/* â”€â”€ FAQ â”€â”€ */}
+      <section className="relative overflow-hidden" style={{ background: '#F5F4F0' }}>
         <div className="col-grid col-grid-light absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}
             className="pb-12" style={{ borderBottom: '1px solid rgba(10,15,26,0.07)' }}>
             <span className="nav-label block mb-4" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>COMMON QUESTIONS</span>
-            <h2 className="display-xl" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)', color: '#0A0F1A' }}>
+            <h2 className="display-xl" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)', color: '#111111' }}>
               THINGS PEOPLE<br />
               <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>USUALLY ASK.</span>
             </h2>
@@ -267,7 +267,7 @@ export default function ContactPage() {
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <h4 className="col-span-9 lg:col-span-10 font-display font-bold leading-snug group-hover:text-[#5BC8E8] transition-colors"
-                      style={{ fontSize: 'clamp(0.95rem,1.8vw,1.25rem)', letterSpacing: '-0.015em', color: isOpen ? '#5BC8E8' : '#0A0F1A' }}>
+                      style={{ fontSize: 'clamp(0.95rem,1.8vw,1.25rem)', letterSpacing: '-0.015em', color: isOpen ? '#5BC8E8' : '#111111' }}>
                       {faq.q}
                     </h4>
                     <div className="col-span-1 flex justify-end pt-0.5">

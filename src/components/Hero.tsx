@@ -35,7 +35,7 @@ export default function Hero() {
   const laptopY = useTransform(scrollYProgress, [0, 1], ['0%', '8%'])
 
   return (
-    <section ref={ref} className="relative overflow-hidden" style={{ height: '100vh', background: '#0A0F1A' }}>
+    <section ref={ref} className="relative overflow-hidden" style={{ height: '100vh', background: '#111111' }}>
 
       {/* Subtle column grid */}
       <div className="col-grid absolute inset-0 z-[1]">
@@ -212,7 +212,7 @@ export default function Hero() {
               <Link
                 to="/services"
                 className="nav-label flex items-center gap-2 px-6 py-3 rounded-full"
-                style={{ background: '#5BC8E8', color: '#0A0F1A', fontSize: '11px' }}
+                style={{ background: '#5BC8E8', color: '#111111', fontSize: '11px' }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-current" />
                 EXPLORE SERVICES

@@ -72,7 +72,7 @@ export default function Navbar() {
               className="nav-label flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-200"
               style={{
                 background: pathname === '/contact' ? '#5BC8E8' : 'rgba(91,200,232,0.1)',
-                color: pathname === '/contact' ? '#0A0F1A' : '#5BC8E8',
+                color: pathname === '/contact' ? '#111111' : '#5BC8E8',
                 border: '1px solid rgba(91,200,232,0.3)',
               }}
             >
@@ -116,7 +116,7 @@ export default function Navbar() {
               <Link
                 to="/contact"
                 className="nav-label flex items-center gap-2 justify-center py-3 rounded-full"
-                style={{ background: '#5BC8E8', color: '#0A0F1A' }}
+                style={{ background: '#5BC8E8', color: '#111111' }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-current" />
                 GET IN TOUCH

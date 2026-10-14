@@ -1,4 +1,4 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
@@ -10,42 +10,42 @@ const services = [
     id: '01',
     title: 'Web Development',
     short: 'Custom web apps, portals, and SaaS platforms built for performance.',
-    body: 'From marketing sites to complex web applications, we build on modern stacks — React, Next.js, Node.js, and cloud-native infrastructure. Every project is architected for scalability from day one, with CI/CD pipelines and test coverage built in, not bolted on.',
+    body: 'From marketing sites to complex web applications, we build on modern stacks â€” React, Next.js, Node.js, and cloud-native infrastructure. Every project is architected for scalability from day one, with CI/CD pipelines and test coverage built in, not bolted on.',
     bullets: ['React / Next.js / TypeScript', 'Node.js / Python backends', 'REST & GraphQL APIs', 'PostgreSQL / MongoDB', 'AWS / Vercel / GCP deployment'],
   },
   {
     id: '02',
     title: 'Mobile App Development',
     short: 'iOS and Android apps that feel native and perform at scale.',
-    body: 'We build cross-platform mobile apps with React Native and Expo — one codebase, true native performance. For projects where platform-specific features matter, we go fully native. Either way, you get an app your users will actually want to open.',
+    body: 'We build cross-platform mobile apps with React Native and Expo â€” one codebase, true native performance. For projects where platform-specific features matter, we go fully native. Either way, you get an app your users will actually want to open.',
     bullets: ['React Native / Expo', 'iOS (Swift) & Android (Kotlin)', 'Offline-first architecture', 'Push notifications & deep linking', 'App Store & Play Store submission'],
   },
   {
     id: '03',
     title: 'Custom Software Development',
     short: 'Bespoke platforms for workflows that off-the-shelf can\'t handle.',
-    body: 'Some problems are too specific for generic software. We build the exact system your business needs — custom ERPs, workflow automation tools, internal dashboards, data pipelines — designed around how your team actually works.',
+    body: 'Some problems are too specific for generic software. We build the exact system your business needs â€” custom ERPs, workflow automation tools, internal dashboards, data pipelines â€” designed around how your team actually works.',
     bullets: ['ERP & CRM systems', 'Workflow automation', 'Internal tooling & dashboards', 'Data pipelines & ETL', 'Legacy system modernization'],
   },
   {
     id: '04',
     title: 'Data Centre Maintenance',
     short: 'Physical and logical infrastructure management for enterprise uptime.',
-    body: 'We provide end-to-end data centre maintenance — hardware lifecycle management, rack installation, network cabling, OS provisioning, and ongoing health monitoring. Paired with our software team, we can handle the full stack from silicon to UI.',
+    body: 'We provide end-to-end data centre maintenance â€” hardware lifecycle management, rack installation, network cabling, OS provisioning, and ongoing health monitoring. Paired with our software team, we can handle the full stack from silicon to UI.',
     bullets: ['Server rack installation & cabling', 'Hardware lifecycle management', 'OS provisioning & configuration', 'Network infrastructure maintenance', 'Monitoring & capacity planning'],
   },
   {
     id: '05',
     title: 'DevOps & Cloud Infrastructure',
     short: 'CI/CD pipelines, cloud architecture, and 24/7 monitoring.',
-    body: 'We design and operate cloud infrastructure that scales with your business — Kubernetes clusters, auto-scaling groups, multi-region redundancy, and cost-optimized architectures. Plus CI/CD pipelines that get code from commit to production without drama.',
+    body: 'We design and operate cloud infrastructure that scales with your business â€” Kubernetes clusters, auto-scaling groups, multi-region redundancy, and cost-optimized architectures. Plus CI/CD pipelines that get code from commit to production without drama.',
     bullets: ['AWS / Azure / GCP architecture', 'Kubernetes & Docker orchestration', 'CI/CD pipeline setup (GitHub Actions, GitLab)', 'Infrastructure as Code (Terraform)', 'APM & alerting (Datadog, Grafana)'],
   },
   {
     id: '06',
     title: 'UI / UX Design',
     short: 'Design systems and interfaces users actually want to use.',
-    body: 'We design products that work, not just look good. User research, information architecture, wireframes, high-fidelity Figma prototypes, and production-ready design systems — all aligned with your brand and built to hand off cleanly to engineering.',
+    body: 'We design products that work, not just look good. User research, information architecture, wireframes, high-fidelity Figma prototypes, and production-ready design systems â€” all aligned with your brand and built to hand off cleanly to engineering.',
     bullets: ['User research & journey mapping', 'Wireframes & prototyping', 'High-fidelity Figma design', 'Design systems & component libraries', 'Handoff-ready specs for engineering'],
   },
 ]
@@ -56,11 +56,11 @@ export default function ServicesPage() {
   const [openId, setOpenId] = useState<string | null>(null)
 
   return (
-    <div style={{ background: '#0A0F1A', color: '#fff' }}>
+    <div style={{ background: '#111111', color: '#fff' }}>
       <Navbar />
 
-      {/* ── PAGE HERO ── */}
-      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#0A0F1A' }}>
+      {/* â”€â”€ PAGE HERO â”€â”€ */}
+      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#111111' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="absolute bottom-0 inset-x-0 h-px" style={{ background: BD }} />
 
@@ -90,7 +90,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── SERVICES LIST ── */}
+      {/* â”€â”€ SERVICES LIST â”€â”€ */}
       <section className="relative overflow-hidden" style={{ background: '#080C14' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-4">
@@ -178,14 +178,14 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* ── HOW IT STARTS ── */}
-      <section className="relative overflow-hidden" style={{ background: '#F7F8FA' }}>
+      {/* â”€â”€ HOW IT STARTS â”€â”€ */}
+      <section className="relative overflow-hidden" style={{ background: '#F5F4F0' }}>
         <div className="col-grid col-grid-light absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24">
           <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}
             className="pb-12" style={{ borderBottom: '1px solid rgba(10,15,26,0.07)' }}>
             <span className="nav-label block mb-4" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>THE FIRST STEP</span>
-            <h2 className="display-xl" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)', color: '#0A0F1A' }}>
+            <h2 className="display-xl" style={{ fontSize: 'clamp(2.4rem,5.5vw,6rem)', color: '#111111' }}>
               HOW WE<br />
               <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>GET STARTED.</span>
             </h2>
@@ -205,7 +205,7 @@ export default function ServicesPage() {
               >
                 <span className="col-span-2 lg:col-span-1 nav-label" style={{ fontSize: '10px', color: '#5BC8E8', opacity: 0.7 }}>{step.num}</span>
                 <h3 className="col-span-10 lg:col-span-4 font-display font-bold leading-tight group-hover:text-[#5BC8E8] transition-colors"
-                  style={{ fontSize: 'clamp(1.2rem,2.2vw,1.65rem)', letterSpacing: '-0.02em', color: '#0A0F1A', alignSelf: 'center' }}>
+                  style={{ fontSize: 'clamp(1.2rem,2.2vw,1.65rem)', letterSpacing: '-0.02em', color: '#111111', alignSelf: 'center' }}>
                   {step.title}
                 </h3>
                 <div className="hidden lg:flex col-span-1 items-center">
@@ -223,7 +223,7 @@ export default function ServicesPage() {
               <Link
                 to="/contact"
                 className="nav-label flex items-center gap-2.5 px-8 py-4 rounded-full btn-glow"
-                style={{ background: '#5BC8E8', color: '#0A0F1A', fontSize: '12px' }}
+                style={{ background: '#5BC8E8', color: '#111111', fontSize: '12px' }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-current" />
                 BOOK THE DISCOVERY CALL

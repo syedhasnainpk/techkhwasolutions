@@ -11,7 +11,7 @@ const navLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden" style={{ background: '#0A0F1A' }}>
+    <footer className="relative overflow-hidden" style={{ background: '#111111' }}>
       {/* Column grid */}
       <div className="col-grid absolute inset-0">
         {[0,1,2,3,4].map(i => <span key={i} />)}
@@ -111,7 +111,7 @@ export default function Footer() {
               <Link
                 to="/contact"
                 className="nav-label flex items-center gap-2.5 px-6 py-3.5 rounded-full transition-all btn-glow"
-                style={{ background: '#5BC8E8', color: '#0A0F1A' }}
+                style={{ background: '#5BC8E8', color: '#111111' }}
               >
                 <span className="w-1.5 h-1.5 rounded-full bg-current" />
                 GET IN TOUCH

@@ -8,7 +8,7 @@ const pillars = [
   { num: '04', title: 'Scalable by Design', body: 'Architectures built to handle 10× growth from day one — no rewrites required.' },
 ]
 
-const T = { border: 'rgba(10,15,26,0.07)', body: '#4B5563', muted: '#9CA3AF', accent: '#5BC8E8' }
+const T = { border: 'rgba(17,17,17,0.08)', body: '#4B5563', muted: '#9CA3AF', accent: '#5BC8E8' }
 
 export default function WhyTechKhwa() {
   return (
@@ -25,12 +25,12 @@ export default function WhyTechKhwa() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.01 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="pt-24 pb-14 grid grid-cols-1 lg:grid-cols-2 gap-16 items-end"
+          className="pt-36 pb-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-end"
           style={{ borderBottom: `1px solid ${T.border}` }}
         >
           <div>
             <span className="nav-label block mb-4" style={{ fontSize: '10px', color: T.accent, opacity: 0.7 }}>WHY TECHKHWA</span>
-            <h2 className="display-xl" style={{ fontSize: 'clamp(2.8rem,6vw,6.5rem)', color: '#0A0F1A' }}>
+            <h2 className="display-xl" style={{ fontSize: 'clamp(2.8rem,6vw,6.5rem)', color: '#111111' }}>
               WE DON'T<br />JUST BUILD
               <span className="block" style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
                 SOFTWARE.
@@ -52,13 +52,13 @@ export default function WhyTechKhwa() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.01 }}
               transition={{ delay: i * 0.08, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-              className="group grid grid-cols-12 items-center gap-6 py-8 hover:pl-2 transition-all duration-300"
+              className="group grid grid-cols-12 items-center gap-6 py-10 hover:pl-2 transition-all duration-300"
               style={{ borderTop: `1px solid ${T.border}` }}
             >
               <span className="col-span-2 lg:col-span-1 nav-label" style={{ fontSize: '10px', color: T.muted }}>{p.num}</span>
               <h3
                 className="col-span-10 lg:col-span-4 font-display font-bold leading-tight group-hover:text-[#5BC8E8] transition-colors duration-200"
-                style={{ fontSize: 'clamp(1.2rem,2.2vw,1.7rem)', letterSpacing: '-0.02em', color: '#0A0F1A' }}
+                style={{ fontSize: 'clamp(1.2rem,2.2vw,1.7rem)', letterSpacing: '-0.02em', color: '#111111' }}
               >
                 {p.title}
               </h3>

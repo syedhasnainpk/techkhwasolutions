@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+﻿import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
@@ -8,9 +8,9 @@ const cases = [
   {
     id: '01',
     client: 'KP Labour Department',
-    category: 'GOVERNMENT · DIGITAL PLATFORM',
+    category: 'GOVERNMENT Â· DIGITAL PLATFORM',
     headline: 'DIGITALIZING A / GOVERNMENT DEPARTMENT.',
-    summary: 'Replaced 100% paper-based labour management processes with a unified digital platform — reducing paper usage by 86% and cutting processing time from days to minutes.',
+    summary: 'Replaced 100% paper-based labour management processes with a unified digital platform â€” reducing paper usage by 86% and cutting processing time from days to minutes.',
     challenge: 'The Khyber Pakhtunkhwa Labour Department managed all worker registrations, dispute filings, and inspection workflows through physical paperwork and manual records. The process was slow, error-prone, and inaccessible to workers outside major cities.',
     solution: [
       'End-to-end web portal for worker registration and document management',
@@ -21,7 +21,7 @@ const cases = [
     ],
     results: [
       { value: '86%', label: 'PAPER REDUCTION' },
-      { value: '12×', label: 'FASTER PROCESSING' },
+      { value: '12Ã—', label: 'FASTER PROCESSING' },
       { value: '100%', label: 'AUDIT TRAIL' },
     ],
     stack: ['React', 'Node.js', 'PostgreSQL', 'AWS', 'Docker'],
@@ -33,9 +33,9 @@ const cases = [
   {
     id: '02',
     client: 'Auto Accounting',
-    category: 'FINANCE · SAAS PLATFORM',
+    category: 'FINANCE Â· SAAS PLATFORM',
     headline: 'REPLACING EXCEL / WITH A REAL SYSTEM.',
-    summary: 'Built a purpose-built accounting platform for a CA firm that was running client audits, payroll, and tax workflows from spreadsheets — eliminating errors and boosting team productivity by 68%.',
+    summary: 'Built a purpose-built accounting platform for a CA firm that was running client audits, payroll, and tax workflows from spreadsheets â€” eliminating errors and boosting team productivity by 68%.',
     challenge: 'Auto Accounting, a growing chartered accountancy firm, was managing 80+ client accounts using a patchwork of Excel sheets, shared drives, and manual email chains. Version conflicts, data loss, and hours wasted on manual reconciliation were limiting growth.',
     solution: [
       'Multi-client accounting dashboard with real-time P&L views',
@@ -58,9 +58,9 @@ const cases = [
   {
     id: '03',
     client: 'Dubai Real Estate',
-    category: 'REAL ESTATE · AI PLATFORM',
+    category: 'REAL ESTATE Â· AI PLATFORM',
     headline: 'AI-POWERED SALES / ACROSS EVERY CHANNEL.',
-    summary: 'Designed and built an omnichannel AI sales platform for a Dubai real estate firm — unifying WhatsApp, email, and web leads into one pipeline with AI-assisted follow-up. Lead conversion tripled within 90 days of launch.',
+    summary: 'Designed and built an omnichannel AI sales platform for a Dubai real estate firm â€” unifying WhatsApp, email, and web leads into one pipeline with AI-assisted follow-up. Lead conversion tripled within 90 days of launch.',
     challenge: 'The client was managing property inquiries across WhatsApp Business, email, web forms, and in-person visits with zero integration between channels. Leads fell through the cracks. Agents duplicated effort. Follow-up was inconsistent and manually tracked.',
     solution: [
       'Unified CRM integrating WhatsApp, email, and web inquiry channels',
@@ -70,7 +70,7 @@ const cases = [
       'Automated document generation for proposals and contracts',
     ],
     results: [
-      { value: '3×', label: 'LEAD CONVERSION' },
+      { value: '3Ã—', label: 'LEAD CONVERSION' },
       { value: '4', label: 'CHANNELS UNIFIED' },
       { value: '90', label: 'DAYS TO IMPACT' },
     ],
@@ -83,9 +83,9 @@ const cases = [
   {
     id: '04',
     client: 'HomeCuras',
-    category: 'HEALTHCARE · MOBILE & WEB',
+    category: 'HEALTHCARE Â· MOBILE & WEB',
     headline: 'A MARKETPLACE FOR / HOME HEALTHCARE.',
-    summary: 'Built HomeCuras from the ground up — a two-sided marketplace connecting home healthcare providers with patients needing in-home medical care. 400+ bookings completed in the first quarter post-launch.',
+    summary: 'Built HomeCuras from the ground up â€” a two-sided marketplace connecting home healthcare providers with patients needing in-home medical care. 400+ bookings completed in the first quarter post-launch.',
     challenge: 'The healthcare market lacked a trusted, easy-to-use platform for patients to find and book home nursing, physiotherapy, and elder care services. Providers had no digital presence. Patients had no way to verify credentials or book in real time.',
     solution: [
       'Patient-facing app (iOS + Android) for browsing and booking care providers',
@@ -116,11 +116,11 @@ const BD = 'rgba(255,255,255,0.05)'
 
 export default function CaseStudiesPage() {
   return (
-    <div style={{ background: '#0A0F1A', color: '#fff' }}>
+    <div style={{ background: '#111111', color: '#fff' }}>
       <Navbar />
 
-      {/* ── PAGE HERO ── */}
-      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#0A0F1A' }}>
+      {/* â”€â”€ PAGE HERO â”€â”€ */}
+      <section className="relative overflow-hidden pt-36 pb-20" style={{ background: '#111111' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="absolute bottom-0 inset-x-0 h-px" style={{ background: BD }} />
 
@@ -150,11 +150,11 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-      {/* ── CASE STUDIES ── */}
+      {/* â”€â”€ CASE STUDIES â”€â”€ */}
       {cases.map((c, cIdx) => {
         const isLight = cIdx % 2 === 1
-        const bg = isLight ? '#F7F8FA' : '#080C14'
-        const textColor = isLight ? '#0A0F1A' : '#fff'
+        const bg = isLight ? '#F5F4F0' : '#111111'
+        const textColor = isLight ? '#111111' : '#fff'
         const borderColor = isLight ? 'rgba(10,15,26,0.07)' : BD
         const bodyColor = isLight ? '#4B5563' : 'rgba(255,255,255,0.45)'
 
@@ -191,7 +191,7 @@ export default function CaseStudiesPage() {
                 </div>
               </motion.div>
 
-              {/* Results — big numbers */}
+              {/* Results â€” big numbers */}
               <div className="grid grid-cols-3 py-12" style={{ borderBottom: `1px solid ${borderColor}` }}>
                 {c.results.map((r, ri) => (
                   <motion.div
@@ -204,7 +204,7 @@ export default function CaseStudiesPage() {
                 ))}
               </div>
 
-              {/* Body — two columns */}
+              {/* Body â€” two columns */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 py-12" style={{ borderBottom: `1px solid ${borderColor}` }}>
                 <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.65 }}>
                   <span className="nav-label block mb-4" style={{ fontSize: '10px', color: c.accent, opacity: 0.6 }}>THE CHALLENGE</span>
@@ -238,8 +238,8 @@ export default function CaseStudiesPage() {
         )
       })}
 
-      {/* ── BOTTOM CTA ── */}
-      <section className="relative overflow-hidden" style={{ background: '#0A0F1A' }}>
+      {/* â”€â”€ BOTTOM CTA â”€â”€ */}
+      <section className="relative overflow-hidden" style={{ background: '#111111' }}>
         <div className="col-grid absolute inset-0">{[0,1,2,3,4].map(i => <span key={i} />)}</div>
         <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-20" style={{ borderTop: `1px solid ${BD}` }}>
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
@@ -257,14 +257,14 @@ export default function CaseStudiesPage() {
                 <Link
                   to="/contact"
                   className="nav-label flex items-center gap-2.5 px-8 py-4 rounded-full btn-glow"
-                  style={{ background: '#5BC8E8', color: '#0A0F1A', fontSize: '12px' }}
+                  style={{ background: '#5BC8E8', color: '#111111', fontSize: '12px' }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-current" />
                   START THE CONVERSATION
                 </Link>
               </motion.div>
               <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '11px', color: 'rgba(255,255,255,0.18)', textAlign: 'center' }}>
-                Free discovery call · Reply within 2 hours
+                Free discovery call Â· Reply within 2 hours
               </p>
             </div>
           </div>

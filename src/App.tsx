@@ -37,7 +37,7 @@ function AnimatedRoutes() {
         exit="exit"
       >
         <Suspense fallback={
-          <div className="min-h-screen bg-[#0A0F1A] flex items-center justify-center">
+          <div className="min-h-screen bg-[#111111] flex items-center justify-center">
             <div className="w-5 h-5 border border-[#5BC8E8] border-t-transparent rounded-full animate-spin" />
           </div>
         }>

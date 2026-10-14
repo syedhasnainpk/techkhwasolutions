@@ -103,7 +103,7 @@ function ProjectCard({ p, delay }: { p: typeof projects[0]; delay: number }) {
 
 export default function Portfolio() {
   return (
-    <section className="relative overflow-hidden" style={{ background: '#080C14' }}>
+    <section className="relative overflow-hidden" style={{ background: '#111111' }}>
       {/* Column grid */}
       <div className="col-grid absolute inset-0">
         {[0,1,2,3,4].map(i => <span key={i} />)}
@@ -117,7 +117,7 @@ export default function Portfolio() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.01 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="pt-24 pb-14 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
+          className="pt-36 pb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
           style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}
         >
           <div>
@@ -142,7 +142,7 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Asymmetric grid */}
-        <div className="py-12 grid lg:grid-cols-12 gap-5">
+        <div className="py-16 grid lg:grid-cols-12 gap-6">
           {projects.map((p, i) => (
             <ProjectCard key={p.id} p={p} delay={i * 0.08} />
           ))}

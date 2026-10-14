@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 
 // ── Paste your Web3Forms access key here ──────────────────────
@@ -8,43 +8,6 @@ import { ArrowRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react'
 const WEB3FORMS_KEY = 'b7d03353-0f74-452a-9668-fe651b16692c'
 // ─────────────────────────────────────────────────────────────
 
-function CubeMosaic() {
-  const grid = 4, cellSize = 42, gap = 4
-  const total = grid * cellSize + (grid - 1) * gap
-  return (
-    <div className="relative" style={{ width: total, height: total, perspective: '700px' }}>
-      <div className="absolute inset-0 blur-[60px] rounded-full pointer-events-none"
-        style={{ background: 'rgba(91,200,232,0.18)', transform: 'scale(1.4)' }} />
-      <motion.div
-        animate={{ rotateY: [0, 360], rotateX: [12, 18, 12] }}
-        transition={{ rotateY: { duration: 18, repeat: Infinity, ease: 'linear' }, rotateX: { duration: 6, repeat: Infinity, ease: 'easeInOut' } }}
-        style={{ width: total, height: total, transformStyle: 'preserve-3d', position: 'relative' }}
-      >
-        {(['front', 'top', 'right'] as const).map((face) => (
-          <div key={face} style={{
-            position: 'absolute', width: total, height: total,
-            transform: face === 'front' ? `translateZ(${total/2}px)` : face === 'top' ? `rotateX(90deg) translateZ(${total/2}px)` : `rotateY(90deg) translateZ(${total/2}px)`,
-            display: 'grid', gridTemplateColumns: `repeat(${grid}, ${cellSize}px)`, gap: `${gap}px`,
-          }}>
-            {Array.from({ length: grid * grid }).map((_, i) => (
-              <motion.div key={i}
-                animate={face === 'front' ? { opacity: [0.5, 1, 0.5] } : {}}
-                transition={{ duration: 2 + (i % 4) * 0.5, repeat: Infinity, delay: i * 0.1 }}
-                style={{
-                  width: cellSize, height: cellSize, borderRadius: 2,
-                  background: face === 'front'
-                    ? (i%3===0 ? 'rgba(91,200,232,0.45)' : i%3===1 ? 'rgba(91,200,232,0.2)' : 'rgba(91,200,232,0.12)')
-                    : face === 'top' ? 'rgba(91,200,232,0.08)' : 'rgba(91,200,232,0.06)',
-                  border: `1px solid rgba(91,200,232,${face==='front'?0.4:face==='top'?0.2:0.18})`,
-                }}
-              />
-            ))}
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  )
-}
 
 function Field({ label, name, placeholder, required = false, type = 'text', textarea = false, value, onChange }: {
   label: string; name: string; placeholder: string; required?: boolean
@@ -97,10 +60,6 @@ function ServiceTag({ label, selected, onToggle }: { label: string; selected: bo
 const SERVICE_OPTIONS = ['Software Dev', 'App Dev', 'Web Dev', 'Cloud', 'Datacenter', 'IT Consulting']
 
 export default function Contact() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
-  const cubeY = useTransform(scrollYProgress, [0, 1], [-40, 40])
-
   const [fields, setFields]   = useState({ name: '', email: '', org: '', message: '' })
   const [services, setServices] = useState<string[]>([])
   const [consent, setConsent]  = useState(false)
@@ -143,7 +102,7 @@ export default function Contact() {
   }
 
   return (
-    <section ref={sectionRef} id="contact-form" className="relative overflow-hidden" style={{ background: '#0A0F1A' }}>
+    <section id="contact-form" className="relative overflow-hidden" style={{ background: '#111111' }}>
       <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
 
@@ -166,9 +125,20 @@ export default function Contact() {
               </h2>
             </div>
 
-            <motion.div style={{ y: cubeY }} className="flex items-center justify-center py-16">
-              <CubeMosaic />
-            </motion.div>
+            {/* Response guarantee */}
+            <div className="flex flex-col gap-5 py-12">
+              {[
+                { label: 'Response time', value: 'Within 2 hours' },
+                { label: 'Discovery call', value: 'Free, no commitment' },
+                { label: 'Based in', value: 'Karachi, Pakistan' },
+              ].map(item => (
+                <div key={item.label} className="flex items-center justify-between py-4"
+                  style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                  <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.35)' }}>{item.label}</span>
+                  <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: 'rgba(255,255,255,0.75)', letterSpacing: '-0.01em' }}>{item.value}</span>
+                </div>
+              ))}
+            </div>
 
             <div>
               <div className="font-body text-[10px] tracking-[0.14em] uppercase mb-0.5" style={{ color: 'rgba(255,255,255,0.3)' }}>Email</div>
@@ -251,7 +221,7 @@ export default function Contact() {
                   className="group inline-flex items-center gap-2.5 px-8 py-4 rounded-full font-body font-semibold text-[14px] transition-all btn-glow"
                   style={{
                     background: consent && status !== 'sending' ? '#5BC8E8' : 'rgba(91,200,232,0.3)',
-                    color: '#0A0F1A',
+                    color: '#111111',
                     cursor: consent && status !== 'sending' ? 'pointer' : 'not-allowed',
                   }}>
                   {status === 'sending'

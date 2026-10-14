@@ -38,11 +38,11 @@ const testimonials = [
 ]
 
 const T = {
-  heading: '#0A0F1A',
+  heading: '#111111',
   body: '#374151',
   muted: '#9CA3AF',
   accent: '#5BC8E8',
-  border: 'rgba(10,15,26,0.08)',
+  border: 'rgba(17,17,17,0.09)',
 }
 
 export default function Testimonials() {
@@ -62,7 +62,7 @@ export default function Testimonials() {
   const t = testimonials[index]
 
   return (
-    <section className="relative overflow-hidden" style={{ background: '#F7F8FA' }}>
+    <section className="relative overflow-hidden" style={{ background: '#F5F4F0' }}>
       <div className="absolute inset-0 grid-bg-light pointer-events-none" style={{ opacity: 0.5 }} />
 
       <div className="max-w-[1440px] mx-auto px-8 relative z-10">
@@ -73,7 +73,7 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.01 }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="py-20 flex items-end justify-between"
+          className="py-28 flex items-end justify-between"
           style={{ borderBottom: `1px solid ${T.border}` }}
         >
           <div>
@@ -106,7 +106,7 @@ export default function Testimonials() {
         </motion.div>
 
         {/* ─── Testimonial body ─── */}
-        <div className="py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <div className="py-20 grid grid-cols-1 lg:grid-cols-12 gap-12">
 
           {/* Author column */}
           <AnimatePresence mode="wait">
@@ -234,7 +234,7 @@ export default function Testimonials() {
       {/* Fade to dark */}
       <div
         className="absolute bottom-0 inset-x-0 h-24 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, transparent, #0A0F1A)' }}
+        style={{ background: 'linear-gradient(to bottom, transparent, #111111)' }}
       />
     </section>
   )

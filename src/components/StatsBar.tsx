@@ -38,7 +38,7 @@ function CountUp({ target, suffix }: { target: number; suffix: string }) {
 
 export default function StatsBar() {
   return (
-    <section className="relative overflow-hidden" style={{ background: '#060C16' }}>
+    <section className="relative overflow-hidden" style={{ background: '#0C0C0C' }}>
       {/* Column grid */}
       <div className="col-grid absolute inset-0">
         {[0,1,2,3,4].map(i => <span key={i} />)}
@@ -58,7 +58,7 @@ export default function StatsBar() {
       </div>
 
       {/* Stats */}
-      <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-16 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/4">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-8 py-24 grid grid-cols-2 md:grid-cols-4 divide-x divide-white/4">
         {stats.map((s, i) => (
           <motion.div
             key={s.label}
