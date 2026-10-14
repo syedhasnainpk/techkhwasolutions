@@ -132,20 +132,20 @@ export default function Hero() {
   const textY       = useTransform(smooth, [0, 0.22], [0, -50])
   const barOpacity  = useTransform(smooth, [0, 0.14], [1, 0])
 
-  // ── Laptop fades as video appears ────────────────────────────
-  const laptopOpacity = useTransform(smooth, [0.12, 0.28], [1, 0])
+  // ── Laptop grows then fades as video appears ─────────────────
+  const laptopScale   = useTransform(smooth, [0, 0.28],  [1, 2.2])
+  const laptopOpacity = useTransform(smooth, [0.18, 0.34], [1, 0])
 
   // ── Video overlay ─────────────────────────────────────────────
-  const videoOpacity = useTransform(smooth, [0.14, 0.32], [0, 1])
+  const videoOpacity = useTransform(smooth, [0.22, 0.42], [0, 1])
 
-  // Clip-path: expands from where the laptop screen sits (right side)
-  // to fill the full viewport. Values tuned for desktop 1280px.
-  // inset(top% right% bottom% left%)
-  const clipTop    = useTransform(smooth, [0.16, 0.75], [27, 0])
-  const clipRight  = useTransform(smooth, [0.16, 0.75], [8, 0])
-  const clipBottom = useTransform(smooth, [0.16, 0.75], [27, 0])
-  const clipLeft   = useTransform(smooth, [0.16, 0.75], [51, 0])
-  const clipRadius = useTransform(smooth, [0.16, 0.55], [12, 0])
+  // Clip-path: starts at laptop screen position, expands to full viewport
+  // inset(top% right% bottom% left% round Xpx)
+  const clipTop    = useTransform(smooth, [0.20, 0.80], [22, 0])
+  const clipRight  = useTransform(smooth, [0.20, 0.80], [5,  0])
+  const clipBottom = useTransform(smooth, [0.20, 0.80], [22, 0])
+  const clipLeft   = useTransform(smooth, [0.20, 0.80], [48, 0])
+  const clipRadius = useTransform(smooth, [0.20, 0.55], [10, 0])
   const videoClipPath = useMotionTemplate`inset(${clipTop}% ${clipRight}% ${clipBottom}% ${clipLeft}% round ${clipRadius}px)`
 
   // ── Scroll hint bounces then disappears ──────────────────────
@@ -265,7 +265,7 @@ export default function Hero() {
               {/* ── RIGHT: 3D Laptop (lg+ only) ── */}
               <motion.div
                 className="hidden lg:flex w-[48%] shrink-0 items-center justify-center"
-                style={{ opacity: laptopOpacity }}
+                style={{ opacity: laptopOpacity, scale: laptopScale, transformOrigin: 'center center' }}
                 initial={{ opacity: 0, x: 40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
@@ -381,25 +381,52 @@ export default function Hero() {
             playsInline
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />
-          {/* Fallback background when no video file */}
+          {/* Fallback background shown until video file is added */}
           <div
             className="absolute inset-0 flex flex-col items-center justify-center"
             style={{
-              background: 'linear-gradient(135deg, #0A0A0A 0%, #0E1A2E 50%, #0A0A0A 100%)',
+              background: 'radial-gradient(ellipse 80% 70% at 50% 50%, #0E2240 0%, #080D1A 60%, #050810 100%)',
               pointerEvents: 'none',
             }}
           >
-            <div style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: 'center', padding: '0 2rem' }}>
+              <div
+                style={{
+                  width: 48,
+                  height: 48,
+                  borderRadius: '50%',
+                  border: '1px solid rgba(91,200,232,0.25)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 1.5rem',
+                }}
+              >
+                <div style={{ width: 14, height: 14, background: '#5BC8E8', opacity: 0.6, clipPath: 'polygon(20% 0%, 100% 50%, 20% 100%)' }} />
+              </div>
               <span
                 style={{
                   fontFamily: 'Inter,sans-serif',
                   fontSize: '11px',
                   letterSpacing: '0.18em',
-                  color: 'rgba(255,255,255,0.25)',
+                  color: 'rgba(255,255,255,0.35)',
                   textTransform: 'uppercase',
+                  display: 'block',
                 }}
               >
-                Add /videos/showreel.mp4
+                Place your showreel at
+              </span>
+              <span
+                style={{
+                  fontFamily: 'Inter,sans-serif',
+                  fontSize: '11px',
+                  letterSpacing: '0.1em',
+                  color: 'rgba(91,200,232,0.5)',
+                  display: 'block',
+                  marginTop: 6,
+                }}
+              >
+                /videos/showreel.mp4
               </span>
             </div>
           </div>

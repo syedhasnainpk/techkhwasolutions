@@ -32,12 +32,11 @@ const services = [
 const T = { border: 'rgba(17,17,17,0.08)', muted: '#9CA3AF', accent: '#5BC8E8', body: '#4B5563' }
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 32, clipPath: 'inset(0 0 100% 0)' },
+  hidden: { opacity: 0, y: 24 },
   visible: (i: number) => ({
     opacity: 1,
     y: 0,
-    clipPath: 'inset(0 0 0% 0)',
-    transition: { delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+    transition: { delay: i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
   }),
 }
 
@@ -105,7 +104,7 @@ export default function Services() {
         {/* ── Phase cards ── */}
         <div
           className="py-16 grid grid-cols-1 md:grid-cols-3 gap-px"
-          style={{ background: T.border }}
+          style={{ background: 'transparent' }}
         >
           {phases.map((phase, i) => (
             <motion.div
