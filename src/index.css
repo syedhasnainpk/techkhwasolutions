@@ -16,6 +16,11 @@
     overflow-x: hidden;
   }
 
+  /* Hide system cursor on pointer devices — custom cursor takes over */
+  @media (pointer: fine) {
+    *, *::before, *::after { cursor: none !important; }
+  }
+
   h1, h2, h3, h4, h5 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
@@ -120,10 +125,11 @@
     border-radius: 100px;
   }
 
-  /* ─── Button glow ─── */
-  .btn-glow:hover {
-    box-shadow: 0 0 0 1px rgba(91,200,232,0.5), 0 6px 28px rgba(91,200,232,0.35);
+  /* ─── Button — clean scale, no glow ─── */
+  .btn-glow {
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
+  .btn-glow:hover { opacity: 0.88; }
 
   /* ─── Card hover (dark) ─── */
   .card-dark:hover {

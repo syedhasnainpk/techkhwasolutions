@@ -57,26 +57,14 @@ function ProjectCard({ p, delay }: { p: typeof projects[0]; delay: number }) {
       <Link to="/case-studies">
         {/* Gradient thumbnail */}
         <div className={`relative ${p.height} overflow-hidden`} style={{ background: p.gradient }}>
-          {/* Abstract geometric art */}
+          {/* Card content */}
           <div className="absolute inset-0">
-            {/* Grid lines inside card */}
-            <div className="absolute inset-0 col-grid opacity-30">
-              {[0,1,2,3,4].map(i => <span key={i} />)}
-            </div>
-            {/* Floating accent shapes */}
-            <motion.div
-              className="absolute rounded-full blur-3xl opacity-25"
-              style={{ width: '60%', height: '60%', top: '10%', right: '-10%', background: p.accent }}
-              animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.3, 0.2] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="absolute rounded-full blur-2xl opacity-15"
-              style={{ width: '40%', height: '40%', bottom: '5%', left: '5%', background: p.accent }}
-              animate={{ scale: [1, 1.15, 1] }}
-              transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-            />
-            {/* ID number watermark */}
+            {/* Subtle grid */}
+            <div className="absolute inset-0" style={{
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)',
+              backgroundSize: '48px 48px',
+            }} />
+            {/* ID watermark */}
             <div
               className="absolute right-6 top-6 font-display font-bold select-none"
               style={{ fontSize: 'clamp(4rem,10vw,9rem)', lineHeight: 1, color: 'rgba(255,255,255,0.04)', letterSpacing: '-0.04em' }}
@@ -84,7 +72,8 @@ function ProjectCard({ p, delay }: { p: typeof projects[0]; delay: number }) {
               {p.id}
             </div>
             {/* Hover overlay */}
-            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-400" />
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              style={{ background: `linear-gradient(135deg, transparent 0%, rgba(${p.accent === '#F0C040' ? '240,192,64' : '91,200,232'},0.06) 100%)` }} />
           </div>
 
           {/* Bottom info bar */}

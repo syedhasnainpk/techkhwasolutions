@@ -52,12 +52,14 @@ export default function Navbar() {
             <Link
               key={l.label}
               to={l.href}
-              className={`nav-label flex items-center gap-1.5 transition-colors duration-200 ${
+              className={`nav-label group relative flex items-center gap-1.5 transition-colors duration-200 pb-0.5 ${
                 pathname === l.href ? 'text-white' : 'text-white/40 hover:text-white/80'
               }`}
             >
               <span className="text-[#5BC8E8] opacity-60">+</span>
               {l.label}
+              {/* Underline sweep */}
+              <span className={`absolute bottom-0 left-0 h-px bg-[#5BC8E8] transition-all duration-300 ease-out group-hover:w-full ${pathname === l.href ? 'w-full' : 'w-0'}`} />
             </Link>
           ))}
         </nav>

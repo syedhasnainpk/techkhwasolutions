@@ -1,5 +1,7 @@
 import { useEffect, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'framer-motion'
+import Cursor from './components/Cursor'
 
 const Home          = lazy(() => import('./pages/Home'))
 const CaseStudies   = lazy(() => import('./pages/CaseStudies'))
@@ -17,15 +19,38 @@ function ScrollReset() {
   return null
 }
 
-function PageShell({ children }: { children: React.ReactNode }) {
+const pageVariants = {
+  initial: { opacity: 0, y: 16 },
+  enter:   { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
+  exit:    { opacity: 0, y: -10, transition: { duration: 0.25, ease: [0.22, 1, 0.36, 1] } },
+}
+
+function AnimatedRoutes() {
+  const location = useLocation()
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-[#0A0F1A] flex items-center justify-center">
-        <div className="w-6 h-6 border-2 border-[#5BC8E8] border-t-transparent rounded-full animate-spin" />
-      </div>
-    }>
-      {children}
-    </Suspense>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        variants={pageVariants}
+        initial="initial"
+        animate="enter"
+        exit="exit"
+      >
+        <Suspense fallback={
+          <div className="min-h-screen bg-[#0A0F1A] flex items-center justify-center">
+            <div className="w-5 h-5 border border-[#5BC8E8] border-t-transparent rounded-full animate-spin" />
+          </div>
+        }>
+          <Routes location={location}>
+            <Route path="/"             element={<Home />} />
+            <Route path="/case-studies" element={<CaseStudies />} />
+            <Route path="/services"     element={<ServicesPage />} />
+            <Route path="/about"        element={<AboutPage />} />
+            <Route path="/contact"      element={<ContactPage />} />
+          </Routes>
+        </Suspense>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 
@@ -33,14 +58,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollReset />
+      <Cursor />
       <div className="bg-navy text-white overflow-x-hidden">
-        <Routes>
-          <Route path="/"             element={<PageShell><Home /></PageShell>} />
-          <Route path="/case-studies" element={<PageShell><CaseStudies /></PageShell>} />
-          <Route path="/services"     element={<PageShell><ServicesPage /></PageShell>} />
-          <Route path="/about"        element={<PageShell><AboutPage /></PageShell>} />
-          <Route path="/contact"      element={<PageShell><ContactPage /></PageShell>} />
-        </Routes>
+        <AnimatedRoutes />
       </div>
     </BrowserRouter>
   )

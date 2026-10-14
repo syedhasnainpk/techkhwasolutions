@@ -8,11 +8,7 @@ export default function CTABanner() {
       <div className="col-grid absolute inset-0">
         {[0,1,2,3,4].map(i => <span key={i} />)}
       </div>
-      <div className="absolute top-0 inset-x-0 h-px" style={{ background: 'rgba(91,200,232,0.12)' }} />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 100%, rgba(91,200,232,0.06) 0%, transparent 70%)' }}
-      />
+      <div className="absolute top-0 inset-x-0 h-px" style={{ background: 'rgba(255,255,255,0.05)' }} />
 
       <div className="max-w-[1440px] mx-auto px-8 relative z-10 py-28 lg:py-36">
 

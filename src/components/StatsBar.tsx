@@ -8,11 +8,11 @@ const stats = [
   { value: 98, suffix: '%', label: 'CLIENT RETENTION' },
 ]
 
-const partners = [
-  'Alibaba Cloud', 'Microsoft Azure', 'Amazon AWS', 'Google Cloud',
-  'Cloudflare', 'Vercel', 'DigitalOcean', 'GitHub', 'Stripe', 'Twilio',
-  'Alibaba Cloud', 'Microsoft Azure', 'Amazon AWS', 'Google Cloud',
-  'Cloudflare', 'Vercel', 'DigitalOcean', 'GitHub', 'Stripe', 'Twilio',
+const stack = [
+  'React', 'Next.js', 'Node.js', 'TypeScript', 'Python',
+  'React Native', 'PostgreSQL', 'AWS', 'Docker', 'Kubernetes',
+  'React', 'Next.js', 'Node.js', 'TypeScript', 'Python',
+  'React Native', 'PostgreSQL', 'AWS', 'Docker', 'Kubernetes',
 ]
 
 function CountUp({ target, suffix }: { target: number; suffix: string }) {
@@ -45,10 +45,10 @@ export default function StatsBar() {
       </div>
       <div className="absolute inset-x-0 top-0 h-px" style={{ background: 'rgba(91,200,232,0.08)' }} />
 
-      {/* Scrolling ticker */}
+      {/* Tech stack ticker */}
       <div className="relative z-10 py-5 overflow-hidden" style={{ borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
         <div className="flex animate-ticker whitespace-nowrap">
-          {partners.map((name, i) => (
+          {stack.map((name, i) => (
             <span key={i} className="inline-flex items-center gap-3 mx-10 nav-label text-white/15" style={{ fontSize: '10px' }}>
               <span className="w-1 h-1 rounded-full bg-[#5BC8E8] opacity-30" />
               {name}
