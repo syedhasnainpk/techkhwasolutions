@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import LineReveal from './LineReveal'
 
 const phases = [
   {
@@ -30,47 +31,90 @@ const services = [
 
 const T = { border: 'rgba(17,17,17,0.08)', muted: '#9CA3AF', accent: '#5BC8E8', body: '#4B5563' }
 
+const cardVariants = {
+  hidden: { opacity: 0, y: 32, clipPath: 'inset(0 0 100% 0)' },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    clipPath: 'inset(0 0 0% 0)',
+    transition: { delay: i * 0.1, duration: 0.7, ease: [0.22, 1, 0.36, 1] },
+  }),
+}
+
+const rowVariants = {
+  hidden: { opacity: 0, x: -16 },
+  visible: (i: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: { delay: i * 0.07, duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+  }),
+}
+
 export default function Services() {
   return (
     <section id="services" className="relative overflow-hidden" style={{ background: '#F5F4F0' }}>
       <div className="col-grid col-grid-light absolute inset-0">
-        {[0,1,2,3,4].map(i => <span key={i} />)}
+        {[0, 1, 2, 3, 4].map((i) => <span key={i} />)}
       </div>
 
       <div className="max-w-[1440px] mx-auto px-8 relative z-10">
 
         {/* ── Section header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.01 }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        <div
           className="pt-36 pb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-8"
           style={{ borderBottom: `1px solid ${T.border}` }}
         >
           <div>
-            <span className="nav-label block mb-4" style={{ fontSize: '10px', color: T.accent, opacity: 0.7 }}>WHAT WE DO</span>
+            <motion.span
+              className="nav-label block mb-4"
+              style={{ fontSize: '10px', color: T.accent, opacity: 0.7 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              WHAT WE DO
+            </motion.span>
             <h2 className="display-xl" style={{ fontSize: 'clamp(2.8rem,6vw,6.5rem)', color: '#111111' }}>
-              EVERYTHING<br />
-              <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                YOU NEED
-              </span>
+              <LineReveal delay={0.05} trigger="view">EVERYTHING</LineReveal>
+              <LineReveal delay={0.18} trigger="view">
+                <span
+                  style={{
+                    background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  YOU NEED
+                </span>
+              </LineReveal>
             </h2>
           </div>
-          <p className="text-[1rem] leading-relaxed max-w-xs lg:mb-2" style={{ fontFamily: 'Inter, sans-serif', color: T.body }}>
+          <motion.p
+            className="text-[1rem] leading-relaxed max-w-xs lg:mb-2"
+            style={{ fontFamily: 'Inter, sans-serif', color: T.body }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
             A full-spectrum technology partner — from a single sprint to a multi-year digital transformation.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
-        {/* ── Three phase cards (Dylan's Define/Design/Develop) ── */}
-        <div className="py-16 grid grid-cols-1 md:grid-cols-3 gap-px" style={{ background: T.border }}>
+        {/* ── Phase cards ── */}
+        <div
+          className="py-16 grid grid-cols-1 md:grid-cols-3 gap-px"
+          style={{ background: T.border }}
+        >
           {phases.map((phase, i) => (
             <motion.div
               key={phase.num}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.01 }}
-              transition={{ delay: i * 0.1, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              custom={i}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
               className="group p-10 flex flex-col gap-6 cursor-default"
               style={{ background: '#F5F4F0' }}
             >
@@ -85,7 +129,10 @@ export default function Services() {
                 {phase.body}
               </p>
               <div className="mt-auto">
-                <div className="w-8 h-px group-hover:w-16 transition-all duration-400" style={{ background: '#5BC8E8' }} />
+                <div
+                  className="w-8 h-px group-hover:w-16 transition-all duration-400"
+                  style={{ background: '#5BC8E8' }}
+                />
               </div>
             </motion.div>
           ))}
@@ -96,29 +143,57 @@ export default function Services() {
           {services.map((svc, i) => (
             <motion.div
               key={svc.num}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.01 }}
-              transition={{ delay: i * 0.06, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              custom={i}
+              variants={rowVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
               style={{ borderTop: `1px solid ${T.border}` }}
             >
               <div className="group flex flex-col md:flex-row md:items-center gap-5 py-10 hover:pl-2 transition-all duration-300">
                 <span className="nav-label w-8 shrink-0" style={{ fontSize: '10px', color: T.muted }}>{svc.num}</span>
-                <h3 className="font-display font-bold md:w-64 shrink-0 leading-tight transition-colors duration-200 group-hover:text-[#5BC8E8]"
-                  style={{ fontSize: 'clamp(1.1rem,2vw,1.4rem)', letterSpacing: '-0.015em', color: '#111111' }}>
+                <h3
+                  className="font-display font-bold md:w-64 shrink-0 leading-tight transition-colors duration-200 group-hover:text-[#5BC8E8]"
+                  style={{ fontSize: 'clamp(1.1rem,2vw,1.4rem)', letterSpacing: '-0.015em', color: '#111111' }}
+                >
                   {svc.title}
                 </h3>
-                <p className="flex-1 text-[0.88rem] leading-relaxed" style={{ fontFamily: 'Inter, sans-serif', color: T.body }}>{svc.description}</p>
+                <p
+                  className="flex-1 text-[0.88rem] leading-relaxed"
+                  style={{ fontFamily: 'Inter, sans-serif', color: T.body }}
+                >
+                  {svc.description}
+                </p>
                 <div className="hidden xl:flex flex-wrap gap-1.5 w-52 shrink-0">
-                  {svc.tags.map(t => (
-                    <span key={t} className="text-[10px] px-2.5 py-1 rounded-full font-medium"
-                      style={{ border: `1px solid rgba(17,17,17,0.12)`, color: T.muted, background: 'rgba(17,17,17,0.04)', fontFamily: 'Inter, sans-serif' }}>
+                  {svc.tags.map((t) => (
+                    <span
+                      key={t}
+                      className="text-[10px] px-2.5 py-1 rounded-full font-medium"
+                      style={{
+                        border: `1px solid rgba(17,17,17,0.12)`,
+                        color: T.muted,
+                        background: 'rgba(17,17,17,0.04)',
+                        fontFamily: 'Inter, sans-serif',
+                      }}
+                    >
                       {t}
                     </span>
                   ))}
                 </div>
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="shrink-0 ml-auto md:ml-0 opacity-25 group-hover:opacity-70 transition-opacity">
-                  <path d="M3 13L13 3M13 3H6M13 3V10" stroke="#0A0F1A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  className="shrink-0 ml-auto md:ml-0 opacity-25 group-hover:opacity-70 transition-opacity"
+                >
+                  <path
+                    d="M3 13L13 3M13 3H6M13 3V10"
+                    stroke="#0A0F1A"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </div>
             </motion.div>

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import LineReveal from './LineReveal'
 
 const projects = [
   {
@@ -44,57 +45,98 @@ const projects = [
   },
 ]
 
-function ProjectCard({ p, delay }: { p: typeof projects[0]; delay: number }) {
+function ProjectCard({ p, index }: { p: typeof projects[0]; index: number }) {
   return (
     <motion.div
       className={`group relative rounded-2xl overflow-hidden cursor-pointer ${p.span}`}
-      initial={{ opacity: 0, y: 32 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ delay, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ y: -6 }}
+      initial={{ opacity: 0, y: 40, scale: 0.96, clipPath: 'inset(8% 0% 0% 0% round 16px)' }}
+      whileInView={{ opacity: 1, y: 0, scale: 1, clipPath: 'inset(0% 0% 0% 0% round 16px)' }}
+      viewport={{ once: true, amount: 0.08 }}
+      transition={{ delay: index * 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      whileHover={{ y: -8, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } }}
     >
       <Link to="/case-studies">
         {/* Gradient thumbnail */}
         <div className={`relative ${p.height} overflow-hidden`} style={{ background: p.gradient }}>
-          {/* Card content */}
           <div className="absolute inset-0">
-            {/* Subtle grid */}
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)',
-              backgroundSize: '48px 48px',
-            }} />
+            {/* Grid overlay */}
+            <div
+              className="absolute inset-0"
+              style={{
+                backgroundImage:
+                  'linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)',
+                backgroundSize: '48px 48px',
+              }}
+            />
             {/* ID watermark */}
             <div
               className="absolute right-6 top-6 font-display font-bold select-none"
-              style={{ fontSize: 'clamp(4rem,10vw,9rem)', lineHeight: 1, color: 'rgba(255,255,255,0.04)', letterSpacing: '-0.04em' }}
+              style={{
+                fontSize: 'clamp(4rem,10vw,9rem)',
+                lineHeight: 1,
+                color: 'rgba(255,255,255,0.04)',
+                letterSpacing: '-0.04em',
+              }}
             >
               {p.id}
             </div>
             {/* Hover overlay */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              style={{ background: `linear-gradient(135deg, transparent 0%, rgba(${p.accent === '#F0C040' ? '240,192,64' : '91,200,232'},0.06) 100%)` }} />
+            <motion.div
+              className="absolute inset-0"
+              initial={{ opacity: 0 }}
+              whileHover={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+              style={{
+                background: `linear-gradient(135deg, transparent 0%, rgba(${
+                  p.accent === '#F0C040' ? '240,192,64' : '91,200,232'
+                },0.07) 100%)`,
+              }}
+            />
           </div>
 
           {/* Bottom info bar */}
           <div
             className="absolute bottom-0 inset-x-0 px-5 py-4 flex items-center justify-between"
-            style={{ borderTop: '1px solid rgba(255,255,255,0.08)', background: 'rgba(10,15,26,0.6)', backdropFilter: 'blur(8px)' }}
+            style={{
+              borderTop: '1px solid rgba(255,255,255,0.08)',
+              background: 'rgba(10,15,26,0.6)',
+              backdropFilter: 'blur(8px)',
+            }}
           >
             <div className="flex items-center gap-2.5">
               <span className="w-1.5 h-1.5 rounded-full" style={{ background: p.accent }} />
-              <span className="nav-label text-white/90" style={{ fontSize: '10px' }}>{p.client}</span>
+              <span className="nav-label text-white/90" style={{ fontSize: '10px' }}>
+                {p.client}
+              </span>
             </div>
-            <span className="nav-label text-white/35" style={{ fontSize: '9px' }}>{p.category}</span>
+            <span className="nav-label text-white/35" style={{ fontSize: '9px' }}>
+              {p.category}
+            </span>
           </div>
         </div>
 
-        {/* Metric below card */}
+        {/* Metric row */}
         <div className="pt-3 pb-1 flex items-center justify-between px-1">
-          <span className="nav-label text-white/30" style={{ fontSize: '9px' }}>{p.metric}</span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" className="opacity-20 group-hover:opacity-60 transition-opacity duration-300">
-            <path d="M2 10L10 2M10 2H4M10 2V8" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
+          <span className="nav-label text-white/30" style={{ fontSize: '9px' }}>
+            {p.metric}
+          </span>
+          <motion.svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="none"
+            className="opacity-20"
+            whileHover={{ opacity: 0.7, x: 2, y: -2 }}
+            transition={{ duration: 0.2 }}
+          >
+            <path
+              d="M2 10L10 2M10 2H4M10 2V8"
+              stroke="white"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </motion.svg>
         </div>
       </Link>
     </motion.div>
@@ -104,32 +146,51 @@ function ProjectCard({ p, delay }: { p: typeof projects[0]; delay: number }) {
 export default function Portfolio() {
   return (
     <section className="relative overflow-hidden" style={{ background: '#111111' }}>
-      {/* Column grid */}
       <div className="col-grid absolute inset-0">
-        {[0,1,2,3,4].map(i => <span key={i} />)}
+        {[0, 1, 2, 3, 4].map((i) => <span key={i} />)}
       </div>
 
       <div className="max-w-[1440px] mx-auto px-8 relative z-10">
 
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.01 }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        <div
           className="pt-36 pb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-6"
           style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}
         >
           <div>
-            <span className="nav-label text-[#5BC8E8] opacity-60 block mb-4" style={{ fontSize: '10px' }}>OUR WORK</span>
+            <motion.span
+              className="nav-label text-[#5BC8E8] opacity-60 block mb-4"
+              style={{ fontSize: '10px' }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.6, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              OUR WORK
+            </motion.span>
             <h2 className="display-xl text-white" style={{ fontSize: 'clamp(2.8rem,6vw,6.5rem)' }}>
-              SELECTED<br />
-              <span style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                PROJECTS
-              </span>
+              <LineReveal delay={0.05} trigger="view">SELECTED</LineReveal>
+              <LineReveal delay={0.18} trigger="view">
+                <span
+                  style={{
+                    background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  PROJECTS
+                </span>
+              </LineReveal>
             </h2>
           </div>
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
+          <motion.div
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.97 }}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+          >
             <Link
               to="/case-studies"
               className="nav-label flex items-center gap-2.5 px-5 py-2.5 rounded-full mb-1 transition-all"
@@ -139,12 +200,12 @@ export default function Portfolio() {
               VIEW ALL CASE STUDIES
             </Link>
           </motion.div>
-        </motion.div>
+        </div>
 
         {/* Asymmetric grid */}
         <div className="py-16 grid lg:grid-cols-12 gap-6">
           {projects.map((p, i) => (
-            <ProjectCard key={p.id} p={p} delay={i * 0.08} />
+            <ProjectCard key={p.id} p={p} index={i} />
           ))}
         </div>
 

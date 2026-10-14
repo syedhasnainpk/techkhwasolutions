@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import LineReveal from './LineReveal'
 
 const pillars = [
   { num: '01', title: 'Expert Team',        body: 'Seasoned engineers with 5–12 years of experience embedded into your workflow.' },
@@ -10,48 +11,78 @@ const pillars = [
 
 const T = { border: 'rgba(17,17,17,0.08)', body: '#4B5563', muted: '#9CA3AF', accent: '#5BC8E8' }
 
+const pillarVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.09, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+  }),
+}
+
 export default function WhyTechKhwa() {
   return (
     <section id="about" className="relative overflow-hidden" style={{ background: '#FFFFFF' }}>
       <div className="col-grid col-grid-light absolute inset-0">
-        {[0,1,2,3,4].map(i => <span key={i} />)}
+        {[0, 1, 2, 3, 4].map((i) => <span key={i} />)}
       </div>
 
       <div className="max-w-[1440px] mx-auto px-8 relative z-10">
 
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.01 }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        <div
           className="pt-36 pb-20 grid grid-cols-1 lg:grid-cols-2 gap-16 items-end"
           style={{ borderBottom: `1px solid ${T.border}` }}
         >
           <div>
-            <span className="nav-label block mb-4" style={{ fontSize: '10px', color: T.accent, opacity: 0.7 }}>WHY TECHKHWA</span>
+            <motion.span
+              className="nav-label block mb-4"
+              style={{ fontSize: '10px', color: T.accent, opacity: 0.7 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.7, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              WHY TECHKHWA
+            </motion.span>
             <h2 className="display-xl" style={{ fontSize: 'clamp(2.8rem,6vw,6.5rem)', color: '#111111' }}>
-              WE DON'T<br />JUST BUILD
-              <span className="block" style={{ background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                SOFTWARE.
-              </span>
+              <LineReveal delay={0.05} trigger="view">WE DON'T</LineReveal>
+              <LineReveal delay={0.18} trigger="view">JUST BUILD</LineReveal>
+              <LineReveal delay={0.31} trigger="view">
+                <span
+                  style={{
+                    background: 'linear-gradient(135deg,#5BC8E8,#9BE4F5)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                  }}
+                >
+                  SOFTWARE.
+                </span>
+              </LineReveal>
             </h2>
           </div>
-          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', lineHeight: 1.75, color: T.body, maxWidth: '26rem' }}>
+          <motion.p
+            style={{ fontFamily: 'Inter, sans-serif', fontSize: '1rem', lineHeight: 1.75, color: T.body, maxWidth: '26rem' }}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.35, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          >
             We treat every project as a long-term partnership — not a ticket to close.
             Our engineers stay accountable through delivery and beyond, because the real test is what happens after launch.
-          </p>
-        </motion.div>
+          </motion.p>
+        </div>
 
-        {/* Pillars — editorial numbered list */}
+        {/* Pillars */}
         <div style={{ borderBottom: `1px solid ${T.border}` }}>
           {pillars.map((p, i) => (
             <motion.div
               key={p.num}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.01 }}
-              transition={{ delay: i * 0.08, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              custom={i}
+              variants={pillarVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
               className="group grid grid-cols-12 items-center gap-6 py-10 hover:pl-2 transition-all duration-300"
               style={{ borderTop: `1px solid ${T.border}` }}
             >
@@ -63,9 +94,19 @@ export default function WhyTechKhwa() {
                 {p.title}
               </h3>
               <div className="hidden lg:block lg:col-span-1">
-                <div className="w-full h-px" style={{ background: `rgba(91,200,232,0.2)` }} />
+                <motion.div
+                  className="w-full h-px"
+                  style={{ background: `rgba(91,200,232,0.2)` }}
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.09 + 0.3, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                />
               </div>
-              <p className="col-span-12 lg:col-span-6 text-[0.9rem] leading-relaxed" style={{ fontFamily: 'Inter, sans-serif', color: T.body }}>
+              <p
+                className="col-span-12 lg:col-span-6 text-[0.9rem] leading-relaxed"
+                style={{ fontFamily: 'Inter, sans-serif', color: T.body }}
+              >
                 {p.body}
               </p>
             </motion.div>
@@ -83,7 +124,7 @@ export default function WhyTechKhwa() {
             >
               MORE ABOUT US
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </Link>
           </motion.div>
