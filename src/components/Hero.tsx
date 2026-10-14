@@ -42,20 +42,6 @@ export default function Hero() {
         {[0,1,2,3,4].map(i => <span key={i} />)}
       </div>
 
-      {/* Top-left label — also a masked reveal */}
-      <div className="absolute z-[30] flex items-center gap-2" style={{ top: '8rem', left: '4vw', overflow: 'hidden' }}>
-        <motion.div
-          className="flex items-center gap-2"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#5BC8E8' }} />
-          <span className="nav-label" style={{ fontSize: '10px', color: 'rgba(255,255,255,0.35)', letterSpacing: '0.14em' }}>
-            CUSTOM SOFTWARE + DIGITAL ENGINEERING
-          </span>
-        </motion.div>
-      </div>
 
       {/* MASSIVE STACKED TYPOGRAPHY — behind laptop */}
       <motion.div
@@ -181,24 +167,12 @@ export default function Hero() {
           style={{ borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1.5rem' }}
         >
           {/* Left */}
-          <div className="flex flex-col gap-4">
-            <button
-              className="nav-label flex items-center gap-2.5 px-5 py-2.5 rounded-full w-fit"
-              style={{
-                background: 'rgba(20,26,42,0.9)', border: '1px solid rgba(255,255,255,0.1)',
-                color: '#fff', fontSize: '11px', cursor: 'pointer', backdropFilter: 'blur(8px)',
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#5BC8E8' }} />
-              PLAY SHOWREEL
-            </button>
-            <div>
-              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '10px', color: 'rgba(255,255,255,0.22)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
-                TechKhwa Solutions
-              </div>
-              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '10px', color: 'rgba(255,255,255,0.14)', letterSpacing: '0.08em', marginTop: 2 }}>
-                PK &nbsp;&oplus;&nbsp; Karachi, Pakistan
-              </div>
+          <div>
+            <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '10px', color: 'rgba(255,255,255,0.22)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+              TechKhwa Solutions
+            </div>
+            <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '10px', color: 'rgba(255,255,255,0.14)', letterSpacing: '0.08em', marginTop: 2 }}>
+              PK &nbsp;&oplus;&nbsp; Karachi, Pakistan
             </div>
           </div>
 
@@ -208,23 +182,6 @@ export default function Hero() {
               From custom software to cloud infrastructure —<br />
               TechKhwa Solutions powers businesses across the globe.
             </p>
-            <div className="flex items-center gap-3">
-              <Link
-                to="/services"
-                className="nav-label flex items-center gap-2 px-6 py-3 rounded-full"
-                style={{ background: '#5BC8E8', color: '#111111', fontSize: '11px' }}
-              >
-                <span className="w-1.5 h-1.5 rounded-full bg-current" />
-                EXPLORE SERVICES
-              </Link>
-              <Link
-                to="/contact"
-                className="nav-label px-6 py-3 rounded-full"
-                style={{ color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.1)', fontSize: '11px' }}
-              >
-                BOOK A CALL
-              </Link>
-            </div>
           </div>
         </div>
       </motion.div>

@@ -64,23 +64,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <div className="hidden lg:flex items-center shrink-0">
-          <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-            <Link
-              to="/contact"
-              className="nav-label flex items-center gap-2 px-5 py-2.5 rounded-full transition-all duration-200"
-              style={{
-                background: pathname === '/contact' ? '#5BC8E8' : 'rgba(91,200,232,0.1)',
-                color: pathname === '/contact' ? '#111111' : '#5BC8E8',
-                border: '1px solid rgba(91,200,232,0.3)',
-              }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-current" />
-              GET IN TOUCH
-            </Link>
-          </motion.div>
-        </div>
 
         {/* Mobile toggle */}
         <button
