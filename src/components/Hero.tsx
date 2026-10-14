@@ -128,35 +128,35 @@ export default function Hero() {
   const smooth = useSpring(scrollYProgress, { stiffness: 55, damping: 22, restDelta: 0.001 })
 
   // ── Text column fades out first ──────────────────────────────
-  const textOpacity = useTransform(smooth, [0, 0.18], [1, 0])
-  const textY       = useTransform(smooth, [0, 0.22], [0, -50])
-  const barOpacity  = useTransform(smooth, [0, 0.14], [1, 0])
+  const textOpacity = useTransform(smooth, [0, 0.25], [1, 0])
+  const textY       = useTransform(smooth, [0, 0.30], [0, -50])
+  const barOpacity  = useTransform(smooth, [0, 0.20], [1, 0])
 
   // ── Laptop grows then fades as video appears ─────────────────
-  const laptopScale   = useTransform(smooth, [0, 0.28],  [1, 2.2])
-  const laptopOpacity = useTransform(smooth, [0.18, 0.34], [1, 0])
+  const laptopScale   = useTransform(smooth, [0, 0.35], [1, 2.0])
+  const laptopOpacity = useTransform(smooth, [0.25, 0.45], [1, 0])
 
   // ── Video overlay ─────────────────────────────────────────────
-  const videoOpacity = useTransform(smooth, [0.22, 0.42], [0, 1])
+  const videoOpacity = useTransform(smooth, [0.30, 0.55], [0, 1])
 
   // Clip-path: starts at laptop screen position, expands to full viewport
   // inset(top% right% bottom% left% round Xpx)
-  const clipTop    = useTransform(smooth, [0.20, 0.80], [22, 0])
-  const clipRight  = useTransform(smooth, [0.20, 0.80], [5,  0])
-  const clipBottom = useTransform(smooth, [0.20, 0.80], [22, 0])
-  const clipLeft   = useTransform(smooth, [0.20, 0.80], [48, 0])
-  const clipRadius = useTransform(smooth, [0.20, 0.55], [10, 0])
+  const clipTop    = useTransform(smooth, [0.28, 0.90], [22, 0])
+  const clipRight  = useTransform(smooth, [0.28, 0.90], [5,  0])
+  const clipBottom = useTransform(smooth, [0.28, 0.90], [22, 0])
+  const clipLeft   = useTransform(smooth, [0.28, 0.90], [48, 0])
+  const clipRadius = useTransform(smooth, [0.28, 0.65], [10, 0])
   const videoClipPath = useMotionTemplate`inset(${clipTop}% ${clipRight}% ${clipBottom}% ${clipLeft}% round ${clipRadius}px)`
 
   // ── Scroll hint bounces then disappears ──────────────────────
-  const hintOpacity = useTransform(smooth, [0, 0.07], [1, 0])
+  const hintOpacity = useTransform(smooth, [0, 0.10], [1, 0])
 
   // Parallax for column grid
   const gridY = useTransform(smooth, [0, 1], ['0%', '8%'])
 
   return (
-    // 300vh gives 200vh of scroll travel while the section is pinned
-    <div ref={scrollRef} style={{ height: '300vh' }}>
+    // 200vh gives 100vh of scroll travel while the section is pinned
+    <div ref={scrollRef} style={{ height: '200vh' }}>
       <section
         className="relative overflow-hidden"
         style={{

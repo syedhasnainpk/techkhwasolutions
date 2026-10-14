@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 
 interface LineRevealProps {
   children: React.ReactNode
@@ -6,7 +7,6 @@ interface LineRevealProps {
   duration?: number
   style?: React.CSSProperties
   className?: string
-  /** 'view' uses whileInView, 'mount' animates on mount */
   trigger?: 'view' | 'mount'
 }
 
@@ -18,23 +18,21 @@ export default function LineReveal({
   className,
   trigger = 'mount',
 }: LineRevealProps) {
-  const anim =
-    trigger === 'view'
-      ? {
-          initial: { y: '110%' },
-          whileInView: { y: '0%' },
-          viewport: { once: true, amount: 0.5 as const },
-          transition: { delay, duration, ease: [0.16, 1, 0.3, 1] as const },
-        }
-      : {
-          initial: { y: '110%' },
-          animate: { y: '0%' },
-          transition: { delay, duration, ease: [0.16, 1, 0.3, 1] as const },
-        }
+  const ref = useRef<HTMLDivElement>(null)
+  // Watch the outer container; fires as soon as any part enters the viewport
+  const inView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' })
+
+  const shouldAnimate = trigger === 'view' ? inView : true
 
   return (
-    <div style={{ overflow: 'hidden' }}>
-      <motion.div style={style} className={className} {...anim}>
+    <div ref={ref} style={{ overflow: 'hidden' }}>
+      <motion.div
+        style={style}
+        className={className}
+        initial={{ y: '110%' }}
+        animate={{ y: shouldAnimate ? '0%' : '110%' }}
+        transition={{ delay, duration, ease: [0.16, 1, 0.3, 1] }}
+      >
         {children}
       </motion.div>
     </div>
